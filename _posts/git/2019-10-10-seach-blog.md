@@ -1,6 +1,6 @@
 ---
 title:  "GitHub 블로그 검색되도록 설정하기"
-permalink: /git/blog
+permalink: /git/blog/20191010210102
 last_modified_at: 2019-10-10T21:01:02+09:00
 tags:
   - GitHub블로그
