@@ -32,10 +32,11 @@ sitemap.xml
 - 최상위 디렉토리에 sitemap.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
 
-``` text
+``` html
 ---
 layout: null
 ---
+{% raw %}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% for post in site.posts %}
@@ -62,6 +63,7 @@ layout: null
     </url>
   {% endfor %}
 </urlset>
+{% endraw %}
 ```
 
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
@@ -102,7 +104,7 @@ Sitemap: https://gptjs409.github.io/sitemap.xml
 ```
 - 등록하면 다음과 같이 나옴 [LINK](https://gptjs409.github.io/robots.txt)
 
-``` text
+``` html
 User-agent: *
 Allow: /
 
@@ -157,9 +159,7 @@ RSS 피드 등록하기
 - GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
-``` 
----
-(여기부터)
+``` xml
 ---
 layout: null
 ---
@@ -190,7 +190,6 @@ layout: null
     {% endfor %}
   </channel>
 </rss>
-(여기까지)
 ---
 ``` 
 
