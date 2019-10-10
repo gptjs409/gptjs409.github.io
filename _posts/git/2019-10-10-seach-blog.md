@@ -32,7 +32,7 @@ sitemap.xml
 - 최상위 디렉토리에 sitemap.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
 
-``` html
+```html
 {% raw %}
 ---
 layout: null
@@ -65,6 +65,7 @@ layout: null
   {% endfor %}
 </urlset>
 {% endraw %}
+
 ```
 
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
@@ -249,3 +250,5 @@ gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 ## 삽질ING
 깃헙 블로그 쉽다고 누가 그랬는데..
 익숙해질 날이 빨리 다가왔으면!
+<br>
+`{% raw %}{% if page.comments %}{% endraw %}` `{% raw %}{% endif %}{% endraw %}` 이거 추가해야 제대로 { } HTML 파일이 보인다는데..
