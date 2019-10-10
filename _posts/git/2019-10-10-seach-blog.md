@@ -31,6 +31,7 @@ sitemap.xml
 - GitHub Pages 즉, 깃헙 블로그에서는 Plug-in(플러그인)을 사용할 수 없음
 - 최상위 디렉토리에 sitemap.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
+
 ``` xml
 ---
 layout: null
@@ -62,7 +63,9 @@ layout: null
   {% endfor %}
 </urlset>
 ```
+
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
+
 ``` xml
 This XML file does not appear to have any style information associated with it. The document tree is shown below.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -90,6 +93,7 @@ Robots.txt란?
 Robots.txt 등록하기(사이트맵 필요!)
 - 최상위 디렉토리에 robots.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
+
 ``` xml
 User-agent: *
 Allow: /
@@ -97,6 +101,7 @@ Allow: /
 Sitemap: https://gptjs409.github.io/sitemap.xml
 ```
 - 등록하면 다음과 같이 나옴 [LINK](https://gptjs409.github.io/robots.txt)
+
 ``` xml
 User-agent: *
 Allow: /
@@ -151,6 +156,7 @@ RSS피드란?
 RSS 피드 등록하기
 - GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
+
 ``` xml
 ---
 layout: null
@@ -219,6 +225,7 @@ layout: null
   - 이메일 입력 (앗! 다음이 아니어도 상관 없음) 입력 후 [확인]
   - 완료
 - 완료 메시지
+
 ``` text
 gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 
