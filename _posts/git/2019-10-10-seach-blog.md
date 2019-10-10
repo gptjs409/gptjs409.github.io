@@ -61,7 +61,6 @@ layout: null
   {% endfor %}
 </urlset>
 {% endraw %}
-
 ```
 
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
@@ -158,6 +157,7 @@ RSS 피드 등록하기
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
 ``` xml
+{% raw %}
 ---
 layout: null
 ---
@@ -188,7 +188,7 @@ layout: null
     {% endfor %}
   </channel>
 </rss>
----
+{% endraw %}
 ``` 
 
 <br>
@@ -247,7 +247,5 @@ gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 깃헙 블로그 쉽다고 누가 그랬는데..
 익숙해질 날이 빨리 다가왔으면!
 <br>
-``` html
-{% raw %}{%{% endraw %} raw {% raw %}%}{% endraw %}
-{% raw %}{%{% endraw %} endraw {% raw %}%}{% endraw %}
-```이거 추가해야 제대로 { } HTML 파일이 보인다는데..
+`{% raw %}` `{% endraw %}`
+- 이거 추가해야 제대로 { } HTML 파일이 보인다는데..
