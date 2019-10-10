@@ -119,7 +119,7 @@ GOOGLE SEARCH CONSOLE [LINK](https://www.google.com/webmasters/#?modal_active=no
   2. Google 검색 실적 개선하기 [시작하기]
   3. (로그인 안했으면 로그인)
   4. (URL접두어) URL : (블로그URL) https://gptjs409.github.io
-  5. HTML 등록하라고 뜨는데, 다운받아서 GitHub Repo 최상위루트에 넣어두기[예제LINK](https://github.com/gptjs409/gptjs409.github.io/blob/master/google5f4ed065a298fe81.html)
+  5. HTML 등록하라고 뜨는데, 다운받아서 GitHub Repo 최상위루트에 넣어두기 [예제LINK](https://github.com/gptjs409/gptjs409.github.io/blob/master/google5f4ed065a298fe81.html)
   6. 그리고 등록하고 30초정도 대기했다가 등록완료하면 소유권이 확인됨!이 뜸
   7. 속성으로 이동
 - 사이트맵 적용해보기
@@ -128,7 +128,7 @@ GOOGLE SEARCH CONSOLE [LINK](https://www.google.com/webmasters/#?modal_active=no
   3. 제출된 사이트맵으로 (바로 아래) 이동되며 상태가 성공!이라고 뜨면 됨
 - Robots.xml 제출하기
   1. 로그인된 상태에서
-  2. 해당 링크 접속[LINK](https://www.google.com/webmasters/tools/robots-testing-tool)
+  2. 해당 링크 접속 [LINK](https://www.google.com/webmasters/tools/robots-testing-tool)
   3. 주소가 잘 입력되어 있으면 4번으로, 주소가 다른 기존 등록 주소라면 우측 상단 새로운 Search Console 사용
   4. robots.txt가 잘 나와있는지 확인하고 [제출]
   5. 1번 2번은 희망자만 선택하고, 다 되고나서 3번의 [제출] 끝
@@ -250,5 +250,5 @@ gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 <br>
 아니 `HTML` 자꾸 지킬이 랜더링할 때 제대로 안해줘서 방법을 찾음
 
-{% raw %}와 {% endraw %}를 맨 위 맨 아래에 붙여주면 되고, 중간에 빈 엔터(공 개행문자) 없이 하면 됨!
+\{\% raw \%\}와 \{\% endraw \%\}를 맨 위 맨 아래에 붙여주면 되고, 중간에 빈 엔터(공 개행문자) 없이 하면 됨!
 wow!
