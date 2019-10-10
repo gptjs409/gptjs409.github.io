@@ -157,7 +157,9 @@ RSS 피드 등록하기
 - GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
-``` text
+``` 
+---
+(여기부터)
 ---
 layout: null
 ---
@@ -188,7 +190,8 @@ layout: null
     {% endfor %}
   </channel>
 </rss>
-
+(여기까지)
+---
 ``` 
 
 <br>
