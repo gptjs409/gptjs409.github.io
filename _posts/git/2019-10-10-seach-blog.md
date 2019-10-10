@@ -36,10 +36,10 @@ sitemap.xml
 ---
 layout: null
 ---
-{% raw %}
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for post in site.posts %}
+  {% raw %}{% for post in site.posts %}{% endraw %}
     <url>
       <loc>{{ site.url }}{{ post.url }}</loc>
       {% if post.lastmod == null %}
@@ -63,7 +63,6 @@ layout: null
     </url>
   {% endfor %}
 </urlset>
-{% endraw %}
 ```
 
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
