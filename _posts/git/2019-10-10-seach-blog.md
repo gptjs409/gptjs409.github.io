@@ -37,7 +37,6 @@ sitemap.xml
 ---
 layout: null
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% for post in site.posts %}
@@ -48,19 +47,16 @@ layout: null
       {% else %}
         <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
       {% endif %}
-
       {% if post.sitemap.changefreq == null %}
         <changefreq>weekly</changefreq>
       {% else %}
         <changefreq>{{ post.sitemap.changefreq }}</changefreq>
       {% endif %}
-
       {% if post.sitemap.priority == null %}
           <priority>0.5</priority>
       {% else %}
         <priority>{{ post.sitemap.priority }}</priority>
       {% endif %}
-
     </url>
   {% endfor %}
 </urlset>
@@ -251,4 +247,7 @@ gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 깃헙 블로그 쉽다고 누가 그랬는데..
 익숙해질 날이 빨리 다가왔으면!
 <br>
-`{% raw %}{% if page.comments %}{% endraw %}` `{% raw %}{% endif %}{% endraw %}` 이거 추가해야 제대로 { } HTML 파일이 보인다는데..
+``` html
+{% raw %}{%{% endraw %} raw {% raw %}%}{% endraw %}
+{% raw %}{%{% endraw %} endraw {% raw %}%}{% endraw %}
+```이거 추가해야 제대로 { } HTML 파일이 보인다는데..
