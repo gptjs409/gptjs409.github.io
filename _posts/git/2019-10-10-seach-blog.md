@@ -134,15 +134,105 @@ GOOGLE SEARCH CONSOLE [LINK](https://www.google.com/webmasters/#?modal_active=no
 <br>
 
 ## 4. RSS Feed 생성하기(네이버/다음 등록 준비)
+RSS란?
+- Really Simple Syndication 또는 Rich Site Summary의 약자
+- 뉴스나 블로그 사이트에서 주로 사용하는 콘텐츠 표현 방식
+- 웹 관리자는 RSS 형식으로 웹 사이트 내용을 보여줌
+- 넷스케이프를 통해 등장
+
+<br>
+
+RSS피드란?
+- 정기적으로 업데이트되는 웹 콘텐츠를 전달해주는 형태
+- 글의 전체 또는 요약 정보 및 작성자 등의 정보가 포함
+
+<br>
+
+RSS 피드 등록하기
+- GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
+- 최상위 루트 아래 /feed.xml을 생성하면 끝!
+``` xml
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <generator>Jekyll v{{ jekyll.version }}</generator>
+    {% for post in site.posts limit:30 %}
+      <item>
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.content | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
+        {% for tag in post.tags %}
+        <category>{{ tag | xml_escape }}</category>
+        {% endfor %}
+        {% for cat in post.categories %}
+        <category>{{ cat | xml_escape }}</category>
+        {% endfor %}
+      </item>
+    {% endfor %}
+  </channel>
+</rss>
+```
 
 <br>
 <br>
 
 ## 5. 네이버/다음에서 검색되도록 등록하기
+네이버(NAVER) : 로그인 필요
+- 검색등록 [LINK](https://webmastertool.naver.com/)
+  - 로그인
+  - 사이트 간단 체크(ID당 하루 최대 10번) : (블로그URL) https://gptjs409.github.io [조회]
+  - 자동등록 보안절차(글자숫자입력) [확인]
+  - Robots가 없다는데... 나중에 확인할 것
+  - 맨 아래 조회한 사이트 소유확인하기 클릭
+- 소유확인
+  - HTML 파일 업로드 선택
+  - HTML 파일 다운로드
+  - GITHUB 최상단에 업로드
+  - HTML 반영 확인(참고 생각보다 꽤 반영 시간 걸림)
+  - 완료
+- 웹마스터도구 > 등록한 도메인 선택
+  - 요청 > RSS 제출 : Feed URL 입력 후 제출
+  - 요청 > 사이트맵 제출 : sitemap.xml 입력 후 제출
+  - 웹 페이지 수집 : 확인, 및 등록하고 싶은 것 등록(robots.xml도 한 번 해줌)
+- robots 등록안되었다던거
+  - 검증 > robots.txt 들어가면 잘 적용 된 것으로 확인됨
+  - 검증 > 웹 페이지 최적화에서 재검증 끝!
+  
+<br>
+
+다음(DAUM) : 로그인 불필요
+- 검색등록 [LINK](https://register.search.daum.net/searchForm.daum?act=insert)
+  - 검색등록 선택 : 블로그 등록
+  - 블로그 URL : (본인 URL) gptjs409.github.io [확인]
+  - 개인정보 수집 동의, 개인정보 취급 위탁 동의 [확인]
+  - 이메일 입력 (앗! 다음이 아니어도 상관 없음) 입력 후 [확인]
+  - 완료
+- 완료 메시지
+``` text
+gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
+
+블로그 URL	http://gptjs409.github.io
+
+입력하신 블로그는 정상적으로 등록신청 되었습니다.
+해당 블로그의 글은 심사를 거친 후 블로그 검색에 노출 될 것입니다.
+등록 이후 검색 노출은 최대 5일 정도 소요되며 처리 결과는 별도로 알려드리지 않습니다.
+블로그 내용이 블로그 검색 기준에 맞지 않다면 거부 될 수 있습니다.
+```
+- 처리 결과는 아마도 이메일로 오는 듯 함
 
 <br>
 <br>
-
 
 
 ## 삽질ING
