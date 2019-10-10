@@ -32,7 +32,7 @@ sitemap.xml
 - 최상위 디렉토리에 sitemap.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
 
-``` xml
+``` text
 ---
 layout: null
 ---
@@ -102,7 +102,7 @@ Sitemap: https://gptjs409.github.io/sitemap.xml
 ```
 - 등록하면 다음과 같이 나옴 [LINK](https://gptjs409.github.io/robots.txt)
 
-``` xml
+``` text
 User-agent: *
 Allow: /
 
@@ -157,7 +157,7 @@ RSS 피드 등록하기
 - GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
-``` xml
+``` text
 ---
 layout: null
 ---
@@ -188,6 +188,7 @@ layout: null
     {% endfor %}
   </channel>
 </rss>
+
 ```
 
 <br>
