@@ -40,7 +40,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 복사한 __config.yml
 - remote_theme 주석 해제 (필수)
   ```yml
-  {% highlight markdown %}
   (수정 전)
   # remote_theme           : "mmistakes/minimal-mistakes"
   
@@ -49,7 +48,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   ```
 - url 수정 (필수)
   ```yml
-  {% highlight markdown %}
   (수정 전)
   baseurl: "" # the subpath of your site, e.g. /blog/
   url: "" # the base hostname & protocol for your site
@@ -60,7 +58,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   ```
 - 기타
   ```yml
-  {% highlight markdown %}
   (수정 전)
   title: Centrarium
   subtitle: "A simple yet classy theme for your Jekyll website or blog"
@@ -129,7 +126,6 @@ index.html
 
 커버와 로고
 ```
-{% highlight markdown %}
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 ```
@@ -142,14 +138,6 @@ logo: "/assets/logo.png"
 <br>
 
 ## 7. 하이라이트 종류 변경하기(문자열 하이라이트)
-- 해당 테마는 특이하게도 처음에 다음과 같이 명시해야 하이라이트를 준다.
-``` xml
-{% highlight javascript %}
-{% raw %}
-{% highlight 언어명(xml같은거) %}
-{% endraw %}
-```
-
 
 - 하이라이트 종류 찾기 [LINK](https://highlightjs.org/static/demo/)
 - 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
