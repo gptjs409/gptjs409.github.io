@@ -40,7 +40,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 복사한 __config.yml
 - remote_theme 주석 해제 (필수)
 
-  ```markdown
   {% highlight markdown %}
   (수정 전)
   # remote_theme           : "mmistakes/minimal-mistakes"
@@ -48,7 +47,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   (수정 후)
   remote_theme           : "mmistakes/minimal-mistakes"
   {% endhighlight %}
-  ```
   
 - url 수정 (필수)
 
