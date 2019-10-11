@@ -84,6 +84,12 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 
 <br>
 <br>
+## 3. posts.md도 복사
+- 해당 테마 테스트 md 파일인듯
+- posts.md [LINK](https://github.com/gptjs409/gptjs409.github.io/blob/master/posts.md)
+
+<br>
+<br>
 
 ## 4. index.html 삽입
 
