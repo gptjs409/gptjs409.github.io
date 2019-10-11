@@ -39,6 +39,7 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 
 복사한 __config.yml
 - remote_theme 주석 해제 (필수)
+
   ```markdown
   {% highlight markdown %}
   (수정 전)
@@ -48,7 +49,9 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   remote_theme           : "mmistakes/minimal-mistakes"
   {% endhighlight %}
   ```
+  
 - url 수정 (필수)
+
   ```markdown
   {% highlight markdown %}
   (수정 전)
@@ -60,7 +63,9 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   url: "https://gptjs409.github.io/" # the base hostname & protocol for your site
   {% endhighlight %}
   ```
+  
 - 기타
+
   ```markdown
   {% highlight markdown %}
   (수정 전)
@@ -131,12 +136,14 @@ index.html
 - css
 
 커버와 로고
+
 ```
 {% highlight markdown %}
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 {% endhighlight %}
 ```
+
 - 커버이미지는 무료 이미지 사이트를 통해 가져옴 [LINK](https://pixabay.com/ko/photos/%EA%B3%A0%EC%96%91%EC%9D%B4-%EB%8B%AC%EC%BD%A4%ED%95%9C-%EA%B7%80%EC%97%AC%EC%9A%B4-%EC%88%99%EC%B7%A8-4436152/)
 - 로고 이미지는 무료 로고 만들기 사이트를 통해 만듦, 아이디 필요 [LINK](https://www.miricanvas.com/design)
 
@@ -167,8 +174,8 @@ highlightjs_theme: "a-11-y-light"
 ``` javascript
 {% highlight javascript %}
 {% raw %}
-{% highlight 언어명(xml같은거) %}
-{% endhighlight %}
+{ % highlight 언어명(xml같은거) % }
+{ % endhighlight % }
 {% endraw %}
 {% endhighlight %}
 ```
