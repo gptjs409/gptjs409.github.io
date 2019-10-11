@@ -1,7 +1,9 @@
 ---
+layout: post
 title:  "GitHub 블로그 만들기"
-permalink: /git/blog/20191011234123
-last_modified_at: 2019-10-11T23:41:23+09:00
+date:   2019-10-11 23:41:23
+author: Choi HyeSun
+categories: git
 tags:
   - GitHub블로그
   - GitHubBlog
@@ -10,7 +12,6 @@ tags:
   - Jekyll
   - Git
   - 블로그
-
 ---
 
 ## 1. 변경할 테마 선택
