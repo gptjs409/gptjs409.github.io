@@ -79,7 +79,7 @@ social:
   - name: Twitter
     icon: twitter
     username: TheBenCentra
-    url: https://twitter.com/TheBenCentra
+    url: ""
     desc: Follow me on Twitter
     share: false
 
@@ -99,7 +99,7 @@ social:
 
   - name: LinkedIn
     icon: linkedin
-    username: Ben Centra
+    username: Choi HyeSun
     url: https://www.linkedin.com/in/hyesun-choi-093282181/
     desc: Connect with me on LinkedIn
     share: true
