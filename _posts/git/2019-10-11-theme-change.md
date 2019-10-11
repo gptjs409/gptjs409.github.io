@@ -142,3 +142,20 @@ logo: "/assets/logo.png"
 - 하이라이트 종류 찾기 [LINK](https://highlightjs.org/static/demo/)
 - 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
 - 단 지킬 테마 설정때문에 해당 안에 있는 설정만 가능 [Link](https://cdnjs.com/libraries/highlight.js/)
+- 고른 테마
+```
+(_config.yml 수정 전)
+highlightjs_theme: "monokai-sublime"
+
+(수정 후)
+highlightjs_theme: "a-11-y-light"
+```
+- 테마때문에 하이라이트 표시할 땐 다음 블럭 안에 넣어줄 것
+``` javascript
+{% highlight javascript %}
+{% raw %}
+{% highlight 언어명(xml같은거) %}
+{% endhighlight %}
+{% endraw %}
+{% endhighlight %}
+```
