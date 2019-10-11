@@ -143,13 +143,9 @@ logo: "/assets/logo.png"
 
 ## 7. 하이라이트 종류 변경하기(문자열 하이라이트)
 - 해당 테마는 특이하게도 처음에 다음과 같이 명시해야 하이라이트를 준다.
-``` xml
-{% highlight javascript %}
+  - { % highlight javascript % }
+  - { % highlight (언어명) % }
 
-{% raw %}
-{% highlight 언어명(xml같은거) %}
-{% endraw %}
-```
 
 - 하이라이트 종류 찾기 [LINK](https://highlightjs.org/static/demo/)
 - 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
