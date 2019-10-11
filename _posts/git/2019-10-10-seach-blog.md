@@ -98,7 +98,6 @@ Robots.txt 등록하기(사이트맵 필요!)
 
 ``` xml
 {% highlight xml %}
-``` xml
 User-agent: *
 Allow: /
 
