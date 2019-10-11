@@ -39,7 +39,7 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 
 복사한 __config.yml
 - remote_theme 주석 해제 (필수)
-  ```yml
+  ```markdown
   (수정 전)
   # remote_theme           : "mmistakes/minimal-mistakes"
   
@@ -47,7 +47,7 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   remote_theme           : "mmistakes/minimal-mistakes"
   ```
 - url 수정 (필수)
-  ```yml
+  ```markdown
   (수정 전)
   baseurl: "" # the subpath of your site, e.g. /blog/
   url: "" # the base hostname & protocol for your site
@@ -57,7 +57,7 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   url: "https://gptjs409.github.io/" # the base hostname & protocol for your site
   ```
 - 기타
-  ```yml
+  ```markdown
   (수정 전)
   title: Centrarium
   subtitle: "A simple yet classy theme for your Jekyll website or blog"
@@ -143,19 +143,11 @@ logo: "/assets/logo.png"
 - 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
 - 단 지킬 테마 설정때문에 해당 안에 있는 설정만 가능 [Link](https://cdnjs.com/libraries/highlight.js/)
 - 고른 테마
-```
+
+```markdown
 (_config.yml 수정 전)
 highlightjs_theme: "monokai-sublime"
 
 (수정 후)
 highlightjs_theme: "a-11-y-light"
-```
-- 테마때문에 하이라이트 표시할 땐 다음 블럭 안에 넣어줄 것
-``` javascript
-{% highlight javascript %}
-{% raw %}
-{% highlight 언어명(xml같은거) %}
-{% endhighlight %}
-{% endraw %}
-{% endhighlight %}
 ```
