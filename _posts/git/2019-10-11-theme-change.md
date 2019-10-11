@@ -116,6 +116,9 @@ index.html
 - 안쓰는 SNS 설정은 share: false로 변경
 - 쓰는 SNS 업데이트(깃헙/링크드인)
 
+<br>
+<br>
+
 ## 6. 파일 옮기기
 대상
 - \_includes
@@ -134,3 +137,18 @@ logo: "/assets/logo.png"
 - 로고 이미지는 무료 로고 만들기 사이트를 통해 만듦, 아이디 필요 [LINK](https://www.miricanvas.com/design)
 
 색상은 /\_sass/base/\_variables.scss에서 액션컬러 변경으로 적용(그레이) 
+
+<br>
+<br>
+
+## 7. 하이라이트 종류 변경하기(문자열 하이라이트)
+- 해당 테마는 특이하게도 처음에 다음과 같이 명시해야 하이라이트를 준다.
+``` xml
+{% highlight javascript %}
+{% raw %}
+{% highlight 언어명(xml같은거) %}
+{% endraw %}
+```
+
+- 하이라이트 종류 찾기 [LINK] (https://highlightjs.org/static/demo/)
+- 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
