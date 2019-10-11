@@ -235,7 +235,7 @@ layout: null
 - 완료 메시지
 
 ``` text
-{% highlight markdown %}
+{% highlight yaml %}
 gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 
 블로그 URL	http://gptjs409.github.io
