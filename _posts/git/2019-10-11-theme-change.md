@@ -145,9 +145,22 @@ logo: "/assets/logo.png"
 - 고른 테마
 
 ```markdown
+{% highlight markdown %}
 (_config.yml 수정 전)
 highlightjs_theme: "monokai-sublime"
 
 (수정 후)
 highlightjs_theme: "a-11-y-light"
+{% endhighlight %}
+```
+
+- 테마때문에 하이라이트 표시할 땐 다음 블럭 안에 넣어줄 것
+
+``` javascript
+{% highlight javascript %}
+{% raw %}
+{% highlight 언어명(xml같은거) %}
+{% endhighlight %}
+{% endraw %}
+{% endhighlight %}
 ```
