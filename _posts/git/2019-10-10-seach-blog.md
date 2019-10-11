@@ -97,6 +97,8 @@ Robots.txt 등록하기(사이트맵 필요!)
 - 다음과 같이 셋팅
 
 ``` xml
+{% highlight xml %}
+``` xml
 User-agent: *
 Allow: /
 
@@ -105,6 +107,7 @@ Sitemap: https://gptjs409.github.io/sitemap.xml
 - 등록하면 다음과 같이 나옴 [LINK](https://gptjs409.github.io/robots.txt)
 
 ``` html
+{% highlight xml %}
 User-agent: *
 Allow: /
 
@@ -232,6 +235,7 @@ layout: null
 - 완료 메시지
 
 ``` text
+{% highlight markdown %}
 gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 
 블로그 URL	http://gptjs409.github.io
