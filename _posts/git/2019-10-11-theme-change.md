@@ -106,8 +106,20 @@ index.html
 - 안쓰는 SNS 설정은 share: false로 변경
 - 쓰는 SNS 업데이트(깃헙/링크드인)
 
+## 6. 파일 옮기기
+대상
+- \_includes
+- \_layouts
+- \_sass
+- assets
+- css
+
 커버와 로고
 ```
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 ```
+- 커버이미지는 무료 이미지 사이트를 통해 가져옴 [LINK](https://pixabay.com/ko/photos/%EA%B3%A0%EC%96%91%EC%9D%B4-%EB%8B%AC%EC%BD%A4%ED%95%9C-%EA%B7%80%EC%97%AC%EC%9A%B4-%EC%88%99%EC%B7%A8-4436152/)
+- 로고 이미지는 무료 로고 만들기 사이트를 통해 만듦, 아이디 필요 [LINK](https://www.miricanvas.com/design)
+
+색상은 /\_sass/base/\_variables.scss에서 액션컬러 변경으로 적용(그레이) 
