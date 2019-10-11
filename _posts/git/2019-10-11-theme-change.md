@@ -14,7 +14,6 @@ tags:
   - 블로그
 ---
 
-<link rel="stylesheet" href="{{ site.highlightjs_theme }}">
  
 ## 1. 변경할 테마 선택
 
@@ -43,19 +42,16 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 - remote_theme 주석 해제 (필수)
 
   {% highlight markdown %}
-  
   (수정 전)
   # remote_theme           : "mmistakes/minimal-mistakes"
   
   (수정 후)
   remote_theme           : "mmistakes/minimal-mistakes"
-  
   {% endhighlight %}
   
 - url 수정 (필수)
 
   {% highlight markdown %}
-  
   (수정 전)
   baseurl: "" # the subpath of your site, e.g. /blog/
   url: "" # the base hostname & protocol for your site
@@ -63,13 +59,11 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   (수정 후 - url은 본인 github명으로 입력할 것)
   baseurl: "" # the subpath of your site, e.g. /blog/
   url: "https://gptjs409.github.io/" # the base hostname & protocol for your site
-  
   {% endhighlight %}
   
 - 기타
 
   {% highlight markdown %}
-  
   (수정 전)
   title: Centrarium
   subtitle: "A simple yet classy theme for your Jekyll website or blog"
@@ -93,7 +87,6 @@ GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
   os_repo: "https://github.com/gptjs409"
   os_rcs_type: "git"
   os_src: "git@github.com:gptjs409/gptjs409.github.io.git"
-  
   {% endhighlight %}
 
 <br>
@@ -141,10 +134,8 @@ index.html
 커버와 로고
 
 {% highlight markdown %}
-
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
-
 {% endhighlight %}
 
 - 커버이미지는 무료 이미지 사이트를 통해 가져옴 [LINK](https://pixabay.com/ko/photos/%EA%B3%A0%EC%96%91%EC%9D%B4-%EB%8B%AC%EC%BD%A4%ED%95%9C-%EA%B7%80%EC%97%AC%EC%9A%B4-%EC%88%99%EC%B7%A8-4436152/)
@@ -163,20 +154,16 @@ logo: "/assets/logo.png"
 - 고른 테마
 
 {% highlight markdown %}
-
 (_config.yml 수정 전)
 highlightjs_theme: "monokai-sublime"
 
 (수정 후)
 highlightjs_theme: "a-11-y-light"
-
 {% endhighlight %}
 
 - 테마때문에 하이라이트 표시할 땐 다음 블럭 안에 넣어줄 것
 
 {% highlight javascript %}
-
 { % highlight 언어명(xml같은거) % }
 { % endhighlight % }
-
 {% endhighlight %}
