@@ -33,7 +33,7 @@ sitemap.xml
 - 최상위 디렉토리에 sitemap.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
 
-```html
+{% highlight html %}
 {% raw %}
 ---
 layout: null
@@ -62,11 +62,11 @@ layout: null
   {% endfor %}
 </urlset>
 {% endraw %}
-```
+{% endhighlight %}
 
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
 
-``` xml
+{% highlight xml %}
 This XML file does not appear to have any style information associated with it. The document tree is shown below.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -78,7 +78,7 @@ This XML file does not appear to have any style information associated with it. 
     <loc>https://gptjs409.github.io/</loc>
   </url>
 </urlset>
-```
+{% endhighlight %}
 
 <br>
 <br>
@@ -94,20 +94,20 @@ Robots.txt 등록하기(사이트맵 필요!)
 - 최상위 디렉토리에 robots.xml을 직접 생성해줄 것
 - 다음과 같이 셋팅
 
-``` xml
+{% highlight xml %}
 User-agent: *
 Allow: /
 
 Sitemap: https://gptjs409.github.io/sitemap.xml
-```
+{% endhighlight %}
 - 등록하면 다음과 같이 나옴 [LINK](https://gptjs409.github.io/robots.txt)
 
-``` html
+{% highlight xml %}
 User-agent: *
 Allow: /
 
 Sitemap: https://gptjs409.github.io/sitemap.xml
-```
+{% endhighlight %}
 
 <br>
 <br>
@@ -157,7 +157,7 @@ RSS 피드 등록하기
 - GitHub Pages는 Plugin 지원이 안되므로 feed.xml 파일을 직접 만들어야 함
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
-``` xml
+{% highlight xml %} 
 {% raw %}
 ---
 layout: null
@@ -190,7 +190,7 @@ layout: null
   </channel>
 </rss>
 {% endraw %}
-``` 
+{% endhighlight %}
 
 <br>
 <br>
@@ -228,7 +228,7 @@ layout: null
   - 완료
 - 완료 메시지
 
-``` text
+{% highlight markdown %}
 gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 
 블로그 URL	http://gptjs409.github.io
@@ -237,7 +237,7 @@ gptjs409@(메일) 님의 블로그 등록신청이 완료되었습니다.
 해당 블로그의 글은 심사를 거친 후 블로그 검색에 노출 될 것입니다.
 등록 이후 검색 노출은 최대 5일 정도 소요되며 처리 결과는 별도로 알려드리지 않습니다.
 블로그 내용이 블로그 검색 기준에 맞지 않다면 거부 될 수 있습니다.
-```
+{% endhighlight %}
 - 처리 결과는 아마도 이메일로 오는 듯 함
 
 <br>
