@@ -26,7 +26,7 @@ logo: "/assets/logo.png"
 # Build settings
 markdown: kramdown
 inter_post_navigation: false
-highlightjs_theme: "a11y-light"
+highlightjs_theme: "qtcreator_dark"
 
 # Pagination Settings
 # https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
