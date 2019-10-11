@@ -145,10 +145,12 @@ logo: "/assets/logo.png"
 - 해당 테마는 특이하게도 처음에 다음과 같이 명시해야 하이라이트를 준다.
 ``` xml
 {% highlight javascript %}
+
 {% raw %}
 {% highlight 언어명(xml같은거) %}
 {% endraw %}
 ```
 
-- 하이라이트 종류 찾기 [LINK] (https://highlightjs.org/static/demo/)
+- 하이라이트 종류 찾기 [LINK](https://highlightjs.org/static/demo/)
 - 하이라이트 css 찾기 [LINK](https://github.com/highlightjs/highlight.js/tree/master/src/styles)
+- 단 지킬 테마 설정때문에 해당 안에 있는 설정만 가능 [Link](https://cdnjs.com/libraries/highlight.js/)
