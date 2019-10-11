@@ -34,6 +34,7 @@ sitemap.xml
 - 다음과 같이 셋팅
 
 ```html
+{% highlight html %}
 {% raw %}
 ---
 layout: null
@@ -67,6 +68,7 @@ layout: null
 - 셋팅 후 블로그주소/sitemap.xml 접속해보면 잘 나옴을 확인할 수 있음 [LINK](https://gptjs409.github.io/sitemap.xml)
 
 ``` xml
+{% highlight xml %}
 This XML file does not appear to have any style information associated with it. The document tree is shown below.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -158,6 +160,7 @@ RSS 피드 등록하기
 - 최상위 루트 아래 /feed.xml을 생성하면 끝!
 
 ``` xml
+{% highlight xml %}
 {% raw %}
 ---
 layout: null
