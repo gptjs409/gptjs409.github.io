@@ -1,7 +1,9 @@
 ---
+layout: post
 title:  "GitHub 블로그 검색되도록 설정하기"
-permalink: /git/blog/20191010210102
-last_modified_at: 2019-10-10T21:01:02+09:00
+date:   2019-10-10 21:01:02
+author: Choi HyeSun
+categories: git
 tags:
   - GitHub블로그
   - GitHubBlog
@@ -15,7 +17,6 @@ tags:
   - Google검색
   - Naver검색
   - Daum
-
 ---
 
 ## 1. sitemap 생성하기(구글 등록 준비)
