@@ -19,7 +19,7 @@ tags:
 GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
 - jekyll remote theme
 - 원하는 테마 선택
-
+- 이번엔 요 [테마](http://bencentra.com/centrarium/typography/)를 적용해볼 예정
 <br>
 <br>
 
