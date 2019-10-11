@@ -14,6 +14,8 @@ tags:
   - 블로그
 ---
 
+<link rel="stylesheet" href="{{ site.highlightjs_theme }}">
+ 
 ## 1. 변경할 테마 선택
 
 GitHub 지원 Jeykyll 테마 [Link](https://github.com/topics/jekyll-theme)
