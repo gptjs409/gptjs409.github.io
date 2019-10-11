@@ -14,7 +14,7 @@ tags:
   - 블로그
 ---
 
-<link rel="stylesheet" href="{{ site.highlightjs_theme }}?ver=1">
+<link rel="stylesheet" href="{{ site.highlightjs_theme }}?ver=2" type="text/css"/>
 
 
 ## 1. 변경할 테마 선택
