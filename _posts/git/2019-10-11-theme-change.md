@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GitHub 블로그 만들기"
+title:  "GitHub "
 date:   2019-10-11 23:41:23
 author: Choi HyeSun
 categories: git
@@ -166,3 +166,9 @@ highlightjs_theme: "a-11-y-light"
 { % highlight 언어명(xml같은거) % }
 { % endhighlight % }
 {% endhighlight %}
+
+> 그런데 적용이 될 때도 있고 아닐 때도 있어서 확인해 봐야함
+
+## 8. 파비콘, 아이콘 등 변경하기
+
+- 블로그 로고와 같은 것으로 변경해주었음
