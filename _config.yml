@@ -1,4 +1,5 @@
 # External plugins
+# External plugins
 # See http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html for making `jekyll archives` work.
 plugins:
   - jekyll-archives # Sorry, not GitHub pages friendly!
@@ -26,7 +27,7 @@ logo: "/assets/logo.png"
 # Build settings
 markdown: kramdown
 inter_post_navigation: false
-highlightjs_theme: "/js/monokai-sublime.css"
+highlightjs_theme: "/css/monokai-sublime.css"
 
 # Pagination Settings
 # https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
