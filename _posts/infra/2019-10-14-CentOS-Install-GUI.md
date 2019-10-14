@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CentOS GUI로 설치하기"
+title:  "CentOS GUI로 설치하기(default)"
 date:   2019-10-14 13:21:33
 author: Choi HyeSun
 categories: Infra
@@ -33,4 +33,39 @@ CentOS 7버전 다운로드(현재 최신버전은 8)
   > CD나 DVD의 이미지파일로 CD나 DVD의 내용 뿐만 아니라 구조까지 그대로 복사해놓은 파일이라 생각하면 됨
   > 즉, CentOS 7 설치 디스크(CD)를 다운받는 것과 같음
   
-## 2. CentOS 7 GUI 설치
+<br>
+<br>
+
+## 2. CentOS 7를 설치할 빈 서버 생성
+  - 새로만들기 → 이름지정(CentOS7-GUI) → 종류/버전확인(Linux, Red Hat (64-bit)) → 다음
+  ![image](/img/2019-10-14/CentOS-Install-GUI-005-Install1.png)
+  
+  - 메모리 크기 지정 4096MB (추천 1024MB, 디스크 용량 및 설치 파일 용량 고려하여 설정할 것)
+  ![image](/img/2019-10-14/CentOS-Install-GUI-006-Install2.png)
+  
+  - 하드 디스크 : 지금 새 가상 하드디스크 만들기
+  ![image](/img/2019-10-14/CentOS-Install-GUI-007-Install3.png)
+  
+  - 하드 디스크 파일 종류 : VDI(VirtualBox 디스크 이미지)
+  ![image](/img/2019-10-14/CentOS-Install-GUI-008-Install4.png)
+  
+  - 물리적 하드 드라이브에 저장 : 동적 할당
+  ![image](/img/2019-10-14/CentOS-Install-GUI-009-Install5.png)
+  
+  - 파일 위치 및 크기 : Default 경로, 8.00G
+  ![image](/img/2019-10-14/CentOS-Install-GUI-010-Install6.png)
+  
+  - 빈 서버가 생성됨
+  ![image](/img/2019-10-14/CentOS-Install-GUI-011-Install7.png)
+  
+<br>
+<br>
+
+## 3. CentOS 7 GUI를 빈 서버에 설치하기
+
+<br>
+<br>
+
+## 4. 접속해보기
+  
+  
