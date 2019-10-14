@@ -137,9 +137,30 @@ CentOS 7버전 다운로드(현재 최신버전은 8)
 <br>
 
 ## 5. Putty로 접근할 수 있게 하기
+Host 네트워크 추가하기
+  - 파일 → 호스트 네트워크 관리자
+  ![image](/img/2019-10-14/CentOS-Install-GUI-037-putty1.png)
+  
+  - 만들기
+  ![image](/img/2019-10-14/CentOS-Install-GUI-038-putty2.png)
+  
+  - 생성됨
+  ![image](/img/2019-10-14/CentOS-Install-GUI-039-putty3.png)
+  
+  - DHCP 서버 사용함 → IP 대역 기억하기(192.168.134.1/24) → 닫기
+  ![image](/img/2019-10-14/CentOS-Install-GUI-040-putty4.png)
+  
+<br>
+
+서버 네트워크 설정하기
 
 
 
+<br>
+
+서버에서 네트워크 설정
+  
+  
 <br>
 <br>
 
