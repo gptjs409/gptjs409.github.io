@@ -1,13 +1,14 @@
 ---
 layout: post
 title:  "Virtual Box설치하기"
-date:   2019-10-13 14:16:34
+date:   2019-10-14 19:12:31
 author: Choi HyeSun
-categories: certificate
+categories: Infra
 tags:
   - VirtualBox
   - VM
-  - VirtualBox 설치
+  - VirtualBox설치
+  - VirtualBox6.0.12
 ---
 
 ## 1. Virtual Box 다운로드
