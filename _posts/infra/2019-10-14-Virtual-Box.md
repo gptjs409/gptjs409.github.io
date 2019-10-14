@@ -66,6 +66,25 @@ VirtualBox-6.0.12-133076-Win.exe(버전명은 다운로드한 버전) 실행 후
   
 <br>
 <br> 
- 
+
+## 5. 호스트키 조합 변경
+호스트키 : VirtualBox에 마우스를 클릭하게 되면 서버 안으로 들어가서 원래 컴퓨터로 다시 마우스를 내보내려면 호스트키를 입력해야함
+  - 기본값 : Right Control
+  - 변경 희망값 : Ctrl + Alt
+
+<br>
+호스트키 변경하기
+  - 파일 → 환경설정 → 입력 → 가상머신(탭)
+  ![image](/img/2019-10-14/Virtual-Box-015-HostKey1.png)
+  
+  - 호스트 키 조합의 단축키 클릭
+  ![image](/img/2019-10-14/Virtual-Box-016-HostKey2.png)
+  
+  - Ctrl + Alt 키를 누르면 자동으로 입력됨 → 확인
+  ![image](/img/2019-10-14/Virtual-Box-017-HostKey3.png)
+  
+<br>
+<br>
+
 ## 끝
 이제 Virtual Box를 쓸 수 있고, Virtual Box에 Server를 설치해서 공부할 예정
