@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Virtual Box설치하기"
+title:  "Virtual Box 설치하기"
 date:   2019-10-14 13:12:31
 author: Choi HyeSun
 categories: Infra
