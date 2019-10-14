@@ -25,9 +25,7 @@ CentOS 7버전 다운로드(현재 최신버전은 8)
   - CentOS-7-x86_64-Minimal-1908.iso 다운로드
   ![image](/img/2019-10-14/CentOS-Install-GUI-003-downloads3.png)
   
-  - Down받은 iso파일 경로 이동(하지 않아도 무관, 경로지정 편의상 진행)
-  
-  `D:\Program Files\Oracle\OS ISO`로 이동
+  - Down받은 iso파일 경로 `D:\Program Files\Oracle\OS ISO`로 이동(하지 않아도 무관, 경로지정 편의상 진행)
   ![image](/img/2019-10-14/CentOS-Install-GUI-004-downloads4.png)
   
   > iso 파일이란?
