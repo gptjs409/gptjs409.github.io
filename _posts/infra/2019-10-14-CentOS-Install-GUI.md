@@ -61,11 +61,25 @@ CentOS 7버전 다운로드(현재 최신버전은 8)
 <br>
 <br>
 
-## 3. CentOS 7 GUI를 빈 서버에 설치하기
+## 3. CentOS 7 ISO를 빈 서버에 설정하기
+  - 서버 선택 → 설정 → 저장소
+  ![image](/img/2019-10-14/CentOS-Install-GUI-012-CInstall1.png)
+  
+  - 비어 있음(컨트롤러:IDE) 선택 → 속성의 CD모양 클릭 → 가상 광디스크 파일 선택
+  ![image](/img/2019-10-14/CentOS-Install-GUI-013-CInstall2.png)
+  
+  - 가상 광 디스크 파일 선택 : 아까 저장했던 ISO 파일 선택 후 열기
+  ![image](/img/2019-10-14/CentOS-Install-GUI-014-CInstall3.png)
+  
+  - ISO 파일 적용 확인 후 확인
+  ![image](/img/2019-10-14/CentOS-Install-GUI-015-CInstall4.png)
+  
+  - 서버 정보에서 ISO 파일 적용되어있는지 확인
+  ![image](/img/2019-10-14/CentOS-Install-GUI-016-CInstall5.png)
 
 <br>
 <br>
 
-## 4. 접속해보기
+## 4. CentOS7 GUI 설치
   
   
