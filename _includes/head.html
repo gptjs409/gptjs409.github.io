@@ -15,8 +15,7 @@
   <jsp:useBean id="today" class="java.util.Date" />
   <fmt:formatDate value="${now}" pattern="yyyyMMddHHmmss" var="nowDate"/>
   <fmt:parseDate var="parsedDate" value="${dateString}" pattern="yyyyMMddHHmmss"/>
-  <fmt:formatDate var="newFormattedDateString" value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss "/> 
-  <link rel="stylesheet" type="text/css" href="<c:url value="{{ site.highlightjs_theme }}"><c:param name="dt" value="${parsedDate}"/></c:url>"/-->
+  <link rel="stylesheet" type="text/css" href="<c:url value="{{ site.highlightjs_theme }}"><c:param name="dt" value="${parsedDate}"/></c:url>"/>
 
   <!-- External libraries -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
