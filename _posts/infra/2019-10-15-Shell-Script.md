@@ -268,40 +268,226 @@ exit 0
 
 ## 조건문 - 기본 if문
 
+형식
+
+{% highlight bash %}
+if [ 조건 ]    
+then           
+  참일경우 실행
+fi
+{% endhighlight %}
+
+> " 조건 "의 사이의 각 단어에는 모두 공백이 있어야 함
+
+{% highlight bash %}
+[sun@localhost ~]$ vi if1.sh
+#!/bin/sh
+if [ "woo" = "woo" ]
+then
+  echo "참입니다"
+fi
+exit 0
+[sun@localhost ~]$ sh if1.sh
+참입니다
+{% endhighlight %}
+
+
 <br>
 <br>
 
 ## 조건문 - if~else문
 
-<br>
-<br>
+형식
 
-## 조건문 - if~elif문
+{% highlight bash %}
+if [ 조건 ]    
+then           
+  참일경우 실행
+else
+  거짓인 경우 실행
+fi
+{% endhighlight %}
+
+> 중복 if문을 위해서 else if가 합쳐진 elif문도 사용할 수 있음
+
+{% highlight bash %}
+[sun@localhost ~]$ vi if2.sh
+#!/bin/sh
+if [ "woo" != "woo" ]
+then
+  echo "참입니다"
+else
+  echo "거짓입니다"
+fi
+exit 0
+[sun@localhost ~]$ sh if2.sh
+거짓입니다
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 조건문에 들어가는 비교 연산자
 
+문자열 비교
+
+|문자열 비교|결과|
+|---|---|
+|"문자열1" = "문자열2"|두 문자열이 같으면 참|
+|"문자열1" != "문자열2"|두 문자열이 같지 않으면 참|
+|-n "문자열"|문자열이 NULL(빈 문자열)이 아니면 참|
+|-z "문자열"|문자열이 NULL(빈 문자열)이면 참|
+
+<br>
+
+산술 비교
+
+|산술 비교|결과|
+|---|---|
+|수식1 -eq 수식2|두 수식(또는 변수)이 같으면 참|
+|수식1 -ne 수식2|두 수식(또는 변수)이 같지 않으면 참|
+|수식1 -gt 수식2|수식 1이 크면 참|
+|수식1 -ge 수식2|수식 1이 크거나 같으면 참|
+|수식1 -lt 수식2|수식 1이 작으면 참|
+|수식1 -le 수식2|수식 1이 작거나 같으면 참|
+|!수식|수식이 거짓이라면 참|
+
+{% highlight bash %}
+[sun@localhost ~]$ vi if3.sh
+#!/bin/sh
+if [ 100 -eq 200 ]
+then
+  echo "100과 200은 같음"
+else
+  echo "100과 200은 다름"
+fi
+exit 0
+[sun@localhost ~]$ sh if3.sh
+100과 200은 다름
+{% endhighlight %}
+
 <br>
 <br>
 
 ## 파일과 관련된 조건
 
+파일 조건
+
+|파일 조건|결과|
+|---|---|
+|-d 파일명|디렉터리면 참|
+|-e 파일명|존재하면 참|
+|-f 파일명|일반파일이면 참|
+|-g 파일명|set-group-id가 설정되어있으면 참|
+|-r 파일명|읽기 가능이면 참|
+|-s 파일명|크기가 0이 아니면 참|
+|-u 파일명|set-user-id가 설정되어있으면 참|
+|-w 파일명|쓰기 가능이면 참|
+|-x 파일명|실행 가능이면 참|
+
+{% highlight bash %}
+[sun@localhost ~]$ pwd
+/home/sun
+[sun@localhost ~]$ ls
+if1.sh  if2.sh  if3.sh  name.sh  num1.sh  para1.sh  var1.sh
+[sun@localhost ~]$ vi if4.sh
+#!/bin/bash
+fname=/home/sun/num1.sh
+if [ -f $fname ]
+then
+   head -3 $fname
+else
+   echo "num1.sh 파일이 없습니다."
+fi
+exit 0
+[sun@localhost ~]$ sh if4.sh
+#!/bin/sh
+num1=100
+num2=$num1+200
+{% endhighlight %}
+
 <br>
 <br>
 
 ## 조건문 - case~esac문(1)
+- if문은 참 또는 거짓일 경우에만 사용 가능(이중분기)
+- case문은 여러가지 경우의 수가 있다면 사용하면 좋음(다중분기)
+
+{% highlight bash %}
+[sun@localhost ~]$ vi case1.sh
+#!/bin/sh
+case "$1" in
+  start)
+    echo "시작";;
+  stop)
+    echo "중지";;
+  restart)
+    echo "재시작";;
+  *)
+    echo "알 수 없는 파라미터";;
+esac
+exit 0
+[sun@localhost ~]$ sh case1.sh stop
+중지
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 조건문 - case~esac문(2)
 
+{% highlight bash %}
+[sun@localhost ~]$ vi case2.sh
+#!/bin/sh
+echo "쉘스크립트가 재밌어요? (yes/no)"
+read answer
+case $answer in
+  yes | y | Y | Yes | YE)
+    echo "거짓말쟁이";;
+  [nN]*)
+    echo "진실된 사람이군요";;
+  *)
+    echo "yes or no 입니다"
+    exit 1;;
+esac
+exit 0
+[sun@localhost ~]$ sh case2.sh st
+쉘스크립트가 재밌어요? (yes/no)
+No
+진실된 사람이군요
+{% endhighlight %}
+
 <br>
 <br>
 
 ## AND / OR 관계 연산자
+
+- and는 `&&` 사용
+- or는 `||` 사용
+
+{% highlight bash %}
+[sun@localhost ~]$ vi andor1.sh
+#!/bin/sh
+echo "보고싶은 파일명을 입력해보세요"
+ls
+read fname
+if [ -f $fname ] && [ -s $fname ] ; then
+  head -5 $fname
+else
+  echo "파일이 없거나 크기가 0입니다."
+fi
+exit 0
+[sun@localhost ~]$ sh andor1.sh
+보고싶은 파일명을 입력해보세요
+andor1.sh  case2.sh  if2.sh  if4.sh   num1.sh   var1.sh
+case1.sh   if1.sh    if3.sh  name.sh  para1.sh
+case1.sh
+#!/bin/sh
+case "$1" in
+  start)
+    echo "시작";;
+  stop)
+{% endhighlight %}
 
 <br>
 <br>
