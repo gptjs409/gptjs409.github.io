@@ -47,7 +47,21 @@ Shell의 명령문 처리 방법
 ## 환경 변수
 `echo $환경변수이름`으로 확인 가능
 
-{% highlight bash %}
-[root@localhost ~]# echo $HOME
-/root
+{% highlight tex %}
+[sun@localhost ~]$ echo $HOME
+/home/sun
 {% endhighlight %}
+
+<br>
+
+`export 환경변수=값`으로 환경 변수의 값 변경 가능 - 단, 로그인 세션에서만 유지
+
+{% highlight bash %}
+[sun@localhost ~]$ echo $WOW
+[sun@localhost ~]$ export WOW=1234
+[sun@localhost ~]$ echo $WOW
+1234
+{% endhighlight %}
+
+<br>
+
