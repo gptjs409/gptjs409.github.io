@@ -90,7 +90,7 @@ tags:
 
   - 아래 build.xml 파일은 4가지 targets를 정의 : clean, compile, jar, run
   
-{% highlight xml %}
+{% highlight html %}
 <project>
     <target name="clean">
         <delete dir="classes" />
@@ -158,7 +158,7 @@ ant run
 
   - HelloWorld 기본 클래스가 포함된 동일한 간단한 Java 프로젝트에 대한 pom.xml 파일
 
-{% highlight xml %}
+{% highlight html %}
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
@@ -236,7 +236,7 @@ mvn compile
   
 - 예제
 
-{% highlight xml %}
+{% highlight html %}
 apply plugin: 'java'
  
 repositories {
