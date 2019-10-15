@@ -137,7 +137,7 @@ CentOS 7버전 다운로드(현재 최신버전은 8)
 <br>
 
 ## 5. Putty로 접근할 수 있게 하기
-Host 네트워크 추가하기
+Host 네트워크 추가하기 : 이것은 VM이 설치된 PC(HOST OS)에서 접속하기 위한 네트워크
   - 파일 → 호스트 네트워크 관리자
   ![image](/img/2019-10-14/CentOS-Install-CLI-037-putty1.png)
   
@@ -152,14 +152,65 @@ Host 네트워크 추가하기
   
 <br>
 
-서버 네트워크 설정하기
+통신을 위해 서버 네트워크 설정하기(NAT) : DHCP를 이용한 유동 IP로 설정
+  - 서버에 접속해서 root 계정(슈퍼관리자)로 로그인
+  ![image](/img/2019-10-14/CentOS-Install-CLI-041-putty5.png)
 
-
-
+  - `nmcli d` or `nmcli device` 명령을 통해 이더넷 장치명을 확인 → enp0s3
+  ![image](/img/2019-10-14/CentOS-Install-CLI-042-putty6.png)
+  
+  - `vi /etc/sysconfig/network-scripts/ifcfg-enp0s3` 검색한 이더넷 장치 설정을 vi로 열기
+  ![image](/img/2019-10-14/CentOS-Install-CLI-043-putty7.png)
+  
+  - 수정하기(`ONBOOT=yes`)
+  ![image](/img/2019-10-14/CentOS-Install-CLI-044-putty8.png)
+  
+  - 네트워크 설정 적용 `systemctl restart network`
+  ![image](/img/2019-10-14/CentOS-Install-CLI-045-putty9.png)
+  
+  - `nmcli d` or `nmcli device` 명령을 통해 이더넷 장치를 확인 → enp0s3 connected
+  ![image](/img/2019-10-14/CentOS-Install-CLI-046-putty10.png)
+    
+  - `ip addr`을 통해 설정 확인
+  ![image](/img/2019-10-14/CentOS-Install-CLI-047-putty11.png)
+  
+  - `ping 168.126.63.1` KT DNS 서버로 Ping Test → 이상 없음
+  ![image](/img/2019-10-14/CentOS-Install-CLI-048-putty12.png)
+  
 <br>
 
-서버에서 네트워크 설정
+Putty 접속을 위해 서버 네트워크 설정하기 : 호스트 네트워크 #2 추가하기
+  - 서버 종료 후 서버 선택 → 설정 → 네트워크 → 어댑터 2(탭)
+  ![image](/img/2019-10-14/CentOS-Install-CLI-049-putty13.png)
   
+  - 네트워크 어댑터 사용하기(체크) → 호스트 전용 어댑터 → 생성했던 네트워크 어댑터(#2) → 확인
+  ![image](/img/2019-10-14/CentOS-Install-CLI-050-putty14.png)
+
+  - 네트워크에 등록되었는지 확인
+  ![image](/img/2019-10-14/CentOS-Install-CLI-051-putty15.png)
+  
+  - 다시 서버 켜고, root로 접속하여 `nmcli d` or `nmcli device` 명령을 통해 이더넷 장치명을 확인 → enp0s8
+  ![image](/img/2019-10-14/CentOS-Install-CLI-052-putty16.png)
+
+  - `ip addr`을 통한 설정 확인 (DHCP 서버이기때문에 자동 할당되어있음)
+  ![image](/img/2019-10-14/CentOS-Install-CLI-053-putty17.png)
+  
+<br>
+
+HOST(로컬 컴퓨터)에서 putty로 접속하기
+  - 한글 Putty 다운로드 [LINK](http://hputty.org/) 및 설치(경로지정만 해주면 됨)
+  
+  - Putty 실행
+  ![image](/img/2019-10-14/CentOS-Install-CLI-054-putty18.png)
+  
+  - enp0s8(호스트 전용 네트워크) IP(192.168.134.4 입력 후 OPEN
+  ![image](/img/2019-10-14/CentOS-Install-CLI-055-putty19.png)
+  
+  - yes (처음 접속하는 PC라 이렇게 뜸)
+  ![image](/img/2019-10-14/CentOS-Install-CLI-056-putty20.png)
+  
+  - 접속완료
+  ![image](/img/2019-10-14/CentOS-Install-CLI-057-putty21.png)
   
 <br>
 <br>
