@@ -115,7 +115,7 @@ Shell의 명령문 처리 방법
 
 - 쉘 스크립트 파일의 확장명은 되도록 `*.sh`로
 
-<br> 
+<br>
 
 작성 내용
 
@@ -507,7 +507,7 @@ done
 >
 > = for((i=1;i<=10;i++))
 >
-> = for i in `seq 1 10`
+> = for i in \`seq 1 10\`
 
 {% highlight bash %}
 [sun@localhost ~]$ vi for1.sh
