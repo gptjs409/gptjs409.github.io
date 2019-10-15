@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "[Java] Math 클래스"
+date:   2019-07-31 12:36:43
+author: Choi HyeSun
+categories: java
+tags:
+  - Java
+  - Math
+  - random
+  - abs
+  - celi
+  - floor
+  - round
+  - rint
+  - max
+  - min
+  - pow
+  - sin
+  - cos
+  - tan
+  - toDegrees
+  - toRaidans
+---
+
+## java.lang.Math 클래스
+
+- 수학에서 자주 사용하는 상수 및 함수들을 미리 구현해놓은 클래스
+
+- Math 클래스의 모든 메소드는 클래스 메소드(static method)이므로, 객체를 생성하지 않고 바로 사용할 수 있음
+
+- java.lang 패키지에 포함되어 제공(별도 import 하지 않아도 됨)
+
+<br>
+<br>
+
+## 대표적인 Math 메소드
+
+|메소드|의미|
+|---|---|
+|static double random()|임의의 double형 값을 하나 생성해서 반환함<br>범위 : 0.0 <= (임의값) < 1.0|
