@@ -47,7 +47,7 @@ Shell의 명령문 처리 방법
 ## 환경 변수
 `echo $환경변수이름`으로 확인 가능
 
-{% highlight tex %}
+{% highlight bash %}
 [sun@localhost ~]$ echo $HOME
 /home/sun
 {% endhighlight %}
@@ -64,4 +64,9 @@ Shell의 명령문 처리 방법
 {% endhighlight %}
 
 <br>
+
+주요 환경 변수
+|환경 변수|설명|환경변수|설명|
+|---|---|---|---|
+|HOME|현재 사용자의 홈 디렉토리|PATH|실행 파일을 찾는 디렉터리 경로|
 
