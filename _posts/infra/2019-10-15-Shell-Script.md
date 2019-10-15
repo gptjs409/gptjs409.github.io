@@ -661,58 +661,285 @@ exit 0
 <br>
 
 ## 반복문 - while문(3)
+- 비밀번호를 입력받고, 비밀번호가 맞을 때까지 계속 입력받는 스크립트
+
+{% highlight bash %}
+[sun@localhost ~]$ vi while3.sh
+#!/bin/bash
+echo "비밀번호를 입력하시오"
+read mypass
+while [ $mypass != "1234" ]
+do
+  echo "틀렸음. 재입력 요망"
+  read mypass
+done
+echo "통과"
+exit 0
+[sun@localhost ~]$ sh while3.sh
+비밀번호를 입력하시오
+1
+틀렸음. 재입력 요망
+2
+틀렸음. 재입력 요망
+3
+틀렸음. 재입력 요망
+1234
+통과
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 반복문 - until문
 
+- while문과 용도가 거의 같음
+
+- until문은 조건식이 참일때까지(=거짓일 동안) 계속 반복
+
 <br>
 <br>
 
 ## break, continue, exit, return 문
+
+- break : 주로 반복문을 종료할 때 사용
+
+- continue : 반복문의 조건식으로 돌아가도록
+
+- exit : 해당 프로그램을 완전히 종료
+
+- return : 함수 안에서 사용될 수 있으며, 함수를 호출한 곳으로 돌아가도록
+
+{% highlight bash %}
+[sun@localhost ~]$ vi bce.sh
+#!/bin/sh
+echo "무한 반복 입력 시작(b: break, c: continue, e: exit)"
+while [ 1 ] ; do
+read input
+case $input in
+  b | B )
+    break ;;
+  c | C )
+    echo "continue를 누르면 while의 조건으로 돌아감"
+    continue ;;
+  e | E )
+    echo "exit를 누르면 프로그램(함수)를 완전히 종료"
+    exit 1 ;;
+esac;
+done
+echo "break를 누르면 while을 빠져나와 지금 이 문장이 출력됨"
+exit 0
+[sun@localhost ~]$ sh bce.sh
+무한 반복 입력 시작(b: break, c: continue, e: exit)
+a
+b
+break를 누르면 while을 빠져나와 지금 이 문장이 출력됨
+[sun@localhost ~]$ sh bce.sh
+무한 반복 입력 시작(b: break, c: continue, e: exit)
+a
+c
+continue를 누르면 while의 조건으로 돌아감
+e
+exit를 누르면 프로그램(함수)를 완전히 종료
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 사용자 정의 함수
 
+형식
+
+{% highlight bash %}
+함수이름() { # 함수를 정의
+  내용들...
+}
+함수이름 # 함수 호출
+{% endhighlight %}
+
+{% highlight bash %}
+[sun@localhost ~]$ vi func1.sh
+#!/bin/sh
+myFunction() {
+  echo "myFunction 함수"
+  return
+}
+echo "프로그램 시작"
+myFunction
+echo "프로그램 종료"
+exit 0
+[sun@localhost ~]$ sh func1.sh
+프로그램 시작
+myFunction 함수
+프로그램 종료
+{% endhighlight %}
+
 <br>
 <br>
 
 ## 함수의 파라미터 사용
+
+형식
+
+{% highlight bash %}
+함수이름() { # 함수를 정의
+  $1, $2 ... 등을 사용
+}
+함수이름 파라미터1 파라미터2 ... # 함수 호출
+{% endhighlight %}
+
+{% highlight bash %}
+[sun@localhost ~]$ vi func2.sh
+#!/bin/sh
+hap () {
+    echo `expr $1 + $2`
+}
+echo "10 + 20 실행"
+hap 10 20
+exit 0
+[sun@localhost ~]$ sh func2.sh
+10 + 20 실행
+30
+{% endhighlight %}
 
 <br>
 <br>
 
 ## eval
 
+- 문자열을 명령문으로 인식하고 실행
+
+{% highlight bash %}
+[sun@localhost ~]$ vi eval.sh
+#!/bin/sh
+str="ls -a"
+echo $str
+eval $str
+exit 0
+[sun@localhost ~]$ sh eval.sh
+ls -a
+.              .bash_profile  case1.sh  for2.sh   if2.sh   num1.sh    while2.sh
+..             .bashrc        case2.sh  func1.sh  if3.sh   para1.sh   while3.sh
+.bash_history  andor1.sh      eval.sh   func2.sh  if4.sh   var1.sh
+.bash_logout   bce.sh         for1.sh   if1.sh    name.sh  while1.sh
+{% endhighlight %}
+
 <br>
 <br>
 
 ## export
+
+- 외부 변수로 선언
+
+- 선언한 변수를 다른 프로그램에서도 사용할 수 있도록 해 줌
+
+{% highlight bash %}
+[sun@localhost ~]$ vi exp1.sh
+#!/bin/sh
+echo $var1
+echo $var2
+exit 0
+[sun@localhost ~]$ vi exp2.sh
+#!/bin/sh
+var1="지역변수"
+export var2="외부변수"
+sh exp1.sh
+exit 0
+[sun@localhost ~]$ sh exp2.sh
+
+외부변수
+[sun@localhost ~]$ echo $var2
+
+{% endhighlight %}
 
 <br>
 <br>
 
 ## printf
 
+- C언어의 printf() 함수와 비슷하게 형식을 지정하여 출력
+
+{% highlight bash %}
+#!/bin/sh
+var1=100.5
+var2="재미있는건가 쉘스크립트"
+printf "%5.2f \n\n \t %s \n" $var1 "$var2"
+exit
+[sun@localhost ~]$ sh printf.sh
+100.50
+
+         재미있는건가 쉘스크립트
+{% endhighlight %}
+
 <br>
 <br>
 
 ## set과 $(명령어)
 
+- 리눅스 명령어를 결과로 사용하기 위해서는 $(명령어) 형식을 사용
+
+- 결과를 파라미터로 사용하고자 할 때는 set과 함께 사용
+
+{% highlight bash %}
+[sun@localhost ~]$ vi set.sh
+#!/bin/sh
+echo "오늘 날짜는 $(date) 입니다."
+set $(date)
+echo "오늘은 $4 요일 입니다."
+exit 0
+[sun@localhost ~]$ sh set.sh
+오늘 날짜는 2019. 10. 15. (화) 13:21:20 KST 입니다.
+오늘은 (화) 요일 입니다.
+{% endhighlight %}
+
 <br>
 <br>
 
-## shift(1)
+## shift
 
-<br>
-<br>
+- 파라미터 변수를 왼쪽으로 한 단계씩 아래로 쉬프트 시킴
 
-## shift(2)
+- 10개가 넘는 파라미터 변수에 접근할 때 사용
+
+- 단 $0 파라미터 변수는 변경되지 않음
+
+- 원하지 않는 결과의 소스
+
+{% highlight bash %}
+[sun@localhost ~]$ vi shift1.sh
+#!/bin/sh
+myfunc () {
+  echo $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11
+}
+myfunc AAA BBB CCC DDD EEE FFF GGG HHH III JJJ KKK
+exit 0
+[sun@localhost ~]$ sh shift1.sh
+AAA BBB CCC DDD EEE FFF GGG HHH III AAA0 AAA1
+{% endhighlight %}
+
+- Shift 이용
+
+{% highlight bash %}
+[sun@localhost ~]$ vi shift2.sh
+#!/bin/sh
+myfunc() {
+  str=""
+  while [ "$1" != "" ] ; do
+    str="$str $1"
+    shift
+  done
+  echo $str
+}
+myfunc AAA BBB CCC DDD EEE FFF GGG HHH III JJJ KKK
+exit 0
+[sun@localhost ~]$ sh shift2.sh
+AAA BBB CCC DDD EEE FFF GGG HHH III JJJ KKK
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 끝
+
+매번 쉘 스크립트를 처음부터 만드는게 아니라, 기존에 사용했던 부분을 재활용해서 만들다보니
+
+기초 문법을 점점 잊어갔었는데.. 되새김질 겸 정리
