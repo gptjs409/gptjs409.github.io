@@ -1,0 +1,295 @@
+---
+layout: post
+title:  "[Java] 배열(array), Arrays 클래스, ArrayList<E> 클래스"
+date:   2019-07-31 12:38:31
+author: Choi HyeSun
+categories: java
+tags:
+  - Java
+  - array
+  - 배열
+  - 1차원 배열
+  - 2차원 배열
+  - 다차원 배열
+  - Arrays
+  - ArrayList
+---
+
+## 배열(array)
+
+- 같은 타입의 변수들로 이루어진 유한 집합
+
+- 배열 요소(element) : 배열을 구성하는 각각의 값
+
+- 인덱스(index) : 배열에서 위치를 가리키는 숫자
+
+  - 0 ~ (양의정수)
+  
+## 1차원 배열
+
+- 1차원 배열의 예
+
+{% highlight java %}
+// 1차원 배열 선언
+// 아래 둘 다 선언할 수 있지만 첫번째 방법을 권장
+type[] arrayName;
+//int[] sunny;
+type arrayName[];
+//int sunny[];
+
+// 1차원 배열 생성
+arrayName = new type[배열길이];
+//sunny = new int[10];
+
+// 1차원 배열 선언 + 생성
+type[] arrayName = new type[배열길이];
+//int[] sunny = new int[10];
+
+// 배열 초기화
+type[] array = {element1, element2, ...};
+//int[] sunny = {10, 100, 20, 200};
+type[] array = new type[]{element1, element2, ...};
+//int[] sunny = new int[]{10, 100, 20, 200};
+
+/* 배열의 길이보다 적은 수의 배열 요소만 초기화할 경우 기본 초기값
+ * char - '\u0000' , byte(or short, int) - 0, long - 0L, float - 0.0F
+ * double - 0.0 OR 0.0D , boolean - false, 배열(or 인스턴스) - null
+ */
+ 
+ // 배열 길이를 초과하는 인덱스 사용시 ArrayIndexOutOfBounds 발생
+ // 배열 길이 = arrayName.length
+ int[] sunny = new int[2];
+ sunny[0] = 10;
+ sunny[1] = 20;
+ 
+ System.out.println(suuny[2]); //ArrayIndexOutOfBounds
+ 
+ // 인덱스를 통한 배열 접근
+ int[] sunny = new int[2]{10, 20};
+ 
+ for(int i = 0; i < sunny.length; i++) {
+     System.out.println(sunny[i]);
+ }
+{% endhighlight %}
+
+## 다차원 배열
+
+- 2차원 이상의 배열을 의미
+
+- 배열 요소(Element)로 또 다른 배열을 의미
+
+- n차원 배열
+
+- 배열 요소로 (n-1)차원 배열을 가지고 있음
+
+- 2차원 배열의 예
+
+{% highlight java %}
+// 2차원 배열 선언
+type[][] arrayName;
+type arrayName[][];
+type[] arrayName[];
+
+// 2차원 배열 선언 및 초기화
+type arrayName[열길이][행길이] = {
+    {element[0][0], element[0][1], ...},
+    {element[1][0], element[1][1], ...},
+    {element[2][0], element[2][1], ...},
+    ...
+};
+// int[2][3] sunny = {
+//     {10, 20, 30},
+//     {40, 50, 60}
+// };
+
+/* 가변 배열(dynamic array)
+ * 자바에서는 2차원 배열을 생성할 때 행의 길이를 명시하지 않음으로써,
+ * 행마다 다른 길이의 배열을 요소로 저장할 수 있음
+ */
+ type[][] arrayName = new type[3][];
+ arrayName[0] = new type[2];
+ arrayName[1] = new type[4];
+ arrayName[2] = new type[1];
+ // int[][] sunny = {
+ //     {10, 20},
+ //     {10, 20, 30, 40},
+ //     {10}
+ // };
+{% endhighlight %}
+
+<br>
+<br>
+
+## 배열의 복사
+
+- System 클래스의 arraycopy() 메소드
+
+  - 가장 성능이 좋음
+
+- Arrays 클래스의 copyOf() 메소드
+
+  - 가장 많이 쓰임(유연함)
+
+- Object 클래스의 clone() 메소드
+  
+  - 배열 크기 조정 불가
+  
+- for문 + index를 이용한 복사
+
+{% highlight java %}
+int[] sunny1 = new int[]{1, 2, 3, 4, 5};
+int newLength = 10;
+
+// System 클래스의 arraycopy() 메소드
+int[] sunny2 = new int[newLength];
+System.arraycopy(sunny1, 0, sunny2, 0, sunny1.length);
+// 1 2 3 4 5 0 0 0 0 0 
+
+// Array 클래스의 copyOf() 메소드
+int[] sunny3 = Arrays.copyOf(sunny1, newLength);
+// 1 2 3 4 5 0 0 0 0 0 
+
+// Object 클래스의 clone 메소드
+int[] sunny4 = (int[])sunny1.clone();
+// 1 2 3 4 5
+
+// for문과 인덱스를 이용한 복사
+int[] sunny5 = new int[newLength];
+for(int i = 0; i < sunny1.length; i++) {
+    sunny5[i] = sunny1[i]
+}
+// 1 2 3 4 5 0 0 0 0 0 
+{% endhighlight %}
+
+- Enhanced for문(참고)
+
+  - 배열과 컬렉션의 모든 요소를 참조하기 위한 반복문
+
+  - 명시한 배열이나 컬렉션의 길이만큼 반복되어 실행
+
+  - loop마다 각 element는 명시한 변수의 이름으로 저장, 명령문에서 해당 변수를 사용하여 각 요소를 참조할 수 있음
+
+{% highlight java %}
+int[] sunny = new int[]{1, 2, 3, 4, 5};
+
+for (int e : sunny) {
+    System.out.print(e + " ");
+}
+
+//실행 결과
+//1 2 3 4 5
+{% endhighlight %}
+
+
+## Arrays 클래스
+
+- java.util.Arrays
+
+  - java.util 패키지
+  
+  - java.lang 패키지 다음으로 가장 많이 사용되는 패키지
+  
+  - import문으로 패키지를 불러와야 클래스명만으로 사용할 수 있음
+  
+  - 프로그램 개발시 사용할 수 있는 유틸리티 클래스가 다수 포함
+  
+- Arrays 클래스에는 배열을 다루기 위한 다양한 메소드가 포함
+
+  - 모든 메소드는 클래스 메소드(static method)이므로 객체를 사용하지 않고 바로 사용 가능
+
+- 유용한 메소드
+
+|메소드|설명|
+|---|---|
+|static<T> List<T> asList(T...a)|전달받은 배열을 고정 크기의 리스트(list)로 변화하여 반환|
+|static int binarySearch(Object[] a, Object key)<br>ex) Arrays.binarySearch(sunny, 10);|전달받은 배열에서 특정 객체를 이진 검색 알고리즘을 사용하여 검색 후 그 위치를 반환<br>- 이진 검색을 사용하므로 정렬이 되어있어야 제대로 동작|
+|static<T> T[] copyOf(T[] original, int newLength)<br>ex) Arrays.copyOf(sunny1, 3);|전달받은 배열을 특정 길이의 새로운 배열로 복사하여 반환<br>- 새로운 배열이 더 길 경우 기본값으로 셋팅<br>- 새로운 배열이 더 짧을 경우 값을 버림|
+|static<T> T[] copyOfRange(T[] original, int from, int to)<br>ex) Arrays.copyOfRange(sunny1, 2, 4);|전달받은 배열의 특정 범위에 해당하는 요소만을 새로운 배열로 복사하여 반환<br>(복사대상배열, 복사시작인덱스, 복사끝+1인덱스)<br>ex) sunny1[2] ~ sunny1[3] (4-1)까지 복사|
+|static boolean equals(Object[] a, Object[] a2)<br>ex) Arrays.equals(sunny1, sunny2);|전달받은 두 배열이 같은지 확인|
+|static void fill(Obect[] a, Object val)<br>ex) Arrays.fill(sunny1, 7);|전달받은 배열의 모든 요소를 특정 값으로 초기화|
+|static void sort(Object[] a)<br>ex) Arrays.sort(sunny1);|전달받은 배열의 모든 요소를 오름차순으로 정렬<br>- 원본 배열의 순서를 변경|
+
+## ArrayList<E> 클래스
+
+List 컬렉션 클래스
+
+  - List 인터페이스를 구현한 컬렉션 클래스
+
+  - 요소의 저장 순서 유지
+
+  - 같은 요소의 중복 저장 허용
+
+  - 종류(대표적)
+
+    - ArrayList<E>
+    
+    - LinkedList<E>
+
+    - Vector<E>
+
+    - Stack<E>
+    
+  - 자바의 Collection = 인터페이스 / Collections = 클래스
+  
+<br>
+
+ArrayList<E> 클래스
+
+  - ArrayList 클래스는 가장 많이 사용되는 컬렉션 클래스 중 하나
+  
+  - JDK 1.2부터 제공
+  
+  - 내부적으로 배열을 이용하여 요소를 저장
+  
+  - 배열을 이용하기 때문에 인덱스를 이용해 배열 요소에 빠르게 접근할 수 있음
+  
+  - 배열은 크기를 변경할 수 없는 인스턴스로, 크기를 늘릴 경우에는 새로운 배열을 생성하고 기존의 요소를 옮기게 되는데, 과정은 자동으로 수행하게끔 해주지만 단점인 긴 시간은 어쩔 수 없음
+
+  - 출력시 for문, enhanced for문, iterator() 메소드를 이용하는 방법 등 다양한 방법을 사용
+
+{% highlight java %}
+ArrayList<Integer> sunny = new ArrayList<Integer>();
+
+// add 메소드를 이용한 element의 저장
+sunny.add(40);
+sunny.add(20);
+sunny.add(30);
+sunny.add(10);
+
+// size() 메소드를 이용한 element 총 개수
+System.out.println("리스트의 크기 : " + sunny.size());
+
+// for문과 get() 메소드를 이용한 element 출력
+for (int i = 0; i < sunny.size(); i++) {
+    System.out.print(sunny.get(i) + " ");
+}
+// 40, 20, 30, 10
+
+ 
+// remove 메소드를 이용한 element 제거 (index)
+sunny.remove(1);
+
+// Enhanced for문을 이용한 element 출력
+for (int e : sunny) {
+    System.out.print(e + " ");
+}
+// 40, 30, 10
+
+// Collections.sort() 메소드를 이용한 element 정렬
+Collections.sort(sunny);
+
+// iterator() 메소드를 이용한 element 출력
+Iterator<Integer> it = sunny.iterator();
+while(it.hasNext()) {
+    System.out.print(it.next() + " ");
+}
+// 10, 30, 40
+
+// set() 메소드를 이용한 요소의 변경
+sunny.set(0, 20);
+
+for(int e : sunny) {
+    System.out.print(e + " ");
+}
+// 20, 30, 40
+{% endhighlight %}
