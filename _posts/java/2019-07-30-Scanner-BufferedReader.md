@@ -82,7 +82,7 @@ public class Sunny {
 
 <br>
 
-사용방법
+사용법
 
 {% highlight java %}
 import java.io.BufferedReader;
