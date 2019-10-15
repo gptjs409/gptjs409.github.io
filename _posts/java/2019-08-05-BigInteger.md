@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Java] BigDecimal"
+title:  "[Java] BigInteger"
 date:   2019-08-05 19:19:19
 author: Choi HyeSun
 categories: java
