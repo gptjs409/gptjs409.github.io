@@ -113,6 +113,9 @@ public class Sunny {
 }
 {% endhighlight %}
 
+<br>
+<br>
+
 ## 차이점
 
 - BufferedReader는 동기식
