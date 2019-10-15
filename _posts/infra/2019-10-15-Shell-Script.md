@@ -256,7 +256,7 @@ exit 0
 
 <br>
 
-예
+- 예
 
 |파라미터변수|$0|$1|$2|$3|
 |---|---|---|---|---|
@@ -282,7 +282,7 @@ fi
 {% highlight bash %}
 [sun@localhost ~]$ vi if1.sh
 #!/bin/sh
-if [ "woo" = "woo" ]
+if [ "sun" = "sun" ]
 then
   echo "참입니다"
 fi
@@ -313,7 +313,7 @@ fi
 {% highlight bash %}
 [sun@localhost ~]$ vi if2.sh
 #!/bin/sh
-if [ "woo" != "woo" ]
+if [ "sun" != "sun" ]
 then
   echo "참입니다"
 else
