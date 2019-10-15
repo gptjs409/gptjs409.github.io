@@ -10,8 +10,7 @@
   <meta name="copyright" content="&copy; {{ site.name }} {{ site.time | date: '%Y' }}">
   {% endif %}
 	
-  <fmt:formatDate value="${now}" pattern="yyyyMMddHHmmss" var="nowDate"/>
-  <link rel="stylesheet" href="{{ site.highlightjs_theme }}?$(now)">
+  <link rel="stylesheet" href="{{ site.highlightjs_theme }}?${{ site.time }}">
 
   <!-- External libraries -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
