@@ -494,20 +494,168 @@ case "$1" in
 
 ## 반복문 - for문(1)
 
+형식
+
+{% highlight bash %}
+for 변수 in 값1 값2 값3 ...
+do
+  반복할 문장
+done
+{% endhighlight %}
+
+> for i in 1 2 3 4 5 6 7 8 9 10
+>
+> = for((i=1;i<=10;i++))
+>
+> = for i in `seq 1 10`
+
+{% highlight bash %}
+[sun@localhost ~]$ vi for1.sh
+#!/bin/sh
+hap=0
+for i in 1 2 3 4 5 6 7 8 9 10
+#for((i=1;i<=10;i++))
+#for i in `seq 1 10`
+do
+  hap=`expr $hap + $i`
+done
+echo "1~10까지의 합: "$hap
+exit 0
+[sun@localhost ~]$ sh for1.sh
+1~10까지의 합: 55
+{% endhighlight %}
+
+
 <br>
 <br>
 
 ## 반복문 - for문(2)
+
+- 현재 디렉터리에 있는 쉘 스크립트 파일(\*.sh)의 파일명과 앞 3줄씩을 출력하는 프로그램
+
+{% highlight bash %}
+[sun@localhost ~]$ vi for2.sh
+#!/bin/sh
+for fname in $(ls *.sh)
+do
+  echo "--------$fname--------"
+  head -3 $fname
+done
+exit 0
+[sun@localhost ~]$ sh for2.sh
+--------andor1.sh--------
+#!/bin/sh
+echo "보고싶은 파일명을 입력해보세요"
+ls
+--------case1.sh--------
+#!/bin/sh
+case "$1" in
+  start)
+--------case2.sh--------
+#!/bin/sh
+echo "쉘스크립트가 재밌어요? (yes/no)"
+read answer
+--------for1.sh--------
+#!/bin/sh
+hap=0
+#for i in 1 2 3 4 5 6 7 8 9 10
+--------for2.sh--------
+#!/bin/sh
+for fname in $(ls *.sh)
+do
+--------if1.sh--------
+#!/bin/sh
+if [ "woo" = "woo" ]
+then
+--------if2.sh--------
+#!/bin/sh
+if [ "woo" != "woo" ]
+then
+--------if3.sh--------
+#!/bin/sh
+if [ 100 -eq 200 ]
+then
+--------if4.sh--------
+#!/bin/bash
+fname=/home/sun/num1.sh
+if [ -f $fname ]
+--------name.sh--------
+#!/bin/sh
+echo "호스트명": $HOSTNAME
+exit 0
+--------num1.sh--------
+#!/bin/sh
+num1=100
+num2=$num1+200
+--------para1.sh--------
+#!/bin/sh
+echo "실행파일 이름은 <$0>"
+echo "첫 번째 파라미터 <$1>"
+--------var1.sh--------
+#!/bin/sh
+myvar="Hello Sun"
+echo $myvar
+{% endhighlight %}
 
 <br>
 <br>
 
 ## 반복문 - while문(1)
 
+- 조건문이 참인 동안 계속 반복
+
+{% highlight bash %}
+[sun@localhost ~]$ vi while1.sh
+#!/bin/sh
+while [ 1 ]
+do
+  echo "Sun"
+done
+exit 0
+[sun@localhost ~]$ sh while1.sh
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+Sun
+(무한반복... Ctrl+C로 끊어주기)
+{% endhighlight %}
+
+> while은 조건에 [ 1 ] 또는 [ : ]가 오면 항상 참
+
 <br>
 <br>
 
 ## 반복문 - while문(2)
+
+- 1 ~ 10까지의 합계 출력(for1.sh와 동일한 결과)
+
+{% highlight bash %}
+[sun@localhost ~]$ vi while2.sh
+#!/bin/sh
+hap=0
+i=1
+while [ $i -le 10 ]
+do
+  hap=`expr $hap + $i`
+  i=`expr $i + 1`
+done
+echo "1~10까지의 합: "$hap
+exit 0
+[sun@localhost ~]$ sh while2.sh
+1~10까지의 합: 55
+{% endhighlight %}
+
+> until문은 조건식이 참일때까지(거짓인 동안) 계속 반복
+>
+> while [ $i -le 10 ] = until [ $i -gt 10 ]
 
 <br>
 <br>
