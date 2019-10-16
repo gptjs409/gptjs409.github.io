@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Shell Script 기본"
+title:  "[Shell Script] 기본"
 date:   2019-10-15 12:43:27
 author: Choi HyeSun
 categories: infra
