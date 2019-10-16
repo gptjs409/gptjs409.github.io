@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Java] 다형성(polymorphism)"
+title:  "[Java] 다형성(Polymorphism)"
 date:   2019-08-23 23:19:25
 author: Choi HyeSun
 categories: java
@@ -13,7 +13,7 @@ tags:
   - instanceof
 ---
 
-## 다형성(polymorphism) - 정의
+## 다형성(Polymorphism) - 정의
 
 - 객체지향개념에서의 다형성
 
