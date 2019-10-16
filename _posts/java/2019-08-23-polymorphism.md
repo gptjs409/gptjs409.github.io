@@ -8,6 +8,9 @@ tags:
   - Java
   - 다형성
   - polymorphism
+  - vector
+  - 벡터
+  - instanceof
 ---
 
 ## 다형성(polymorphism) - 정의
