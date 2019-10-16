@@ -89,9 +89,3 @@ tags:
   - 예 - 안 됨) void sunny(String... args); // 겹침
 
   - 예 - 됨)     void sunny(Int sunny, String... args); // 안겹침
-
-{% highlight java %}
-
-{% endhighlight %}
-
-![image](/img/2019-10-14/CentOS-Install-CLI-040-putty4.png)
