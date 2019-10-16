@@ -77,13 +77,13 @@ tags:
 
 ## 인스턴스 생성과 사용
 
-1. 클래스명 변수명;  (ex) Weather sunny;
+- 클래스명 변수명;  (ex) Weather sunny;
 
   - Weather 클래스 타입의 참조변수 sunny를 선언
 
   - 메모리에 참조변수 sunny의 공간이 마련됨(주소값 저장될 공간)
 
-2. sunny = new Weather();
+- sunny = new Weather();
 
   - 연산자 new에 인해 Weather클래스의 인스턴스가 메모리에 빈 공간에(예.0x101) 생성
 
@@ -93,19 +93,19 @@ tags:
 
   - 참조변수 sunny를 통해 인스턴스에 접근 및 조작이 가능함
 
-3. sunny.today = "Sunny";
+- sunny.today = "Sunny";
 
   - 참조변수 sunny에 저장된 주소(예.0x101)에 있는 인스턴스의 멤버변수 today에 "Sunny"를 저장
 
   - 인스턴스의 멤버변수(속성) 사용시 '참조변수.멤버변수'
 
-4. sunny.todayCloudy();
+- sunny.todayCloudy();
 
   - 참조변수 sunny에 저장된 주소(예.0x101)에 있는 인스턴스의 todayCloudy메서드를 호출
 
   - todayCloudy메서드 → today 멤버변수를 "Cloudy"로 변환
 
-5. System.out.println(sunny.today);
+- System.out.println(sunny.today);
 
   - 참조변수 sunny가 참조하고 있는 Weather인스턴스의 멤버변수 today에 저장된 값을 출력
 
