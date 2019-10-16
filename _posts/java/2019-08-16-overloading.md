@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Java] 오버로딩(overloading)"
+title:  "[Java] 오버로딩(Overloading)"
 date:   2019-08-16 19:11:05
 author: Choi HyeSun
 categories: java
