@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Git Blog 테마바꾸기"
+title:  "[GitHub Blog] 테마바꾸기"
 date:   2019-10-11 23:41:23
 author: Choi HyeSun
 categories: git
