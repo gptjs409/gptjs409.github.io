@@ -43,7 +43,7 @@ tags:
 <br>
 <br>
 
-## 패키지 - 선언
+## 패키지(package) - 선언
 
 - package 패키지명;
 
