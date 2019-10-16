@@ -66,7 +66,8 @@ tags:
 
   - 됨) weather("sunny", "cloudy"); // 인자 2개
 
-  - 됨) weather(new String[]{"A", "B"}); // 배열도 가능<br>단, weather({"A", "B"});는 허용하지 않음 (주소 참조로 되는데, 올린 곳이 없으니까)
+  - 됨) weather(new String[]{"A", "B"}); // 배열도 가능
+  <br>단, weather({"A", "B"});는 허용하지 않음 (주소 참조로 되는데, 올린 곳이 없으니까)
 
 <br>
 <br>
