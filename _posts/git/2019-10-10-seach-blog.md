@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GitHub 블로그 검색되도록 설정하기"
+title:  "[GitHub Blog] 검색되도록 설정하기"
 date:   2019-10-10 21:01:02
 author: Choi HyeSun
 categories: git
