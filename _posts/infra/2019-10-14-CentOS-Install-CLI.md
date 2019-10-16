@@ -3,7 +3,7 @@ layout: post
 title:  "CentOS 텍스트모드(CLI)로 설치하기"
 date:   2019-10-14 13:21:33
 author: Choi HyeSun
-categories: Infra
+categories: infra
 tags:
   - CentOS
   - CentOS설치
