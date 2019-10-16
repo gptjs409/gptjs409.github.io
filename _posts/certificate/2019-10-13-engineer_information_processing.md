@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[국가기술자격]정보처리기사"
+title:  "[국가기술자격] 정보처리기사"
 date:   2019-10-13 14:16:34
 author: Choi HyeSun
 categories: certificate
