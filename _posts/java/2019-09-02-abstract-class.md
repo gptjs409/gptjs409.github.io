@@ -11,6 +11,8 @@ tags:
   - abstract
   - 추상클래스
   - abstract class
+  - 추상메서드
+  - abstract method
 ---
 
 ## 추상클래스(abstract class) - 정의
