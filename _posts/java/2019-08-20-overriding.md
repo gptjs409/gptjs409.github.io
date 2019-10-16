@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[Java] 오버라이딩(overriding)"
+title:  "[Java] 오버라이딩(Overriding)"
 date:   2019-08-20 22:01:18
 author: Choi HyeSun
 categories: java
