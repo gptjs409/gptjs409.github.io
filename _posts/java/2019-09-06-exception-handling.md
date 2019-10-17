@@ -232,7 +232,7 @@ class Sunny {
   - Exception인스턴스를 생성할 때, 생성자에 String을 넣어주면, Exception 인스턴스의 메시지로 저장됨
   <br>→ getMessage()를 통해 얻을 수 있음
   
--  방법
+- 방법
 
   - 연산자 new를 이용해서 발생시키려는 예외 클래스의 객체 생성
   <br>Exception e = new Exception("고의 예외");
@@ -376,15 +376,19 @@ try {
   - try-catch문으로만 작성할 때
   <br>
   <br> 1. finally에 조건을 줘야함
+  <br> 
   <br> 2. try와 finally에서 모두 예외 발생시 close 불가
   
   - try-with-resources
+  <br> 
   <br>1. finally에 조건을 줄 필요가 없음
+  <br> 
   <br>2. try( ) ← 괄호 안에 객체 생성 문장을 넣어줌
   <br>두 개 이상일 때는 ;로 구분 (끝에는 붙여주는게 아님)
-<br>&nbsp; - 해당 객체는 try 블럭을 벗어나면 자동적으로 close()가 호출됨
-<br>&nbsp; - 그 이후 catch 또는 finally 블럭 수행
-<br>&nbsp; - 자동적으로 close()가 호출될 수 있으려면 해당 클래스가 AutoCloseable이라는 인터페이스를 구현해야만 함
+  <br>&nbsp; - 해당 객체는 try 블럭을 벗어나면 자동적으로 close()가 호출됨
+  <br>&nbsp; - 그 이후 catch 또는 finally 블럭 수행
+  <br>&nbsp; - 자동적으로 close()가 호출될 수 있으려면 해당 클래스가 AutoCloseable이라는 인터페이스를 구현해야만 함
+  <br> 
   <br>3. try ( ) 괄호 안에 변수 선언도 가능
   <br>&nbsp; - 선언된 변수는 try 블럭에서만 사용
   
