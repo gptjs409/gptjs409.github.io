@@ -9,6 +9,10 @@ tags:
   - Git Command
   - 깃 명령어
   - 깃
+  - commit
+  - add
+  - push
+  - pull
 ---
 ## 기존 디렉토리를 Git 저장소로 만들기 (git 시작)
 
