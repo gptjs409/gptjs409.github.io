@@ -82,8 +82,25 @@ $(document).ready(function() {
 
 </script>
 
-<script type="text/javascript" src="/css/z-monokai-sublime.css?v=&{d};">
-var d = new date().getTime();
+<script type="text/javascript">
+	var d = new date().getTime();
+	          
+	// Get HTML head element 
+	var head = document.getElementsByTagName('HEAD')[0];  
+
+	// Create new link Element 
+	var link = document.createElement('/css/z-monokai-sublime.css?v=' + d); 
+
+	// set the attributes for link element  
+	link.rel = 'stylesheet';  
+
+	link.type = 'text/css'; 
+
+	link.href = 'style.css';  
+
+	// Append link element to HTML head 
+	head.appendChild(link);  
+	
 </script>
 
 <script src="/css/z-monokai-sublime.css?v=footer"></script>
