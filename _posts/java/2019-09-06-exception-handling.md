@@ -580,9 +580,9 @@ try {
   - 지금은 자바가 처음 개발되던 시절(1990년대)과 컴퓨터 환경이 많이 달라짐
   <br>- checked 예외가 발생해도 예외를 처리할 수 없는 상황이 하나 둘 발생하기 시작
   
-  <br>할 수 있는 처리 방법 : 의미 없는 try-catch문 추가
+  - 할 수 있는 처리 방법 : 의미 없는 try-catch문 추가
   
-  <br>바꾸는 방법 : RuntimeException으로 감싸면 unchecked예외가 되고 이것을 던져줌
+  - 바꾸는 방법 : RuntimeException으로 감싸면 unchecked예외가 되고 이것을 던져줌
   
 {% highlight java %}
 static void StartInstall() throws SpaceException, MemoryException {
