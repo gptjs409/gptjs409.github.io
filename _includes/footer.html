@@ -84,24 +84,9 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 	var d = new date().getTime();
-	          
-	// Get HTML head element 
-	var head = document.getElementsByTagName('HEAD')[0];  
-
-	// Create new link Element 
-	var link = document.createElement('/css/z-monokai-sublime.css?v=' + d); 
-
-	// set the attributes for link element  
-	link.rel = 'stylesheet';  
-
-	link.type = 'text/css'; 
-
-	link.href = 'style.css';  
-
-	// Append link element to HTML head 
-	head.appendChild(link);  
-	
 </script>
+
+<script src="/css/z-monokai-sublime.css?v=<%=DateTime.Now.Ticks.ToString()%>" type="text/javascript"></script>
 
 <script src="/css/z-monokai-sublime.css?v=footer"></script>
 
