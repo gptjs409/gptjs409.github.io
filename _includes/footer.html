@@ -51,7 +51,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 <script src="//unpkg.com/popper.js@1"></script>
-<!--script src="//unpkg.com/tippy.js@5"></script-->
+<script src="//unpkg.com/tippy.js@5"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -72,13 +72,13 @@ $(document).ready(function() {
   });
 
 	// Enable tooltips via Tippy.js
-//	if (Array.isArray(window.tooltips)) {
-//		window.tooltips.forEach(function(tooltip) {
-//			var selector = tooltip[0];
-//			var config = tooltip[1];
-//			tippy(selector, config);
-//		})
-//	}
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
 });
 
 </script>
