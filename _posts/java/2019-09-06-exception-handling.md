@@ -77,7 +77,7 @@ tags:
 <br>
 <br>
 
-## 예외 처리(Exception Handling)하기 : try - catch문
+## 예외 처리(Exception Handling)하기 1 : try - catch문
 
 - 정의 : 프로그램 실행 시 발생할 수 있는 예기치 못한 예외의 발생에 대비한 코드를 작성하는 것
 
@@ -96,6 +96,8 @@ tags:
   - 중첩 try catch도 사용 가능 (try블록, catch 블록)
 
 - (주의) try 블럭과 catch 블럭은 { } 괄호를 생략할 수 없음
+
+- 형식
 
 {% highlight java %}
 /* try catch문 */
@@ -240,6 +242,152 @@ class Sunny {
   
   - 두 개를 한 줄로 쓸 수도 있음
   <br>throw new Exception("고의 예외");
+
+- 예외 종류 - checked 예외
+
+  - Exception 클래스 : 컴파일러가 예외처리를 확인 
+
+  - 예외를 발생시키면 컴파일시 에러
+
+  - 사용자 실수로 발생시키는 에러이기 때문에 예외처리를 강제
+
+- 예외 종류 - unchecked 예외
+
+  - RuntimeException 클래스 : 컴파일러가 예외처리를 확인하지 않음 
+
+  - 예외를 발생시켜도 정상적으로 컴파일은 되고, 실행시 에러
+
+  - 프로그래머가 실수로 발생시키는 에러이기 때문에 예외처리를 강제하지 않음
+
+<br>
+<br>
+
+## 예외 처리(Exception Handling)하기 2 : 메서드에 예외 선언하기
+
+- 메서드에 예외를 선언하려면
+
+  - 메서드의 선언부에 키워드 throws를 사용해서 메서드 내에서 발생할 수 있는 예외를 적어주기
+
+  - 예외가 여러개일 경우에는 ,(쉼표)로 구분
+  <br>ex)void method() throws ExceptionA, ExceptionB, ... Exception N { // 메서드 내용; }
+
+  - Exception 클래스를 선언하면, 모든 종류의 예외가 발생할 수 있다는 것
+  <br>void method() throws Exception { // 메서드 내용; }
+  
+  - 예외를 선언한하면, 해당 예외 + 자식타입의 예외까지 발생할 수 있음
+  <br> 상속관계 고려 필요
+  
+- 메서드에 예외를 선언하면
+
+  - 메서드를 사용하려는 사람이 메서드의 선언부를 보았을 때, 어떤 예외들이 처리되어야 하는지 쉽게 알 수 있음
+
+  - 메서드를 사용하는 측에 이에 대한 처리를 하도록 강요
+
+  - 보다 견고한 프로그램 코드를 작성할 수 있음
+  
+- 일반적으로 RuntimeException들은 적지 않음 (try-catch와 동일)
+
+- 메서드에 예외를 선언한다는 것
+
+  - 예외를 처리하는 것이 아닌, 자신(예외가 발생할 수 있는 메서드)을 호출한 메서드에게 예외를 전달하여 예외처리를 떠넘기는 것
+
+  - 예외를 전달받은 메서드도 또 다시 자신을 호출한 메서드에게 예외를 전달할 수 있음
+
+  - main에서까지 throws를 하면, main 메서드가 수행되고 종료되면서 프로그램 전체가 종료됨
+  <br>→ 프로그램이 예외로 인해 비정상으로 종료
+
+  - 어느 한 곳에서는 try-catch문을 사용하여 예외처리를 해주어야 함
+  
+- 사용
+
+  - try-catch : 예외가 발생한 메서드 내에서 자체적으로 처리해도 되는 것
+  
+  - throws Exception : 예외가 발생한 메서드 내에서 자체적으로 해결이 안되는 경우
+
+- 예제
+
+{% highlight java %}
+/* main에서 methodA를 호출, methodA에서 methodB를 호출, main/methodA/methodB 모두 throws Exception
+ * 호출(호출스택) : main → methodA → methodB
+ * 예외발생 : 가장 윗줄인 methodB
+ */
+java.lang.Exception
+      at ExceptionSunnyC.methodB(ExceptionSunnyC.java:18)
+      at ExceptionSunnyC.methodA(ExceptionSunnyC.java:12)
+      at ExceptionSunnyC.main(ExceptionSunnyC.java:3)
+
+/* main에서 methodA를 호출, methodA에서 try catch로 처리하고, catch문에 printStackTrace();
+ * main에서 methodA를 호출, methodA에서는 throws, main에서 try catch로 처리하고, catch문에 print StackTrace();
+ * 결과 동일
+ * 호출(호출스택) : main → methodA
+ * 예외발생 : 가장 윗줄인 methodA
+ */
+ java.lang.Exception
+      at ExceptionSunnyC.methodA(ExceptionSunnyC.java:12)
+      at ExceptionSunnyC.main(ExceptionSunnyC.java:3)
+{% endhighlight %}
+
+<br>
+<br>
+
+## finally 블럭
+
+- try-catch문과 함께 (선택적으로) 사용
+
+  - 순서 : try-catch-finally
+
+- 예외의 발생 여부에 상관없이 항상 실행되어야할 코드를 포함시킬 목적으로 사용
+
+  - try/catch 블럭에 return이 있다면, return 전에 finally 블럭을 실행시킨 후 return
+  <br>→ 항상 실행
+
+- 진행 순서
+
+  - 예외 발생 O : try → catch → fianlly
+
+  - 예외 발생 X : try → finally
+
+- return 선언 가능
+
+  - try의 return과 catch의 return이 실행되고 나서 실행됨
+
+- 형식
+{% highlight java %}
+try {
+    // 예외가 발생할 가능성이 있는 문장
+} catch (Exception e) {
+    // 예외 발생시 처리
+} finally {
+    // 항상 실행될 문장
+}
+{% endhighlight %}
+
+<br>
+<br>
+
+## 자동 자원 반환 : try - with - resources문(JDK1.7~)
+
+- 입출력과 관련된 클래스를 사용할 때 유용
+
+  - 입출력에 사용되는 클래스 중에는 사용한 후 꼭 닫아줘야 사용했던 자원(resource)을 반환하는 것들이 있음
+  
+- try-catch문과 차이
+
+  - try-catch문으로만 작성할 때
+  <br>
+  <br> 1. finally에 조건을 줘야함
+  <br> 2. try와 finally에서 모두 예외 발생시 close 불가
+  
+  - try-with-resources
+  <br>1. finally에 조건을 줄 필요가 없음
+  <br>2. try( ) ← 괄호 안에 객체 생성 문장을 넣어줌
+  <br>두 개 이상일 때는 ;로 구분 (끝에는 붙여주는게 아님)
+<br>&nbsp; - 해당 객체는 try 블럭을 벗어나면 자동적으로 close()가 호출됨
+<br>&nbsp; - 그 이후 catch 또는 finally 블럭 수행
+<br>&nbsp; - 자동적으로 close()가 호출될 수 있으려면 해당 클래스가 AutoCloseable이라는 인터페이스를 구현해야만 함
+  <br>3. try ( ) 괄호 안에 변수 선언도 가능
+  <br>&nbsp; - 선언된 변수는 try 블럭에서만 사용
+  
 
 
 {% highlight java %}
