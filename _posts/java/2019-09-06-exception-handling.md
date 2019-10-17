@@ -10,6 +10,15 @@ tags:
   - 예외처리
   - Exception
   - Exception Handling
+  - 오류
+  - 에러
+  - 컴파일에러
+  - 런타임에러
+  - 논리적에러
+  - try-cache
+  - throw
+  - throws
+  - finally
 ---
 
 ## 프로그램 오류
@@ -384,17 +393,217 @@ try {
   <br>1. finally에 조건을 줄 필요가 없음
   <br> 
   <br>2. try( ) ← 괄호 안에 객체 생성 문장을 넣어줌
-  <br>두 개 이상일 때는 ;로 구분 (끝에는 붙여주는게 아님)
+  <br>&nbsp; - 두 개 이상일 때는 ;로 구분 (끝에는 붙여주는게 아님)
   <br>&nbsp; - 해당 객체는 try 블럭을 벗어나면 자동적으로 close()가 호출됨
   <br>&nbsp; - 그 이후 catch 또는 finally 블럭 수행
   <br>&nbsp; - 자동적으로 close()가 호출될 수 있으려면 해당 클래스가 AutoCloseable이라는 인터페이스를 구현해야만 함
   <br> 
   <br>3. try ( ) 괄호 안에 변수 선언도 가능
   <br>&nbsp; - 선언된 변수는 try 블럭에서만 사용
-  
 
+  - 예제
 
 {% highlight java %}
+/* try catch문 */
 
+try {
+    FileInputStream fis = new FileInputStream("sunny.dat");
+    DataInputStream dis = new DataInputStream(fis);
+    
+    // 생략
+} catch (IOException ie) {
+    ie.printStackTrace();
+} finally {
+    try {
+        if (dis != null) {
+            dis.close();
+        }
+    } catch (IOException ie) {
+        ie.printStackTrace();
+    }
+}
+
+
+/* try-with-resources문 */
+
+try (FileInputStream fis = new FileInputStream("sunny.dat"); DataInputStream dis = new DataInputStream(fis)) {
+    // 생략
+} catch (IOException ie) {
+    ie.printStackTrace();
+}
+{% endhighlight %}
+
+<br>
+<br>
+
+## AutoCloseable 인터페이스
+
+- 구성
+{% highlight java %}
+public interface AutoCloseable {
+    void Close() throws Exceptions;
+}
+{% endhighlight %}
+
+- 각 클래스에서 적절히 자원 반환 작업을 하도록 구현
+
+- close()도 Exception을 발생시킬 수 있음
+
+  - close만 예외를 발생시키면 특이사항 없음
+
+- 예외를 발생시켰는데 close도 예외를 발생시키면 → 예외가 두 개
+
+  - 억제된(Suppressed:)라는 의미의 머릿말과 함께 출력
+
+  - 두 예외가 동시에 발생될 순 없기에, 두 번째 발생하는 예외는 억제된 예외
+  
+  - 억제된 예외의 정보 : 실제로 발생한 예외에 저장(첫 번째 예외)
+
+  - Throwable에서의 억제된 예외의 정의
+  <br>void addSuppressed(Throwable exception) 억제된 예외를 추가
+  <br> Throwsable\[] getSuppressed() 억제된 예외(배열)을 반환
+  
+  - 기존의 try-catch에서 발생했다면, 두 번째 발생한 CloseException 내용만 출력
+
+<br>
+<br>
+
+## 사용자정의 예외 만들기
+
+- 기존의 정의된 예외 클래스 외에 필요에 따라 새로운 예외 클래스를 정의할 수 있음
+
+- 보통 Exception 클래스로부터 상속받는 클래스를 만들지만, 필요에 따라서 알맞은 예외 클래스를 선택할 수 있음
+
+- 가능하면 새로운 예외 클래스를 만들기보다는 기존의 예외 클래스를 활용하는 것이 좋음
+
+- 추세
+
+  - 기존의 예외 클래스는 주로 Exception을 상속받아서 checked 예외로 작성하는 경우가 많았음
+
+  - 요즘은 예외 처리를 선택적으로 할 수 있도록 RuntimeException을 상속받아서 작성하는 쪽으로 바뀌어감
+
+  - check예외는 반드시 예외처리를 해주어야하기 떄문에 예외처리가 불필요한 경우에도 try-catch문을 넣어서 코드가 복잡해짐
+
+  - 프로그래밍 환경이 달라진만큼 필수적으로 처리해야할 것 같았던 예외들이 선택적으로 처리해도 되는 상황으로 바뀐 경우도 종종 있음
+
+<br>
+<br>
+
+## 예외 되던지기(exception re-throwing)
+
+- 예외를 처리한 후에 인위적으로 다시 발생시키는 방법
+
+- 사용할 때
+
+  - 한 메서드에서 발생할 수 있는 예외가 여럿인 경우, 몇 개는 try-catch문을 통해 메서드 내에서 자체적으로 처리하고, 나머지는 선언부에 지정하여 호출한 메서드에서 처리하도록 함으로써 양 쪽에서 나눠서 처리되도록 할 때
+
+  - 하나의 예외에 대해서도 예외가 발생한 메서드와 호출한 메서드 양 쪽에서 처리할 수 있게 할 때
+
+- 사용방법
+
+  - catch 블럭에서 throw 참조변수;를 통해 인위적으로 다시 발생시킴
+
+  - 그럴 경우 catch 블럭 내에 return을 생략해도 됨
+  
+<br>
+<br>
+
+## 연결된 예외(chained exception) 
+
+- 한 예외가 다른 예외를 발생시키는 것
+
+- 예외 A가 예외 B를 발생시킨다면
+
+  - 예외 A : B의 원인 예외(cause exception)
+
+  - SpaceException이 InstallException을 발생시킨다면? SpaceException이 InstallException의 원인 예외
+  
+- 예제
+
+{% highlight java %}
+/* catch 블록
+ * 1. InstallException 생성
+ * 2. initCause()를 통해 SpaceException을 원인 예외로 등록
+ * 3. throw로 생성예외 던짐
+ */
+try {
+    startInstall(); // SpaceException으로 발생
+    copyFile();
+} catch (SpaceException e) {
+    InstallException ie = new InstallException("날씨예외발생"); // 예외 생성
+    we.initCause(e); // InstallException 원인 예외를 SpaceException으로 지정
+    throw ie; // InstallException 발생
+} catch (MemoryException me) {
+    ...
+{% endhighlight %}
+
+- initCause()
+
+  - Throwable initCause(Throwable cause) : 지정한 예외를 원인 예외로 등록
+  
+  - Exception클래스의 조상인 Throwable 클래스에 정의 → 모든 예외에서 사용 가능
+
+  - 원인 예외로 등록하는 이유 1. 여러가지 예외를 하나의 큰 분류의 예외로 묶어서 다루기 위해
+  
+  - 원인 예외로 등록하는 이유 2. checked 예외를 unchecked 예외로 바꿀 수 있도록 하기 위해
+  
+  - 대신해서 예외클래스의 생성자를 이용해도 됨
+
+  - RuntimeException(Throwable cause) // 원인 예외를 등록하는 생성자
+  
+  - getCause() : 원인 예외를 반환
+  
+- 하나의 큰 분류의 예외로 묶어서 다루는 다른(불편한) 예
+
+  - 부모클래스로 catch 블럭을 작성하면, 실제로 발생한 예외가 어떤 것인지 알 수 없음
+
+  - SpaceException과 MemoryException의 상속관계를 변경해야하는 것도 부담 (InstallException)
+
+  - 하지만!! 원인 예외를 포함시키면 → 두 예외는 상속관계가 아니여도 상관 없음
+  
+  - 예제
+  
+{% highlight java %}
+try {
+    startInstall(); // SpaceException 발생
+    copyFile();
+} catch (InstallException e) { // InstallException은
+    e.printStackTrace();       // SpaceException과 MemoryException의 부모클래스
+}
+{% endhighlight %}
+
+- checked 예외를 unchecked 예외로 바꾸는 이유
+
+  - checked 예외로 예외처리를 강제한 이유
+  <br>- 프로그래밍 경험이 적은 사람도 보다 견고한 프로그램을 작성할 수 있도록 유도
+  
+  - 지금은 자바가 처음 개발되던 시절(1990년대)과 컴퓨터 환경이 많이 달라짐
+  <br>- checked 예외가 발생해도 예외를 처리할 수 없는 상황이 하나 둘 발생하기 시작
+  
+  <br>할 수 있는 처리 방법 : 의미 없는 try-catch문 추가
+  
+  <br>바꾸는 방법 : RuntimeException으로 감싸면 unchecked예외가 되고 이것을 던져줌
+  
+{% highlight java %}
+static void StartInstall() throws SpaceException, MemoryException {
+    if(!enoughSpace()) {
+        throw new SpaceException("설치할 공간 부족");
+    }
+    if(!enoughMemory()) {
+        throw new MemoryException("메모리 부족");
+    }
+}
+
+/* UnChecked 예외로 만들기
+ * RuntimeException 생성자 이용하여 원인 예외 생성
+ */
+static void StartInstall() throws SpaceException {
+    if(!enoughSpace()) {
+        throw new SpaceException("설치할 공간 부족");
+    }
+    if(!enoughMemory()) {
+        throw new RuntimeException(new MemoryException("메모리 부족"));
+    }
+}
 {% endhighlight %}
 
