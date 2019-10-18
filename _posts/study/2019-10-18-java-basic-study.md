@@ -12,7 +12,7 @@ tags:
 
 JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=6232200)
 
-- Chapter 1 자바를 시작하기 전에 : 스터디X
+- ~~Chapter 1 자바를 시작하기 전에 : 스터디X~~
 
 |중분류|소분류|
 |---|---|
@@ -20,7 +20,7 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |2. 자바개발환경 구축하기|2.1 자바 개발도구(JDK)설치하기<br>2.2 Java API문서 설치하기|
 |3. 자바로 프로그램작성하기|3.1 Hello.java<br>3.2 자주 발생하는 에러와 해결방법<br>3.3 자바프로그램의 실행과정<br>3.4 주석(comment)|
 
-- Chapter 2 변수(Variable) : 스터디X
+- ~~Chapter 2 변수(Variable) : 스터디X~~
 
 |중분류|소분류|
 |---|---|
@@ -28,31 +28,31 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |2. 변수의 타입|2.1 기본형(primitive type)<br>2.2 논리형 - boolean<br>2.3 문자형 - char<br>2.4 정수형 - byte, short, int, long<br>2.5 실수형 - float, double|
 |3. 형변환<br>3.1 형변환(캐스팅, casting)이란?<br>3.2 형변환 방법<br>3.3 기본형의 형변환|
 
-- Chapter 3 연산자(Operator) : 스터디X
+- ~~Chapter 3 연산자(Operator) : 스터디X~~
 
 |중분류|소분류|
 |---|---|
 |1. 연산자(operator)||
 |2. 단항 연산자|2.1 증감 연산자 - ++, --<br>2.2 부호 연산자 - +, -<br>2.3 비트전환 연산자 - ~<br>2.4 논리부정 연산자 - !|
-|3. 산술 연산자|3.1 사칙 연산자 -, +, -, *<br>3.2 나머지 연산자 - %<br>3.3 쉬프트 연산자 - 〈〈, 〉〉, 〉〉〉|
+|3. 산술 연산자|3.1 사칙 연산자 -, +, -, \*<br>3.2 나머지 연산자 - %<br>3.3 쉬프트 연산자 - 〈〈, 〉〉, 〉〉〉|
 |4. 비교 연산자|4.1 대소비교 연산자 - 〈, 〉, 〈=, 〉=<br>4.2 등가비교 연산자 - ==, !=|
 |5. 논리 연산자|5.1 논리 연산자 - &&, ||<br>5.2 비트 연산자 - &, \|, ^|
 |6. 그 외의 연산자|6.1 삼항 연산자 - ? :<br>6.2 대입 연산자 - =, op=|
 
-- Chapter 4 조건문과 반복문 : 스터디X
+- ~~Chapter 4 조건문과 반복문 : 스터디X~~
 
 |중분류|소분류|
 |---|---|
 |1. 조건문 - if, switch|1.1 if문<br>1.2 중첩 if문<br>1.3 switch문|
 |2. 반복문 - for, while, do-while|2.1 for문<br>2.2 while문<br>2.3 do-while문<br>2.4 break문<br>2.5 continue문<br>2.6 이름 붙은 반복문|
 
-- Chapter 5 배열(Array) : 스터디X
+- ~~Chapter 5 배열(Array) : 스터디X~~
 
 |중분류|소분류|
 |---|---|
 |1. 배열(array)|1.1 배열(array)이란?<br>1.2 배열의 선언<br>1.3 배열의 생성<br>1.4 배열의 초기화<br>1.5 배열의 활용<br>1.6 다차원 배열<br>1.7 가변 배열<br>1.8 배열의 복사<br>1.9 커맨드라인을 통해 입력받기|
 
-- Chapter 6 객체지향 프로그래밍 I : 스터디X
+- ~~Chapter 6 객체지향 프로그래밍 I : 스터디X~~
 
 |중분류|소분류|
 |---|---|
@@ -63,7 +63,7 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |5. 생성자(constructor)|5.1 생성자란?<br>5.2 기본 생성자(default constructor)<br>5.3 매개변수가 있는 생성자<br>5.4 생성자에서 다른 생성자 호출하기 - this(), this<br>5.5 생성자를 이용한 인스턴스의 복사|
 |6. 변수의 초기화|6.1 변수의 초기화<br>6.2 명시적 초기화(explicit initialization)<br>6.3 초기화 블럭(initialization block)<br>6.4 멤버변수의 초기화 시기와 순서|
 
-- Chapter 7 객체지향 프로그래밍 II : 스터디X
+- ~~Chapter 7 객체지향 프로그래밍 II : 스터디X~~
 
 |중분류|소분류|
 |---|---|
@@ -211,6 +211,12 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 언어는 개념을 알고 달달 외운다고 한 번에 다 알 수 있는 것이 아니라
 
 개념을 잡고 쓰면서 익숙해지는 것입니다!
+
+<br>
+
+스터디 제외를 뺀 스터디 X의 경우는
+
+개인공부 해서 개념을 잡고 오셔야합니다.
 
 <br>
 <br>
