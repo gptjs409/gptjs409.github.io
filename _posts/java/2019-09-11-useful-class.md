@@ -34,7 +34,7 @@ tags:
 |---|---|
 |**static boolean isNull(Object obj)**|해당 객체가 널인지 확인해서 null이면 true, 아니면 false 반환|
 |**static boolean nonNull(Object obj)**|해당 객체가 널인지 확인해서 null이면 false, 아니면 true 반환|
-|**static \<T> T requireNonNull(T obj)<br>static \<T> T requireNonNull(T obj, String message)<br>static \<T> T requireNonNull(T obj, Supplier<String> message Supplier)**|만일 객체가 널이면, NullPointerException 발생<br>두번째 매개변수는 예외 메시지 문자열이 됨|
+|**static \<T> T requireNonNull(T obj)<br>static \<T> T requireNonNull(T obj, String message)<br>static \<T> T requireNonNull(T obj, Supplier\<String> message Supplier)**|만일 객체가 널이면, NullPointerException 발생<br>두번째 매개변수는 예외 메시지 문자열이 됨|
 |**static int compare(Object a, Object b, Comparator c)**|비교자 Comparator c로 비교했을 때,<br>두 비교대상이 같으면 0, 크면 양수, 작으면 음수 반환|
 |**static boolean equals(Object a, Object b)**|Object 클래스에 정의되어있는 것 - Null 검사를 해야함<br>Objects 클래스에 정의되어있는 것 - Null 검사를 하지 않아도 됨<br>A와 B가 모두 Null인 경우 true|
 |**static boolean deepEquals(Object a, Object b)**|객체를 재귀적으로 비교 - 다차원 배열 비교 가능(equals는 false)|
