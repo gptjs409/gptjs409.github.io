@@ -8,9 +8,17 @@ tags:
   - 자바스터디
 ---
 
+## 스터디 유의사항
+
+
+<br>
+<br>
+
 ## 스터디 기준 책 및 진도(예상 안)
 
 JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=6232200)
+
+<br>
 
 #### 예습:개인공부
 
