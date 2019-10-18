@@ -9,6 +9,10 @@ tags:
   - 형식화
   - 패턴
   - DecimalFormat
+  - SimpleDateFormat
+  - DateFormat
+  - ChoiceFormat
+  - MessageFormat
 ---
 
 ## 형식화 클래스
@@ -130,36 +134,175 @@ Date daySunny = calSunny.getTime(); // Calendar를 Date로 변환
   
 |기호|의미|예시|
 |---|---|---|
-|G|연대(BC, AD)|AD|
-|y|연도|2019|
-|M|월(1~12 또는 1월~12월)|8 또는 8월, OCT|
-|w|년의 몇 번째 주(1~53)|12|
-|W|월의 몇 번째 주(1~5)|3|
-|D|년의 몇 번째 일(1~366)|123|
-|d|월의 몇 번째 일(1~31)|13|
-|F|월의 몇 번째 요일(1~5)|2 (→ 이번달의 N번째 화요일)|
-|E|요일|월|
-|a|오전/오후(AM, PM)|AM|
-|H|시간(0~23)|20|
-|k|시간(1~24)|13|
-|K|시간(0~11)|10|
-|h|시간(1~12)|11|
-|m|분(0~59)|50|
-|s|초(0~59)|55|
-|S|1/1000초 (0~999)|231|
-|z|Time zone(General time zone)|GMT+9:00|
-|Z|Time zone(RFC 822 time zone)|+0900|
-|'|escape문자(특문표현)<br>'(따옴표)는 escape 문자이기 때문에, 사용하려면 escape 문자를 붙여서 ''|없음|
+|**G**|**연대(BC, AD)**|AD|
+|**y**|**연도**|2019|
+|**M**|**월(1~12 또는 1월~12월)**|8 또는 8월, OCT|
+|**w**|**년의 몇 번째 주(1~53)**|12|
+|**W**|**월의 몇 번째 주(1~5)**|3|
+|**D**|**년의 몇 번째 일(1~366)**|123|
+|**d**|**월의 몇 번째 일(1~31)**|13|
+|**F**|**월의 몇 번째 요일(1~5)**|2 (→ 이번달의 N번째 화요일)|
+|**E**|**요일**|월|
+|**a**|**오전/오후(AM, PM)**|AM|
+|**H**|**시간(0~23)**|20|
+|**k**|**시간(1~24)**|13|
+|**K**|**시간(0~11)**|10|
+|**h**|**시간(1~12)**|11|
+|**m**|**분(0~59)**|50|
+|**s**|**초(0~59)**|55|
+|**S**|**1/1000초 (0~999)**|231|
+|**z**|**Time zone(General time zone)**|GMT+9:00|
+|**Z**|**Time zone(RFC 822 time zone)**|+0900|
+|**'**|**escape문자(특문표현)<br>'(따옴표)는 escape 문자이기 때문에, 사용하려면 escape 문자를 붙여서 ''**|없음|
 
 <br>
 <br>
 
 ## ChoiceFormat
 
-{% highlight java %}
+- 형식화 클래스 중, 특정 범위에 속하는 값을 문자열로 변환하는 것
 
+- 연속적 또는 불연속적인 범위의 값들을 처리할 때 if나 switch문은 부적절한 경우가 많음
+<br>→ 이럴 경우 ChoiceFormat을 사용하면 복잡하게 처리될 수밖에 없었던 코드를 간단하고 직관적으로 만들 수 있음
+
+- 사용방법
+
+  - ChoiceFormat(double[] limits, String[] grades)
+
+  - ChoiceFormat (String newPattern)
+
+{% highlight java %}
+/* ChoiceFormat(double[] limits, String[] grades)
+ * limits, grades간의 순서와 개수를 맞춰야 함
+ * limits : double, 반드시 모두 오름차순으로 정렬되어있어야 함
+ * grades : String, 치환 될 문자열의 개수 = limits에 정의된 개수
+ *                  → 다를 경우 ArgumentException 발생
+ */
+double[] limits = {60, 70, 80, 90};
+String[] grades = {"D", "C", "B", "A"};
+
+int[] scores = { 100, 95, 88, 70, 52, 60, 70 };
+
+ChoiceFormat form = new Choice Format(limit, grades);
+
+for(int i = 0; i < scores.length; i++) {
+    System.out.print(scores[i] + ":" + form.format(scores[i]) + ", ");
+}
+
+// 100:A, 95:A, 88:B, 70:C, 52:D, 60:D, 70:C, 
+
+
+/* ChoiceFormat(String newPattern)
+ * pattern : 배열대신 패턴을 사용하여 간결하게 처리
+ *           # : 경계값을 범위에 포함, <:경계값은 포함하지 않음
+ *           90#A = 90이상은 A,       80<B, 80초과는 B
+ */
+String pattern = "60#D|70#C|80<B|90#A";
+int[] scores = {91, 90, 80, 88, 70, 52, 60};
+
+ChoiceFormat form = new ChoiceFormat(pattern);
+
+for(int i = 0; i < scores.length; i++) {
+    System.out.print(scores[i] + ":" + form.format(scores[i]) + ", ");
+}
+
+// 91:A, 90:A, 80:C, 88:B, 70:C, 52:D, 60:D
 {% endhighlight %}
 
-{% highlight java %}
+<br>
+<br>
 
+## MessageFormat
+
+- 형식화 클래스 중, 데이터를 정해진 양식에 맞게 출력할 수 있도록 해주는 것
+
+- 데이터가 들어갈 자리를 마련해놓은 양식을 미리 작성 후 프로그램을 이용해서 다수의 데이터를 같은 양식으로 출력할 때 사용
+
+- 예시
+
+  - 고객들에게 보낼 안내문을 출력할 때 같은 안내문 양식에 받는 사람의 이름과 같은 데이터만 달라지도록 출력할 때
+
+  - 하나의 데이터를 다양한 양식으로 출력할 때 사용
+
+  - SimpleDateFormat의 parse처럼 MessageFormat을 이용하면 지정된 양식에서 필요한 데이터만을 손쉽게 추출해낼 수 있음
+
+- 따옴표(')는 MessageFormat 양식에서 escape문자로 사용되기 때문에 문자열 msg내에서 따옴표를 사용하려면 두 번 연속으로 사용하면 됨 (ex : '')
+
+- 사용 방법과 예
+
+{% highlight java %}
+import java.text.*;
+
+class Sunny {
+    public msg = "S: {0} \nU: {1} \nN: {2}";
+    
+    Object[] arguments = {
+        "고구마", "true", "15"
+    };
+    
+    String sunny = MessageFormat.format(msg, arguments);
+    
+    System.out.println(sunny);
+}
+
+/* S: 고구마
+ * U: true
+ * N: 15
+ */
+ 
+import java.text.*;
+
+class Sunny2 {
+    public msg = "S: {0} U: ''{1}'' N: {2}"; // 따옴표(')는 MessageFormat양식의 escape문자
+                                             // '로 사용하려면 ''로 사용
+    
+    Object[][] arguments = {
+        {"고구마", "true", "15"},
+        {"감자", "false", "12"},
+    };
+    
+    for (int i = 0; i < arguments.length; i++) {
+    	String sunny = MessageFormat.format(msg, arguments[i]);
+    	System.out.println(sunny);
+    }
+
+}
+
+/* S: 고구마 U: 'true' N: 15
+ * S: 감자 U: 'false' N: 12
+ */
+{% endhighlight %}
+
+- MessageFormat에 사용할 양식인 문자열 msg를 작성할 때, '{숫자}'로 표시된 부분 → 데이터가 출력될 자리
+
+  - 순차적일 필요 없음
+
+  - 여러번 반복해서 사용 가능
+  
+  - 사용되는 숫자는 배열처럼 인덱스가 0부터 시작
+  
+  - 양식에 들어갈 데이터는 객체배열인 arguments에 지정
+
+  - 객체배열이기 때문에 String 이외에도 다른 객체들이 지정될 수 있음
+
+  - 보다 세부적인 옵션들 사용 가능 → Java API 문서 참조
+
+- 출력된 데이터로부터 필요한 데이터를 뽑아내는 방법 (parse(String source) 사용)
+
+  - 데이터를 객체배열에 직접 초기화
+  <br>→ 데이터가 바뀔 때 마다 매번 배열을 변경해야 하고 다시 컴파일을 해줘야 함
+
+  - 불편을 없애기 위해 Scanner를 통해 데이터를 제공받으면, 데이터가 변경되어도 다시 컴파일을 하지 않아도 됨
+
+{% highlight java %}
+String msg = "Sunny {0}" + "{1}, {2}, {3}";
+
+String pattern = "{0}, {1}, {2}, {3}";
+MessageFormat mf = new MessageFormat(pattern);
+
+Object objs = mf.parse("'Sunny123', '02-123-1234', 27, '08-09'");
+
+System.out.println(MessageFormat.format(msg, objs));
+
+// "Sunny 'Sunny123''02-123-1234', 27, '08-09'
 {% endhighlight %}
