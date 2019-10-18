@@ -252,7 +252,7 @@ class RegularSunny {
 |**\[a-zA-Z]**|영대/소문자 1개|
 |**\[0-9]<br>\\d**|숫자 1개|
 |**\[a-zA-Z0-9]<br>\\w**|영대/소문자+숫자 1개|
-|**.{n}\<br>ex) .{2}**|문자 n개<br>(ex) 문자 2개|
+|**.{n}<br>ex) .{2}**|문자 n개<br>(ex) 문자 2개|
 |**.{n,m}<br>ex) .{1, 2}**|문자 n개 ~ m개<br>(ex) 문자 1개 ~ 2개|
 |**\[a\|b].\*<br>\[a-b].\*<br>\[ab].\***|a또는 b로 시작하는 문자열|
 |**\[^a\|b].\*<br>\[^a-b].\*<br>\[^ab].\***|a또는 b로 시작하지 않는 문자열|
@@ -706,14 +706,14 @@ System.out.println(new BigDecimal("0.1");
   
 |상수|설명|
 |---|---|
-|CEILING|올림|
-|FLOOR|내림(CEILING과 반대)|
-|UP|양수일 때는 올림, 음수일 때는 내림|
-|DOWN|양수일 떄는 내림, 음수일 때는 올림(UP과 반대)|
-|HALF_UP|반올림(5이상 올림, 5미만 버림)|
-|HALF_EVEN|반올림(반올림 자리의 값이 짝수면 HALF_DOWN, 홀수면 HALF_UP)|
-|HALF_DOWN|반올림(6이상 올림, 6미만 버림)|
-|UNNECESSARY|나눗셈의 결과가 딱 떨어지는 수가 아니면, ArithmeticException 발생|
+|**CEILING**|올림|
+|**FLOOR**|내림(CEILING과 반대)|
+|**UP**|양수일 때는 올림, 음수일 때는 내림|
+|**DOWN**|양수일 떄는 내림, 음수일 때는 올림(UP과 반대)|
+|**HALF_UP**|반올림(5이상 올림, 5미만 버림)|
+|**HALF_EVEN**|반올림(반올림 자리의 값이 짝수면 HALF_DOWN, 홀수면 HALF_UP)|
+|**HALF_DOWN**|반올림(6이상 올림, 6미만 버림)|
+|**UNNECESSARY**|나눗셈의 결과가 딱 떨어지는 수가 아니면, ArithmeticException 발생|
 
 > (주의) 1.0/3.0처럼 divide()로 나눗셈한 결과가 무한소수인 경우,
 >
