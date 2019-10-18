@@ -37,8 +37,8 @@ netcraft_news [LINK](https://news.netcraft.com/archives/category/web-server-surv
 
 ## Apache vs Nginx
 
-|Apache|Nginx|
-|---|---|
+||Apache|Nginx|
+|---|---|---|
 |시작|1995년|2004년|
 |성능||경우에 따라 Apache보다 경쟁력이 있음|
 |점유율|많음|많음, (2019.04 아파치 추월)|
