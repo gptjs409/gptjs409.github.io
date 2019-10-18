@@ -12,7 +12,11 @@ tags:
 
 JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=6232200)
 
-- ~~Chapter 1 자바를 시작하기 전에 : 스터디X~~
+#### 예습:개인공부
+
+Chapter 1 자바를 시작하기 전에
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -20,7 +24,12 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |2. 자바개발환경 구축하기|2.1 자바 개발도구(JDK)설치하기<br>2.2 Java API문서 설치하기|
 |3. 자바로 프로그램작성하기|3.1 Hello.java<br>3.2 자주 발생하는 에러와 해결방법<br>3.3 자바프로그램의 실행과정<br>3.4 주석(comment)|
 
-- ~~Chapter 2 변수(Variable) : 스터디X~~
+<br>
+<br>
+
+Chapter 2 변수(Variable)
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -28,7 +37,12 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |2. 변수의 타입|2.1 기본형(primitive type)<br>2.2 논리형 - boolean<br>2.3 문자형 - char<br>2.4 정수형 - byte, short, int, long<br>2.5 실수형 - float, double|
 |3. 형변환<br>3.1 형변환(캐스팅, casting)이란?<br>3.2 형변환 방법<br>3.3 기본형의 형변환|
 
-- ~~Chapter 3 연산자(Operator) : 스터디X~~
+<br>
+<br>
+
+Chapter 3 연산자(Operator)
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -39,20 +53,35 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |5. 논리 연산자|5.1 논리 연산자 - &&, ||<br>5.2 비트 연산자 - &, \|, ^|
 |6. 그 외의 연산자|6.1 삼항 연산자 - ? :<br>6.2 대입 연산자 - =, op=|
 
-- ~~Chapter 4 조건문과 반복문 : 스터디X~~
+<br>
+<br>
+
+Chapter 4 조건문과 반복문
+
+<br>
 
 |중분류|소분류|
 |---|---|
 |1. 조건문 - if, switch|1.1 if문<br>1.2 중첩 if문<br>1.3 switch문|
 |2. 반복문 - for, while, do-while|2.1 for문<br>2.2 while문<br>2.3 do-while문<br>2.4 break문<br>2.5 continue문<br>2.6 이름 붙은 반복문|
 
-- ~~Chapter 5 배열(Array) : 스터디X~~
+<br>
+<br>
+
+Chapter 5 배열(Array)
+
+<br>
 
 |중분류|소분류|
 |---|---|
 |1. 배열(array)|1.1 배열(array)이란?<br>1.2 배열의 선언<br>1.3 배열의 생성<br>1.4 배열의 초기화<br>1.5 배열의 활용<br>1.6 다차원 배열<br>1.7 가변 배열<br>1.8 배열의 복사<br>1.9 커맨드라인을 통해 입력받기|
 
-- ~~Chapter 6 객체지향 프로그래밍 I : 스터디X~~
+<br>
+<br>
+
+Chapter 6 객체지향 프로그래밍 I
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -63,14 +92,26 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |5. 생성자(constructor)|5.1 생성자란?<br>5.2 기본 생성자(default constructor)<br>5.3 매개변수가 있는 생성자<br>5.4 생성자에서 다른 생성자 호출하기 - this(), this<br>5.5 생성자를 이용한 인스턴스의 복사|
 |6. 변수의 초기화|6.1 변수의 초기화<br>6.2 명시적 초기화(explicit initialization)<br>6.3 초기화 블럭(initialization block)<br>6.4 멤버변수의 초기화 시기와 순서|
 
-- ~~Chapter 7 객체지향 프로그래밍 II : 스터디X~~
+<br>
+<br>
+
+Chapter 7 객체지향 프로그래밍 II
+
+<br>
 
 |중분류|소분류|
 |---|---|
 |1. 상속(inheritance)|1.1 상속의 정의와 장점<br>1.2 클래스간의 관계 - 포함관계<br>1.3 클래스간의 관계 결정하기<br>1.4 단일상속(single inheritance)<br>1.5 Object클래스 - 모든 클래스의 조상|
 |2. 오버라이딩(overriding)|2.1 오버라이딩이란?<br>2.2 오버라이딩의 조건<br>2.3 오버로딩 vs. 오버라이딩<br>2.4 super<br>2.5 super() - 조상 클래스의 생성자|
 
-- Chapter 7 객체지향 프로그래밍 II : 스터디 1주차
+<br>
+<br>
+
+#### 스터디 1주차
+
+Chapter 7 객체지향 프로그래밍 II : 스터디 1주차
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -80,7 +121,12 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |6. 추상클래스(abstract class)|6.1 추상클래스란?<br>6.2 추상메서드(abstract method)<br>6.3 추상클래스 작성|
 |7. 인터페이스(interface)|7.1 인터페이스란?<br>7.2 인터페이스의 작성<br>7.3 인터페이스의 상속<br>7.4 인터페이스의 구현<br>7.5 인터페이스를 이용한 다중상속<br>7.6 인터페이스를 이용한 다형성<br>7.7 인터페이스의 장점<br>7.8 인터페이스의 이해|
 
-- Chapter 10 내부 클래스 : 스터디 1주차(챕터 순서 유의!!)
+<br>
+<br>
+
+Chapter 10 내부 클래스 : 스터디 1주차(챕터 순서 유의!!)
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -90,13 +136,24 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |4. 내부 클래스의 제어자와 접근성||
 |5. 익명 클래스(anonymous class)||
 
-- Chapter 8 예외처리(Exception Handling) : 스터디 1주차(챕터 순서 유의!!)
+<br>
+<br>
+
+Chapter 8 예외처리(Exception Handling) : 스터디 1주차(챕터 순서 유의!!)
+
+<br>
 
 |중분류|소분류|
 |---|---|
 |1. 예외처리(exception handling)|1.1 프로그램 오류<br>1.2 예외처리의 정의와 목적<br>1.3 예외처리구문 - try-catch<br>1.4 try-catch문에서의 흐름<br>1.5 예외 발생시키기<br>.6 예외 클래스의 계층구조<br>1.7 예외의 발생과 catch블럭<br>1.8 finally블럭<br>1.9 메서드에 예외 선언하기<br>1.10 예외 되던지기(exception re-throwing)<br>1.11 사용자정의 예외 만들기|
 
-- Chapter 9 java.lang패키지 : 스터디 2주차
+<br>
+
+#### 스터디 2주차
+
+Chapter 9 java.lang패키지 : 스터디 2주차
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -106,15 +163,24 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |4. Math클래스|4.1 Math클래스<br>4.2 Math클래스의 메서드|
 |5. wrapper클래스|5.1 wrapper클래스<br>5.2 Number클래스|
 
-- Chapter 11 컬렉션 프레임웍과 유용한 클래스 : 스터디 2주차
+<br>
+<br>
+
+Chapter 11 컬렉션 프레임웍과 유용한 클래스 : 스터디 2주차
 
 |중분류|소분류|
 |---|---|
 |1. 컬렉션 프레임웍(Collection Framework)|1.1 컬렉션 프레임웍의 핵심 인터페이스 - List, Set, Map<br>1.2 동기화(Synchronization)<br>1.3 Vector와 ArrayList<br>1.4 LinkedList<br>1.5 Stack과 Queue<br>1.6 Enumeration, Iterator, ListIterator<br>1.7 HashSet<br>1.8 TreeSet<br>1.9 Comparator와 Comparable<br>1.10 Hashtable과 HashMap<br>1.11 TreeMap<br>1.12 Properties<br>1.13 컬렉션 클래스 정리 & 요약|
 |2. 유용한 클래스들|2.1 Calendar와 Date<br>2.2 Random<br>2.3 정규식(Regular Expression) - Pattern. Match<br>2.4 Scanner<br>2.5 StringTokenizer|
 |3. 형식화 클래스|3.1 DecimalFormat<br>3.2 SimpleDateFormat<br>3.3 ChoiceFormat<br>3.4 MessageFormat|
+|4. 제네릭스(Generics)|4.1 ArrayList〈E〉<br>4.2 Iterator〈E〉<br>4.3 Comparable〈T〉과 Collections.sort()<br>4.4 HashMap〈K,V〉|
 
-- 부록 - JDK 1.5에 추가된 기능 : 맨 뒤 챕터입니다!!!! (챕터 순서 확인 필요)
+<br>
+<br>
+
+부록 - JDK 1.5에 추가된 기능 : 맨 뒤 챕터입니다!!!! (챕터 순서 확인 필요)
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -125,12 +191,14 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |5. static import문||
 |6. StringBuilder||
 
-- Chapter 11 컬렉션 프레임웍과 유용한 클래스 : 스터디 3주차
-|중분류|소분류|
-|---|---|
-|4. 제네릭스(Generics)|4.1 ArrayList〈E〉<br>4.2 Iterator〈E〉<br>4.3 Comparable〈T〉과 Collections.sort()<br>4.4 HashMap〈K,V〉|
+<br>
+<br>
+
+#### 스터디 3주차
 
 - Chapter 12 쓰레드(thread) : 스터디 3주차
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -146,13 +214,62 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |9.1 synchronized를 이용한 동기화||
 |9.2 wait()과 notify()||
 
+<br>
+<br>
+
 - 람다 : 스터디 3주차
 
   - 책에는 없지만 3주차에 같이 진행하겠습니다.
   
   - 방식은 고민중
 
-- ~~Chapter 13 AWT(Abstract Window Toolkit) : 스터디 제외~~
+<br>
+
+#### 스터디 4주차
+
+- 쓰레드 : 스터디 4주차
+
+  - 책에는 없지만 3주차에 같이 진행하겠습니다.
+  
+  - 방식은 고민중
+  
+<br>
+<br>
+
+- Chapter 14 입출력(I/O) : 스터디 4주차
+
+<br>
+
+|중분류|소분류|
+|---|---|
+|1. 자바에서의 입출력|1.1 입출력이란?<br>1.2 스트림(stream)<br>1.3 바이트기반 스트림 - InputStream, OutputStream<br>1.4 보조스트림<br>1.5 문자기반 스트림 - Reader, Writer|
+|2. 바이트기반 스트림|2.1 InputStream과 OutputStream<br>2.2 ByteArrayInputStream과 ByteArrayOutputStream<br>2.3 FileInputStream과 FileOutputStream|
+|3. 바이트기반의 보조스트림|3.1 FilterInputStream과 FilterOutputStream<br>3.2 BufferedInputStream과 BufferedOutputStream<br>3.3 DataInputStream과 DataOutputStream<br>3.4 SequenceInputStream<br>3.5 PrintStream|
+|4. 문자기반 스트림|4.1 Reader와 Writer<br>4.2 FileReader와 FileWriter<br>4.3 PipedReader와 PipedWriter<br>4.4 StringReader와 StringWriter|
+|5. 문자기반의 보조스트림|5.1 BufferedReader와 BufferedWriter<br>5.2 InputStreamReader와 OutputStreamWriter|
+|6. 표준입출력과 File|6.1 표준입출력 - System.in, System.out, System.err<br>6.2 표준입출력의 대상변경 - setOut(), setErr(), setIn()<br>6.3 RandomAccessFile<br>6.4 File|
+|7. 직렬화(Serialization)|7.1 직렬화란?<br>7.2 ObjectInputStream과 ObjectOutputStream<br>7.3 직렬화가 가능한 클래스 만들기 - Serializable, transient<br>7.4 직렬화가능한 클래스의 버전관리|
+
+<br>
+<br>
+
+- Chapter 15 네트워킹(Networking) : 스터디 4주차
+
+<br>
+
+|중분류|소분류|
+|---|---|
+|1. 네트워킹(Networking)|1.1 클라이언트<br>1.2 IP주소(IP address)<br>1.3 InetAddress<br>1.4 URL(Uniform Resource Location)<br>1.5 URLConnection|
+|2. 소켓 프로그래밍|2.1 TCP와 UDP<br>2.2 TCP소켓 프로그래밍<br>2.3 UDP소켓 프로그래밍|
+
+<br>
+<br>
+
+#### 스터디 4주차에 할지 패스할지 고민중
+
+~~Chapter 13 AWT(Abstract Window Toolkit) : 스터디 제외~~
+
+<br>
 
 |중분류|소분류|
 |---|---|
@@ -165,31 +282,7 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 |7. AWT의 그래픽|7.1 paint()와 Graphics<br>7.2 AWT쓰레드와 repaint()<br>7.3 Image를 이용해서 이미지 출력하기|
 |8. 애플릿(Applet)|8.1 애플릿(Applet)이란?<br>8.2 Applet의 생명주기(Life cycle)와 주요 메서드<br>8.3 Applet의 보안 제약(Security restriction)<br>8.4 Applet과 HTML태그|
 
-- 쓰레드 : 스터디 4주차
-
-  - 책에는 없지만 3주차에 같이 진행하겠습니다.
-  
-  - 방식은 고민중
-  
-- Chapter 14 입출력(I/O) : 스터디 4주차
-
-|중분류|소분류|
-|---|---|
-|1. 자바에서의 입출력|1.1 입출력이란?<br>1.2 스트림(stream)<br>1.3 바이트기반 스트림 - InputStream, OutputStream<br>1.4 보조스트림<br>1.5 문자기반 스트림 - Reader, Writer|
-|2. 바이트기반 스트림|2.1 InputStream과 OutputStream<br>2.2 ByteArrayInputStream과 ByteArrayOutputStream<br>2.3 FileInputStream과 FileOutputStream|
-|3. 바이트기반의 보조스트림|3.1 FilterInputStream과 FilterOutputStream<br>3.2 BufferedInputStream과 BufferedOutputStream<br>3.3 DataInputStream과 DataOutputStream<br>3.4 SequenceInputStream<br>3.5 PrintStream|
-|4. 문자기반 스트림|4.1 Reader와 Writer<br>4.2 FileReader와 FileWriter<br>4.3 PipedReader와 PipedWriter<br>4.4 StringReader와 StringWriter|
-|5. 문자기반의 보조스트림|5.1 BufferedReader와 BufferedWriter<br>5.2 InputStreamReader와 OutputStreamWriter|
-|6. 표준입출력과 File|6.1 표준입출력 - System.in, System.out, System.err<br>6.2 표준입출력의 대상변경 - setOut(), setErr(), setIn()<br>6.3 RandomAccessFile<br>6.4 File|
-|7. 직렬화(Serialization)|7.1 직렬화란?<br>7.2 ObjectInputStream과 ObjectOutputStream<br>7.3 직렬화가 가능한 클래스 만들기 - Serializable, transient<br>7.4 직렬화가능한 클래스의 버전관리|
-
-- Chapter 15 네트워킹(Networking) : 스터디 4주차
-
-|중분류|소분류|
-|---|---|
-|1. 네트워킹(Networking)|1.1 클라이언트<br>1.2 IP주소(IP address)<br>1.3 InetAddress<br>1.4 URL(Uniform Resource Location)<br>1.5 URLConnection|
-|2. 소켓 프로그래밍|2.1 TCP와 UDP<br>2.2 TCP소켓 프로그래밍<br>2.3 UDP소켓 프로그래밍|
-
+<br>
 <br>
 
 진도의 경우 나가보고 조정이 있을 수 있으나,
@@ -221,7 +314,7 @@ JAVA의 정석 #2판 [LINK](https://book.naver.com/bookdb/book_detail.nhn?bid=62
 <br>
 <br>
 
-## 스터디 진행 방법
+## 스터디 진행 방법(고민중)
 
 - 방법 1.
 
