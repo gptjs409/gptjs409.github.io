@@ -3,7 +3,7 @@ layout: post
 title:  "[자바기본스터디] 2019-11 자바기본스터디 준비"
 date:   2019-10-18 13:06:24
 author: Choi HyeSun
-categories: git
+categories: study
 tags:
   - 자바스터디
 ---
