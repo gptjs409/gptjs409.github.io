@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[아티앤바나나-영어공부법] 영어로 유창하고 길게 말하려면 알아야 하는 필수 요소 4인방!"
+title:  "[아티앤바나나-영어공부법] 이게 뭐라고 평생 헷갈렸나.. 초필수 영문법 10 요약편"
 date:   2019-10-21 00:50:01
 author: Choi HyeSun
 categories: english
