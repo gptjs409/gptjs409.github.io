@@ -20,7 +20,7 @@ tags:
 
 해당 강의의 저작권은 모두 '아티엔바나나'님께 있습니다.
 
-- 유튜브 강의 [LINK](https://www.youtube.com/watch?v=YSR2Y55nKKc&list=PLAaYgDI-R1LzJeYkMLDilNpx95I5eUnPF)
+- 유튜브 강의 [LINK](https://www.youtube.com/watch?v=y6rGxWyvsSM&list=PLAaYgDI-R1LzJeYkMLDilNpx95I5eUnPF)
 
 - 홈페이지 [LINK](https://www.artyandbanana.com/)
 
