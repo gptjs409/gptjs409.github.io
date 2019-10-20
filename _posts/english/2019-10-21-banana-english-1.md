@@ -12,6 +12,8 @@ tags:
   - 형식별 단어
   - 동사 시제
   - 조동사
+  - 12시제
+  - 5형식
 ---
 
 ## 저작권 표시
@@ -221,13 +223,13 @@ tags:
 
 ## 숙제
 
-1. 강의 2번 보기
+- 강의 2번 보기
 
 - 처음에는 영화보듯 편하게 이해 위주로
 
 - 두 번째는 필기하고 필수적인 부분은 암기하면서
 
-2. 배운 문법 내용 추가 공부 + 예시를 찾아보고 가능하면 문장 영작해볼 것
+- 배운 문법 내용 추가 공부 + 예시를 찾아보고 가능하면 문장 영작해볼 것
 
 - 예시를 5개씩 (1형식 ~ 5형식)
 
@@ -236,6 +238,164 @@ tags:
 - 조동사의 종류는 뭐가 있는지
 
 - 조동사와 쓸 수 있는 문장이 무엇이 있는지
+
+
+#### 조동사의 종류
+
+- 능력/허락/가능성
+
+  - Can - Could
+  
+  - May - Might
+  
+- 조언/필요성/직무
+
+  - Should
+  
+  - Must
+  
+  - Need
+  
+  - Ought to
+  
+  - Had better
+  
+  - Have to
+  
+  - Be supposed to
+  
+- 미래시간
+
+  - Will
+  
+  - Would
+  
+  - Shall
+  
+  - Be going to
+  
+<br>
+
+#### 조동사 ([출처-네이버 어학사전](https://endic.naver.com/enkrEntry.nhn?sLn=kr&entryId=37d58385a974460aa8e55fa91f284fdc&query=can))
+
+Can
+
+- 가능 : \~할 수 있다. (be able to로 대체 가능 - 미래형/완료형/부정사에는 이것만)
+
+  - I **can** run fast. (= I **am able to** run fast.)
+  <br>나는 빨리 달릴 수 있다.
+  
+  - **Can** you call tomorrow?
+  <br>내일 다시 전화해주시겠어요?
+  
+  - I **can't** promise anyting. But I'll do what I **can**.
+  <br>나는 아무 약속도 할 수 없어요. 하지만 내가 할 수 있는 일은 하겠어요.
+
+- 능력 : \~할 줄 알다.
+
+  - She **can** speak Spainsh.
+  <br>그녀는 스페인어를 할 줄 안다.
+
+  - **Can** he cook?
+  <br>그가 요리를 할 줄 알아요?
+  
+- 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
+
+  - I **can** _hear_ music.
+  <br>음악 소리가 들려.
+  
+- 허가 : \~해도 된다.
+
+  - You **can** take the car, if you want.
+  <br>그러고 싶으면 그 차를 가져\[타고]가도 돼.
+  
+  - We **can't** wear jeans at work.
+  <br>우리는 직장에서 청바지를 입으면 안 된다.
+  
+- (비격식) 허락 : ~해도 되는가?
+
+  - **Can** I read your newpaper?
+  <br>(당신) 신문 좀 봐도 될까요?
+  
+- (비격식) 도움을 구할 때 : \~ 해주겠니?
+
+  - **Can** you help with this box?
+  <br>이 상자 드는 것 좀 도와줄래?
+  
+- (부정문에 쓰여) \~일 리가 없다.
+
+  - That **can't** be Mary-she's in New York.
+  <br>그 사람이 메리일리가 없어. 그녀는 뉴욕에 있는걸?
+  
+- 의혹/놀람 표현
+
+  - What **can** they be doing?
+  <br>그들은 도대체 뭘 하고 있는 걸까?
+  
+- 자주/어떤 양상을 보임을 나타냄
+
+  - He **can** be very tactless sometimes. 
+  <br>때로는 그가 아주 요령이 없을 때가 있어
+  
+- 제안을 할 때.
+
+  - We **can** eat in a restaurant, if you like.
+  <br>괜찮으면 식당에서 식사를 할 수도 있어
+  
+- (비격식)보통 화가 나서 명령/지시를 할 때
+
+  - You **can** shut up or get out!
+  <br>너 입 다물거나 아니면 나가!
+
+Could
+
+- can의 과거형 - 가능 : \~할 수 있었다.
+
+  - He **couldn't** answer the question.
+  <br>그는 그 질문에 대답을 하지 못했다.
+
+- can의 과거형 - 능력 : \~할 줄 알았다.
+
+  - I **could** drive a car befor I left school.
+  <br>나는 고등학교를 마치기 전에 운전을 할 줄 알았다.
+  
+- can의 과거형 - 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
+
+  - She **could** _feel_ a lump in her breast.
+  <br>(본인이 만져보니) 그녀의 유방에서 혹이 만져졌다.
+  
+- 무엇을 해도 되는지 물어볼 때
+
+  - **Could** I use your phone, plse?
+  <br>전화 좀 써도 될까요?
+  
+- 무엇을 해달라고 정중히 부탁할 때
+
+  - **Could** you babysit for us on Friday?
+  <br>금요일에 저희 집 아이 좀 봐주실 수 있으세요?
+
+- 가능성이 있음을 나타낼 때
+
+  - I **could** do it now, if you like.
+  <br>네가 좋다면 난 그걸 지금 할 수도 있어
+  
+  - 'Have some more cake.' 'Oh, I **couldn't**, thank you'
+  <br>'케이크 좀 더 먹어' '오, 고맙지만 더 못먹겠어'
+  
+- 제안을 할 때
+
+  - We **could** write a letter to the director.
+  <br>우리가 감독에게 편지를 써 볼수도 있겠지
+  
+- 다른 사람이 무엇을 하지 않은 데에 짜증스러움을 나타낼 때
+
+  - They **could** have let me know they were going to be late!
+  <br>그들이 늦을 거라고 내게 알려줄 수도 있었을 것 아냐!
+
+- (비격식) 감정을 발산하고 싶음을 강조할 때
+
+  - I'm so fed up I could scream!
+  <br>난 너무 지겨워서 비명이 나올 지경이야!
 
 <br>
 <br>
