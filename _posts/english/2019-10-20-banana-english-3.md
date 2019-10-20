@@ -27,7 +27,7 @@ tags:
 
 - 포스팅 전 아티앤바나나 홈페이지에서 미리 포스팅 허락을 받고 진행하였습니다.
 
-- 포스팅 허락 게시글 [LINK](https://www.artyandbanana.com/community/english/%EC%98%81%EC%96%B4-%EA%B0%95%EC%9D%98-%ED%8F%AC%EC%8A%A4%ED%8C%85/#post-417)
+- 포스팅 허락 받기 [LINK](https://gptjs409.github.io/english/2019/10/18/banana-english-1.html)
 
 <br>
 <br>
