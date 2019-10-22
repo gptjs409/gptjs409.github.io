@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[HTTP] HTTP헤더"
-date:   2016-09-06 19:33:53
+date:   2016-09-05 19:33:53
 author: Choi HyeSun
 categories: infra
 tags:
