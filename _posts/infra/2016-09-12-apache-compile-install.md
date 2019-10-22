@@ -160,6 +160,8 @@ $ usr/local/httpd/bin/httpd –k stop
 $ service http start
 {% endhighlight %}
 
+<br>
+
 #### 끝. 80으로 접속하면 Apache 웹 서버로 접속
 
 <br>
