@@ -1,10 +1,26 @@
+---
+layout: post
+title:  "[CentOS] CentOS6 Apache 컴파일 설치"
+date:   2016-09-12 21:53:23
+author: Choi HyeSun
+categories: infra
+tags:
+  - CentOS
+  - CentOS6
+  - Apache
+  - Apache 설치
+  - 아파치
+  - Httpd
+  - 아파치 컴파일 설치
+  - Apache compile install
+---
 
 
 ## Apache(아파치) 서버
 
-- = httpd
+- Apache HTTP Server(약칭 "httpd")는 오픈 소스 소프트웨어 그룹인 아파치 소프트웨어 재단에서 만드는 웹 서버 프로그램
 
-- 웹 서버
+- 팀 버너스 리가 만든 최초의 웹 서버 프로그램인 "NCSA HTTPd"를 기반으로 만들어짐
 
 <br>
 <br>
@@ -149,7 +165,7 @@ $ service http start
 <br>
 <br>
 
-#### Apache 서버 설치시 경로 및 파일들 (참고)
+## Apache 서버 설치시 경로 및 파일들 (참고)
 
 {% highlight bash %}
 $ cd /usr/local/httpd/modules
