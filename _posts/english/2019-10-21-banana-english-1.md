@@ -281,7 +281,7 @@ tags:
 
 #### Can ([출처-네이버 어학사전](https://endic.naver.com/enkrEntry.nhn?sLn=kr&entryId=37d58385a974460aa8e55fa91f284fdc&query=can))
 
-#### 가능 : \~할 수 있다. (be able to로 대체 가능 - 미래형/완료형/부정사에는 이것만)
+##### 가능 : \~할 수 있다. (be able to로 대체 가능 - 미래형/완료형/부정사에는 이것만)
 
 - I **can** run fast. (= I **am able to** run fast.)
   
@@ -338,7 +338,6 @@ tags:
   
 <br>
   
-  
 ##### 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
 
 - I **can** _hear_ music.
@@ -387,15 +386,24 @@ tags:
   
   - 조동사 + 명사 + 동사 + 명사 + 명사
   
-  - S+V+I.O+D.O : 
-  
-  
-- (비격식) 도움을 구할 때 : \~ 해주겠니?
+  - S+V+I.O+D.O : 4형식
 
-  - **Can** you help with this box?
-  <br>이 상자 드는 것 좀 도와줄래?
+<br>
+
+##### (비격식) 도움을 구할 때 : \~ 해주겠니?
+
+- **Can** you help me with this box?
   
-- (부정문에 쓰여) \~일 리가 없다.
+  - 이 상자 드는 것 좀 도와줄래?
+  
+  
+- Can you feed the cat, please? 
+
+  - 고양이 먹이 좀 주겠니?
+
+<br>
+
+##### (부정문에 쓰여) \~일 리가 없다.
 
   - That **can't** be Mary-she's in New York.
   <br>그 사람이 메리일리가 없어. 그녀는 뉴욕에 있는걸?
@@ -454,7 +462,7 @@ He **couldn't** answer the question.
   
   - 명사 + 조동사 + 동사 + 목적어 + 전명구(부사)
   
-  - S+V+O+ : 3형식
+  - S+V+O : 3형식
   
 
   
