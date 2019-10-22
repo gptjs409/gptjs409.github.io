@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[CentOS] Command(명령어) 개념"
+title:  "[CentOS] 쉘과 Command(명령어) 개념"
 date:   2019-09-24 22:21:43
 author: Choi HyeSun
 categories: infra
@@ -9,6 +9,10 @@ tags:
   - CentOS7
   - 명령어
   - Command
+  - Shell
+  - 쉘
+  - help
+  - man
 ---
 
 ## 쉘
