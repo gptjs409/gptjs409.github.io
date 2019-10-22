@@ -275,47 +275,120 @@ tags:
   - Be going to
   
 <br>
+<br>
 
-#### 조동사 ([출처-네이버 어학사전](https://endic.naver.com/enkrEntry.nhn?sLn=kr&entryId=37d58385a974460aa8e55fa91f284fdc&query=can))
+## 조동사 
 
-Can
+#### Can ([출처-네이버 어학사전](https://endic.naver.com/enkrEntry.nhn?sLn=kr&entryId=37d58385a974460aa8e55fa91f284fdc&query=can))
 
-- 가능 : \~할 수 있다. (be able to로 대체 가능 - 미래형/완료형/부정사에는 이것만)
+#### 가능 : \~할 수 있다. (be able to로 대체 가능 - 미래형/완료형/부정사에는 이것만)
 
-  - I **can** run fast. (= I **am able to** run fast.)
-  <br>나는 빨리 달릴 수 있다.
+- I **can** run fast. (= I **am able to** run fast.)
   
-  - **Can** you call tomorrow?
-  <br>내일 다시 전화해주시겠어요?
+  - 나는 빨리 달릴 수 있다.  
   
-  - I **can't** promise anyting. But I'll do what I **can**.
-  <br>나는 아무 약속도 할 수 없어요. 하지만 내가 할 수 있는 일은 하겠어요.
-
-- 능력 : \~할 줄 알다.
-
-  - She **can** speak Spainsh.
-  <br>그녀는 스페인어를 할 줄 안다.
-
-  - **Can** he cook?
-  <br>그가 요리를 할 줄 알아요?
+  - 명사 + 조동사 + 자동사 + 부사(run을 꾸며줌)
   
-- 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
+  - S+V : 1형식
 
-  - I **can** _hear_ music.
-  <br>음악 소리가 들려.
-  
-- 허가 : \~해도 된다.
+- **Can** you call back tomorrow?
 
-  - You **can** take the car, if you want.
-  <br>그러고 싶으면 그 차를 가져\[타고]가도 돼.
-  
-  - We **can't** wear jeans at work.
-  <br>우리는 직장에서 청바지를 입으면 안 된다.
-  
-- (비격식) 허락 : ~해도 되는가?
+  - 내일 다시 전화해주시겠어요?
 
-  - **Can** I read your newpaper?
-  <br>(당신) 신문 좀 봐도 될까요?
+  - call back : (전화를 해 왔던 사람이나 누구에게) 다시 전화를 하다 - 자동사!
+
+  - (의문형)조동사 + 명사 + 자동사 + 부사(call back을 꾸며줌)
+  
+  - S+V : 1형식
+
+- The stadium **can** be emptied in four minutes.
+
+  - 경기장을 4분 만에 비울 수 있다.
+  
+- I **can't** promise anyting. But I'll do what I **can**.
+
+  - 나는 아무 약속도 할 수 없어요. 하지만 내가 할 수 있는 일은 하겠어요.
+  
+- Please let us know if you **cannot** attend the meeting.
+
+  - 회의에 참석할 수 없으시면 저희에게 알려 주십시오.
+  
+<br>
+
+##### 능력 : \~할 줄 알다.
+
+- She **can** speak Spainsh.
+  
+  - 그녀는 스페인어를 할 줄 안다.
+  
+  - speak + (언어) : (언어)를 할 줄 아는 능력이 있다 → 타동사
+  <br> speak + 전치사 + (사람) : 말하다 → 자동사
+  
+  - 명사 + 조동사 + 동사 + 명사
+  
+  - S+V+O : 3형식
+
+- **Can** he cook?
+
+  - 그가 요리를 할 줄 알아요?
+  
+  - 조동사 + 명사 + 동사
+  
+  - S+V : 1형식
+  
+<br>
+  
+  
+##### 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
+
+- I **can** _hear_ music.
+  
+  - 음악 소리가 들려.
+  
+  - 명사 + 조동사 + 동사 + 명사
+  
+  - S+V+O : 3형식
+
+<br>
+  
+##### 허가 : \~해도 된다.
+
+- You **can** take the car, if you want.
+  
+  - 그러고 싶으면 그 차를 가져\[타고]가도 돼.
+  
+  - 명사 + 조동사 + 동사 + 관사(형용사) + 명사 + 접속사 + 명사 + 동사
+  
+  - S+V+O + 접속사 + S+V : 3형식 + 접속사 + 1형식
+  
+- We **can't** wear jeans at work.
+  
+  - 우리는 직장에서 청바지를 입으면 안 된다.
+  
+  - 명사 + 조동사 + 동사 + 명사 + 부사
+  
+  - S+V+O : 3형식
+  
+<br>
+
+##### (비격식) 허락 : ~해도 되는가?
+
+- **Can** I read your newpaper?**
+
+  - (당신) 신문 좀 봐도 될까요?
+  
+  - 조동사 + 명사 + 동사 + 소유격(형용사) + 명사
+  
+  - S+V+O : 3형식
+  
+- **Can** I take you home? 
+  
+  - 내가 집에 데려다 줘도 돼?
+  
+  - 조동사 + 명사 + 동사 + 명사 + 명사
+  
+  - S+V+I.O+D.O : 
+  
   
 - (비격식) 도움을 구할 때 : \~ 해주겠니?
 
@@ -347,22 +420,45 @@ Can
   - You **can** shut up or get out!
   <br>너 입 다물거나 아니면 나가!
 
-Could
+<br>
 
-- can의 과거형 - 가능 : \~할 수 있었다.
+#### Could
 
-  - He **couldn't** answer the question.
-  <br>그는 그 질문에 대답을 하지 못했다.
+##### can의 과거형 - 가능 : \~할 수 있었다.
 
-- can의 과거형 - 능력 : \~할 줄 알았다.
+He **couldn't** answer the question.
 
-  - I **could** drive a car befor I left school.
-  <br>나는 고등학교를 마치기 전에 운전을 할 줄 알았다.
+   - 그는 그 질문에 대답을 하지 못했다.
+   
+   - 주어 + 조동사(부정-과거) + 동사 + 관사(형용사) + 
+   
+   - S+V+O : 3형식
+
+##### can의 과거형 - 능력 : \~할 줄 알았다.
+
+- I **could** drive a car before I left school.
   
-- can의 과거형 - 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
+  - 나는 고등학교를 마치기 전에 운전을 할 줄 알았다.
+  
+  - 명사 + 조동사(과거) + 동사 + 목적어 + 접속사 + 명사 + 동사 + 명사
+  
+  - S+V+O (접속사) S+V+O : 3형식
+  
+##### can의 과거형 - 감각을 느낌(동사 feel, hear, see, smell, taste와 함께 쓰여 그런 감각이 느껴짐을 나타냄)
 
-  - She **could** _feel_ a lump in her breast.
-  <br>(본인이 만져보니) 그녀의 유방에서 혹이 만져졌다.
+- She **could** _feel_ a lump in her breast.
+  
+  - (본인이 만져보니) 그녀의 유방에서 혹이 만져졌다.
+  
+  - lump : (명) 덩어리, 혹
+  
+  - 명사 + 조동사 + 동사 + 목적어 + 전명구(부사)
+  
+  - S+V+O+ : 3형식
+  
+
+  
+  
   
 - 무엇을 해도 되는지 물어볼 때
 
