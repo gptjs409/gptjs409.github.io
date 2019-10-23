@@ -11,7 +11,7 @@ tags:
   - Oracle 설치
   - Tomcat 설치
   - exERD 설치
-  - 
+  - Tomcat 포트 
 ---
 
 ## JDK 설치
@@ -66,8 +66,9 @@ javac 1.8.0_221
 <br>
 <br>
 
-## 톰캣(WAS) 설치하기
+## 톰캣(WAS) 
 
+#### 설치하기
 - 사이트 [LINK](https://tomcat.apache.org/download-90.cgi)
 
 - 다운로드 버전 : Tomcat 9, 64-bit Windows zip
@@ -76,6 +77,14 @@ javac 1.8.0_221
 
   - D:\\ 아래 tomcat9으로 풀었음(D:\\tomcat9)
   
+<br>
+
+#### 포트가 겹치므로(오라클도 8080을 씀) 포트 바꿔주기
+
+- D:\\tomcat9\\conf\\server.xml 파일 수정
+
+- <Connector port="8080" → <Connector port="8090" 
+ 
 <br>
 <br>
 
