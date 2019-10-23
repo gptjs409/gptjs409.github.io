@@ -34,8 +34,8 @@ tags:
 ## 웹 애플리케이션 기본 구조
 
 #### 기본 구조
-{% highlight bash %}
 
+{% highlight bash %}
 Web Application Name
         │
         └─────── WEB-INF
