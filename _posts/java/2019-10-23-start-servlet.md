@@ -115,7 +115,7 @@ tags:
 Servlet(Interface)        ServletConfig(Interface)
        │                              │
        │                              │
-       └── GenericServlet ─┘
+       └── GenericServlet ──┘
                (Abstract Class)
                       ┃
                       ┃
@@ -184,8 +184,178 @@ Servlet(Interface)        ServletConfig(Interface)
   
 - 서블릿의 생명주기 메서드 기능과 특징
 
+  - init() 실행 초기에 서블릿 기능 수행과 관련된 기능을 설정하는 용도로 많이 사용, 생략 가능
+  - destroy() 서블릿이 메모리에서 소멸될 때 여러가지 종료 작업 수행, 생략 가능
+  - doGet(), doPost() do로 시작하는 메서드는 서블릿의 핵심 기능을 처리하므로 반드시 구현
+
 |생명주기 단계|**호출 메서드**|특징|
 |---|---|---|
-|초기화|
-|작업 수행|
-|종료|
+|초기화|**init()**|- 서블릿 요청시 맨 처음 한 번만 호출<br>- 서블릿 생성시 초기화 작업을 주로 수행|
+|작업 수행|**doGet()<br>doPost()**|- 서블릿 요청시 매번 호출<br>- 실제로 클라이언트가 요청하는 작업을 수행|
+|종료|**destroy()**|- 서블릿이 기능을 수행하고 메모리에서 소멸될 때 호출<br>- 서블릿의 마무리 작업을 주로 수행|
+
+
+<br>
+<br>
+
+## FristSerlvet을 이용한 실습 - 사용자 정의 서블릿을 만들어보기
+
+#### 이클립스에서 서블릿을 만들고 실행하는 과정
+
+1. 사용자 정의 서블릿 클래스 만들기
+
+2. 서블릿 생명주기 메서드 구현
+
+3. 서블릿 매핑 작업
+
+4. 웹 브라우저에서 서블릿 매핑명으로 요청하기
+
+<br>
+
+#### 사용자 정의 서블릿 만들기
+
+- 웹 프로그래밍에서 사용되는 사용자 정의 서블릿
+
+  - HttpServlet 클래스를 상속받아서 만듦
+  
+  - 3개의 생명주기 메서드를 오버라이딩해서 기능을 구현(init(), doGet, destroy())
+  
+- 형식
+
+{% highlight java %}
+public class FirstServlet extends HttpServlet {
+    @Override
+    public void init() {
+       ...
+    }
+    
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+       ...
+    }
+    
+    @Override
+    public void destory() {
+       ...
+    }
+}
+{% endhighlight %}
+
+<br>
+
+#### 톰캣의 servlet-api.jar 클래스 패스 설정하기
+
+- 서블릿 API들은 톰캣의 servlet-api.jar 라이브러리 제공
+
+  - 이클립스의 프로젝트에선 서블릿을 사용할면 반드시 클래스 패스를 설정해야 함
+  
+- 설정 방법
+
+  - 이클립스 상단의 New > Dynamic Web Project
+  
+  - 프로젝트명 : pro05, 경로 : D:\\git\\sunny\\pro05 > Next > Next
+  
+  - \[체크] Generate web.xml deployment descriptor > Finish
+  
+  - 생성된 프로젝트 pro05를 선택 > 마우스 우클릭 > Build Path > Configure Build Path...
+  
+  - Java Build Path 창에서 Libraries 탭 > Add Extends JARs...(우측 2번째 button)
+  
+  - \%CATALINA_HOME\% (D:\\tomcat9)의 lib 디렉터리의 servlet-api.jar를 선택 후 열기 > Apply and Close
+  
+<br>
+
+#### 첫 번째 서블릿 만들기 (FirstSerlvet.java)
+
+- pro05프로젝트의 Java Resource 디렉터리 하위의 src 선택 > 마우스 우클릭 > New > Package
+
+- Name : sec01.ex01 > Finish > 패키지 생성 확인
+
+- 생성된 패키지 선택 > 마우스 우클릭 > New > Class
+
+- Name : FirstServlet > Finish > 생성됨 확인
+
+{% highlight java %}
+package sec01.ex01;
+
+public class FirstServlet {
+
+}
+{% endhighlight %}
+
+- 자바 코드 작성(FirstServlet.java)
+
+  - HttpServlet 상속
+  
+  - 3개의 생명주기 메서드를 차례로 구현
+  
+  - 각 메서드는 호출시 메시지만 출력
+
+{% highlight java %}
+package sec01.ex01;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class FirstServlet extends HttpServlet {
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("init 메서드 호출");
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doGet 메서드 호출");
+	}
+	
+	@Override
+	public void destroy() {
+		System.out.println("destory 메서드 호출")
+	}
+}
+{% endhighlight %}
+
+<br>
+
+#### 서블릿 매핑하기
+
+- 브라우저에서 서블릿명으로 요청하는 방법
+
+  - 톰캣에 프로젝트 추가
+  
+  - 프로젝트명 뒤 패키지명이 포함된 클래스명 전부를 입력
+  
+  - http:\//IP주소:port/프로젝트명/패키지명포함클래스명
+  
+  - http:\//127.0.0.1:8090/pro05/sec01.ex01.FirstServlet
+  
+  - 이렇게 되면 입력하기가 불편하고 보안에도 좋지 않음
+  <br>서블릿 클래스명에 대응되는 서블릿 매핑명으로 실제 서블릿을 요청 (톰캣에 등록은 해야함)
+  
+- 서블릿 매핑 과정
+
+  - 각 프로젝트에 있는 web.xml 설정
+  
+  - \<servlet>태그와 \<servlet-mapping> 태그 이용
+  
+  - 여러 개의 서블릿 매핑 시 \<servlet> 태그를 먼저 정의 후 \<servlet-mapping> 태그를 정의
+  
+- 실제 서블릿 매핑의 예
+
+{% highlight html %}
+<servlet>
+  <servlet-name>aaa</servlet-name>
+  <servlet-class>sec01.ex01.FirstServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>aaa</servlet-name>
+  <url-pattern>first</url-pattern>
+</servlet-mapping>
+{% endhighlight %}
