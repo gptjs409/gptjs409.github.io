@@ -74,7 +74,7 @@ javac 1.8.0_221
 
 - 놓고 싶은 경로에 압축 풀기
 
-  - D:\\Program Files 아래 풀었음(apache-tomcat-9.0.27)
+  - D:\\ 아래 tomcat9으로 풀었음(D:\tomcat9)
   
 <br>
 <br>
