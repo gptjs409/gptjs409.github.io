@@ -115,7 +115,7 @@ tags:
 Servlet(Interface)        ServletConfig(Interface)
        │                              │
        │                              │
-       └─────── GenericServlet ───────┘
+       └───── GenericServlet ─────┘
                (Abstract Class)
                       ┃
                       ┃
@@ -125,4 +125,11 @@ Servlet(Interface)        ServletConfig(Interface)
 
 <br>
 
-#### 
+#### 서블릿 API 기능
+
+- 서블릿 API를 구현하는 여러 구성 요소들의 특징
+
+|**서블릿 구성 요소**|기능|
+|:-:|---|
+|**Servlet 인터페이스**|- javax.servlet 패키지에 선언<br>- Servlet 관련 추상 메서드를 선언<br>- init(), service(), getServletInfo(), getServletConfig()를 선언|
+|
