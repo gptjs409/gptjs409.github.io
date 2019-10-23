@@ -8,7 +8,9 @@ tags:
   - Docker
   - Dockerfile
   - 도커파일
-  - 도커파일 작성
+  - Docker build
+  - 도커이미지 빌드
+  - docker image
 ---
 
 ## Dockerfile이란?
