@@ -115,7 +115,7 @@ tags:
 Servlet(Interface)        ServletConfig(Interface)
        │                              │
        │                              │
-       └──── GenericServlet ────┘
+       └── GenericServlet ─┘
                (Abstract Class)
                       ┃
                       ┃
@@ -136,4 +136,56 @@ Servlet(Interface)        ServletConfig(Interface)
 |**GenericServlet (추상)클래스**|- javax.servlet 패키지에 선언<br>- 상위 두 인터페이스를 구현하여 일반적인 서블릿 기능을 구현한 클래스<br>- GenericServlet을 상속받아 구현한 사용자 서블릿은 프로토콜에 따라 각각 Service()를 오버라이딩해서 구현|
 |**HttpServlet 클래스**|- javax.servlet.http 패키지에 선언<br>- GenericServlet을 상속받아 HTTP 프로토콜을 사용하는 웹 브라우저에서 서블릿 기능을 수행<br>- 웹 브라우저 기반 서비스를 제공하는 서블릿을 만들 때 상속받아 사용<br>- 요청시 service()가 호출되면서 요청 방식에 따라 doGet()이나 doPost()가 차례대로 호출됨|
 
+<br>
 
+- GenericServlet
+
+  - 일반적인 여러 통신 프로토콜에 대한 클라이언트/서버 프로그램에서 서블릿 기능을 구현할 수 있는 클래스
+  
+- HttpServlet
+
+  - GenericServlet을 상속
+  
+  - HTTP 프로토콜을 사용하는 서블릿 기능을 구현하는 클래스
+  
+  - HttpServlet을 상속받아 HTTP 프로토콜로 동작하는 웹 브라우저의 요청을 처리하는 서블릿을 만들어 볼 것
+  
+  - 그 외 다른 서블릿 구성요소들의 기능은 API 문서를 참고
+  
+  - 주요 메서드와 기능
+  
+|**메서드**|기능|
+|--:|---|
+|**protected doDelete(HttpServletRequest req,<br>HttpServletResponse resp)**|서블릿이 DELETE request를 수행하기 위해 service()를 통해서 호출|
+|**protected doGet(HttpServletRequest req,<br>HttpServletResponse resp)**|서블릿이 GET request를 수행하기 위해 service()를 통해서 호출|
+|**protected doHead(HttpServletRequest req,<br>HttpServletResponse resp)**|서블릿이 HEAD request를 수행하기 위해 service()를 통해서 호출|
+|**protected doPost(HttpServletRequest req,<br>HttpServletResponse resp)**|서블릿이 POST request를 수행하기 위해 service()를 통해서 호출|
+|**protected service(HttpServletRequest req,<br>HttpServletResponse resp)**|표준 HTTP request를 public service()에서 전달받아 doXXX() 메서드를 호출|
+|**public service(HttpServletRequest req, <br>HttpServletRequest resp)**|클라이언트의 request를 protected service()에게 전달|
+
+<br>
+
+- 클라이언트 요청시 public service() 메서드를 먼저 호출 후 다시 protected service() 메서드를 호출, 그 다음 request에 따라 doXXX() 메서드를 호출
+
+<br>
+<br>
+
+## 서블릿의 생명주기 메서드
+
+- 서블릿도 자바 클래스이므로 실행하면 당연히 초기화 과정 메모리에 인스턴스를 생성하여 서비스를 수행 다시 소멸하는 과정을 거침
+
+  - 이런 단계를 거칠 때 마다 서블릿 클래스의 메서드가 호출되어 초기화, 데이터베이스 연동, 마무리 작업을 수행
+  
+  - 각 과정에서 호출되어 기능을 수행하는 메서드 : 서블릿 새생명주기 메서드
+  
+- 서블릿 생명주기(Life Cycle) 메서드
+
+  - 서블릿 실행마다 호출되어 기능을 수행하는 콜백 메서드
+  
+- 서블릿의 생명주기 메서드 기능과 특징
+
+|생명주기 단계|**호출 메서드**|특징|
+|---|---|---|
+|초기화|
+|작업 수행|
+|종료|
