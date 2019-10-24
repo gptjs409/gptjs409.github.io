@@ -331,9 +331,9 @@ public class FirstServlet extends HttpServlet {
   
   - 프로젝트명 뒤 패키지명이 포함된 클래스명 전부를 입력
   
-  - http:\//IP주소:port/프로젝트명/패키지명포함클래스명
+  - http://IP주소:port/프로젝트명/패키지명포함클래스명
   
-  - http:\//127.0.0.1:8090/pro05/sec01.ex01.FirstServlet
+  - http://127.0.0.1:8090/pro05/sec01.ex01.FirstServlet
   
   - 이렇게 되면 입력하기가 불편하고 보안에도 좋지 않음
   <br>서블릿 클래스명에 대응되는 서블릿 매핑명으로 실제 서블릿을 요청 (톰캣에 등록은 해야함)
@@ -403,7 +403,7 @@ public class FirstServlet extends HttpServlet {
 
 - 웹 브라우저에서 서블릿 매핑 이름인 /first로 요청
 
-  - http:\//127.0.0.1:8090/pro05/first
+  - http://127.0.0.1:8090/pro05/first
 
 - 이클립스 콘솔에 메시지 찍히는지 확인
 
@@ -497,9 +497,9 @@ public class SecondServlet extends HttpServlet {
 
 - 브라우저에서 각각 요청
 
-  - http:\//127.0.0.1:8090/pro05/first
+  - http://127.0.0.1:8090/pro05/first
   
-  - http:\//127.0.0.1:8090/pro05/second
+  - http://127.0.0.1:8090/pro05/second
 
 ![image](/img/2019-10-23/start-servlet-002-console2.png)
 
@@ -510,7 +510,7 @@ public class SecondServlet extends HttpServlet {
 
 #### 서블릿 동작 과정
 
-- ① 클라이언트가 http:\//localhost:8090/proc05/first로 요청 (→ 톰캣)
+- ① 클라이언트가 http://localhost:8090/proc05/first로 요청 (→ 톰캣)
 
 - ② 톰캣이 web.xml에서 서블릿 확인 → sec01.ex01.FirstServlet.java
 
@@ -538,7 +538,7 @@ public class SecondServlet extends HttpServlet {
 
 #### 동일한 작업 테스트
 
-- http:\//localhost:8090/proc05/first로 요청을 3번 연속 해보기
+- http://localhost:8090/proc05/first로 요청을 3번 연속 해보기
 
 - init(초기화)는 1번 실행, doGet(실행)은 3번 실행을 확인할 수 있음
 
@@ -703,7 +703,7 @@ public class ThirdServlet extends HttpServlet {
 
 - 웹 브라우저에서 서블릿 매핑명(URL패턴)으로 요청
 
-  - http:\//127.0.0.1:8090/pro05/third
+  - http://127.0.0.1:8090/pro05/third
   
 - 콘솔 메시지 확인
 
