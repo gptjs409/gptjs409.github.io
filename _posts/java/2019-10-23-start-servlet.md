@@ -14,7 +14,7 @@ tags:
   - @WebServlet
   - 서블릿 매핑
   - Servlet mapping
-  - 서블릿 
+  - 서블릿
 ---
 
 ## 서블릿(Servlet)이란?
