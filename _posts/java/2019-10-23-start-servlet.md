@@ -10,6 +10,11 @@ tags:
   - Servlet
   - Servlet API
   - Servlet API 계층구조
+  - web.xml
+  - @WebServlet
+  - 서블릿 매핑
+  - Servlet mapping
+  - 서블릿 
 ---
 
 ## 서블릿(Servlet)이란?
