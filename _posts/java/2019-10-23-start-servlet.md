@@ -1,20 +1,17 @@
 ---
 layout: post
 title:  "[Java] 서블릿 이해하기"
-date:   2019-10-23 22:10:14
+date:   2019-10-23 18:54:42
 author: Choi HyeSun
 categories: java
 tags:
   - Java
-  - 서블릿
-  - Servlet
-  - Servlet API
-  - Servlet API 계층구조
-  - web.xml
-  - @WebServlet
-  - 서블릿 매핑
-  - Servlet mapping
-  - 서블릿
+  - JDK 설치
+  - 이클립스 설치
+  - Oracle 설치
+  - Tomcat 설치
+  - exERD 설치
+  - Tomcat 포트 
 ---
 
 ## 서블릿(Servlet)이란?
