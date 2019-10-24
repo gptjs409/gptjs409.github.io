@@ -115,7 +115,7 @@ tags:
 Servlet(Interface)        ServletConfig(Interface)
        │                              │
        │                              │
-       └── GenericServlet ──┘
+       └──── GenericServlet ────┘
                (Abstract Class)
                       ┃
                       ┃
@@ -198,7 +198,7 @@ Servlet(Interface)        ServletConfig(Interface)
 <br>
 <br>
 
-## FristSerlvet을 이용한 실습 - 사용자 정의 서블릿을 만들어보기
+## FirstServlet을 이용한 실습 - 사용자 정의 서블릿을 만들어보기
 
 #### 이클립스에서 서블릿을 만들고 실행하는 과정
 
@@ -316,7 +316,7 @@ public class FirstServlet extends HttpServlet {
 	
 	@Override
 	public void destroy() {
-		System.out.println("destory 메서드 호출")
+		System.out.println("destory 메서드 호출");
 	}
 }
 {% endhighlight %}
@@ -348,6 +348,18 @@ public class FirstServlet extends HttpServlet {
   
 - 실제 서블릿 매핑의 예
 
+  - \<servlet> \<servlet-mapping> 하위 태그에 공통으로 \<servlet-name>이 들어감
+  
+  - 공통으로 들어가는 \<servlet-name> 태그의 같은 값(예제에선 aaa)이 \<servlet>과 \<servlet-mapping> 태그를 연결해 줌
+  
+  - 웹 브라우저에서 \<servlet-mapping>의 \<url-pattern> 태그의 URL(예제에선 /first)로 요청
+  
+  - \<servlet-mapping>의 \<url-pattern>에 해당하는 \<servlet-name> 값(예제에선 aaa)확인
+  
+  - 확인한 값(aaa)을 \<servlet>의 \<servlet-name>에서 찾고 태그를 연결시켜 줌
+  
+  - 브라우져에서 /<url-pattern>의 /first로 요청할 경우, aaa값을 가지는 \<servlet> 태그를 찾아 실제 서블릿인 sec.ex01.FirstServlet을 실행
+
 {% highlight html %}
 <servlet>
   <servlet-name>aaa</servlet-name>
@@ -359,3 +371,354 @@ public class FirstServlet extends HttpServlet {
   <url-pattern>first</url-pattern>
 </servlet-mapping>
 {% endhighlight %}
+
+- 서블릿 매핑을 실제 프로젝트에 적용해보기
+
+  - pro05 프로젝트의 WebContent > WEB-INF 폴더 클릭 > web.xml을 엶
+  
+  - \<web-app> 태그의 하위 태그를 지우고 거기에 서블릿 매핑을 작성
+  
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <servlet>
+  	<servlet-name>aaa</servlet-name>
+  	<servlet-class>sec01.ex01.FirstServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>aaa</servlet-name>
+  	<url-pattern>/first</url-pattern>
+  </servlet-mapping>
+</web-app>
+{% endhighlight %}
+
+<br>
+
+#### 톰캣에 프로젝트 실행
+
+- 새로 만든 서버(pro05)를 톰캣에 등록
+
+- 톰캣 재실행
+
+- 웹 브라우저에서 서블릿 매핑 이름인 /first로 요청
+
+  - http:\//127.0.0.1:8090/pro05/first
+
+- 이클립스 콘솔에 메시지 찍히는지 확인
+
+  - init 메서드 호출
+  
+  - doGet 메서드 호출
+  
+![image](/img/2019-10-23/start-servlet-001-console1.png)
+
+<br>
+<br>
+
+## FirstServlet을 이용한 실습 - 사용자 정의 서블릿을 만들어보기
+
+#### 다수의 서블릿 매핑하기
+
+- 일반적인 웹 애플리케이션은 각 기능에 대한 서블릿을 따로 만들어서 관리
+
+  - 즉 프로젝트에서 여러 개의 서블릿을 만들어 사용
+
+<br>
+
+#### 다른 서블릿 SecondServlet.java 추가
+
+- FirstServlet과 동일한 위치에 서블릿 파일 추가
+
+  - 내용
+
+{% highlight java %}
+package sec01.ex01;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class SecondServlet extends HttpServlet {
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("init 메서드 호출 >>>>");
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doGet 메서드 호출>>>>");
+	}
+	
+	@Override
+	public void destroy() {
+		System.out.println("destroy 메서드 호출>>>>");
+	}
+}
+{% endhighlight %}
+
+- web.xml 파일에 매핑
+
+  - 주의 할 점) 여러개 매핑시 \<servlet> 태그와 \<servlet-mapping> 태그를 각각 분리해서(개당 1개씩) 작성해야 함
+  
+  - \<servlet>태그끼리 \<servlet-mapping>태그끼리 위치(뭉쳐놓기)
+  
+  - \<servlet-name>태그 값은 유니크해야함
+  
+  - 내용
+  
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <servlet>
+  	<servlet-name>aaa</servlet-name>
+  	<servlet-class>sec01.ex01.FirstServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>bbb</servlet-name>
+  	<servlet-class>sec01.ex01.SecondServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>aaa</servlet-name>
+  	<url-pattern>/first</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>bbb</servlet-name>
+  	<url-pattern>/second</url-pattern>
+  </servlet-mapping>
+</web-app>
+{% endhighlight %}
+
+- web.xml 변경사항 반영은 톰캣 재기동 필요 > 톰캣 재시작(정지 후 시작)
+
+- 브라우저에서 각각 요청
+
+  - http:\//127.0.0.1:8090/pro05/first
+  
+  - http:\//127.0.0.1:8090/pro05/second
+
+![image](/img/2019-10-23/start-servlet-002-console2.png)
+
+<br>
+<br>
+
+## 서블릿 동작 과정
+
+#### 서블릿 동작 과정
+
+- ① 클라이언트가 http:\//localhost:8090/proc05/first로 요청 (→ 톰캣)
+
+- ② 톰캣이 web.xml에서 서블릿 확인 → sec01.ex01.FirstServlet.java
+
+- ③ 톰캣은 확인한 서블릿이 메모리에 존재하는지 확인 (존재한다면 ⑥으로 이동)
+
+- ④ FirstServlet을 메모리에 로드
+
+- ⑤ init()을 호출
+
+- ⑥ doGet()또는 doPost()를 호출
+
+- ⑦ 결과를 Client에게 응답
+
+<br>
+
+#### 특징
+
+- 동일한 작업의 경우, 서블릿은 메모리에 존재하는 서블릿을 재사용
+
+  - 훨씬 빠르고 효율적
+  
+- 서블릿은 스레드 방식으로 동작
+
+<br>
+
+#### 동일한 작업 테스트
+
+- http:\//localhost:8090/proc05/first로 요청을 3번 연속 해보기
+
+- init(초기화)는 1번 실행, doGet(실행)은 3번 실행을 확인할 수 있음
+
+![image](/img/2019-10-23/start-servlet-003-console3.png)
+
+<br>
+<br>
+
+## 애너테이션을 이용한 서블릿 매핑
+
+#### web.xml에 서블릿 매핑 vs 애너테이션에 서블릿 매핑
+
+- web.xml에 여러 서블릿 설정
+
+  - 장점) 한 파일에서 확인 가능
+  
+  - 단점) 파일이 복잡해짐
+
+- 애너테이션(@)에 서블릿 매핑
+
+  - 소스코드에 직접 기능을 설정
+  
+  - 톰캣 7 버전부터 사용 가능함
+
+  - 장점) 가독성이 좋음
+  
+  - 단점) 한 파일에서 확인할 수 없음
+  
+<br>
+
+#### 애너테이션을 이용한 서비스 매핑
+
+- @WebServlet("url-pattern")을 클래스 위에 붙여줌
+
+  - 예) @WebServlet("/third")
+  
+- 해당 애너테이션을 사용하려면 꼭 HttpServlet 클래스를 상속받아야 함
+
+  - 클래스 클래스명 extends HttpServlet { }
+  
+<br>
+
+#### 애너테이션을 이용한 서비스 매핑 실습
+
+- 기존처럼 이클립스에서 서블릿 클래스를 직접 만든 후 자바 코드에 애너테이션을 붙여서 매핑할 수도 있음
+
+- 이클립스에서는 서블릿을 만들면서 애너테이션을 바로 적용할 수 있음 ! ! 
+
+- 실습
+
+  - pro05 프로젝트의 sec01.ex01 패키지를 선택 > 마우스 우클릭 > New > Servlet
+  
+  - 클래스명 ThirdServlet > Next 
+  
+  - 하단의 URL mappings: /ThirdServlet 선택 > 우측의 Edit... > 패턴 : /third > OK > Next
+  
+  - 하단 Which method stubs would you like to create에서 
+  <br>\[체크해제] Constructors from superclass
+  <br>\[체크-기본값] Inherited abstract methods
+  <br>메소드 중 init, destroy, doGet 체크 > Finish
+  
+- 생성 결과(ThirdServlet.java)
+
+  - `private static final long serialVersionUID = 1L;` → 서비스 직렬화를 위해 이클립스에서 자동으로 생성한 상수
+  
+  - 자동으로 생성된 주석들은 삭제해도 무관
+  
+  - `@WebServlet("/third")` 확인 가능
+  
+  - import도 자동으로 되어있고 HttpServlet 상속도 되어있음
+
+{% highlight java %}
+package sec01.ex01;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ThirdServlet
+ */
+@WebServlet("/third")
+public class ThirdServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+}
+{% endhighlight %}
+
+- ThirdServlet.java에 기능 추가
+
+  - 메세지 출력 기능 추가
+  
+{% highlight java %}
+package sec01.ex01;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ThirdServlet
+ */
+@WebServlet("/third")
+public class ThirdServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("ThirdServlet init 메서드 호출");
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		System.out.println("ThirdServlet distroy 메서드 호출");
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ThirdServlet doGet 메서드 호출");
+	}
+
+}
+{% endhighlight %}
+
+- 서블릿 매핑 설정을 했으므로 톰캣 재시작 (정지 > 시작)
+
+- 웹 브라우저에서 서블릿 매핑명(URL패턴)으로 요청
+
+  - http:\//127.0.0.1:8090/pro05/third
+  
+- 콘솔 메시지 확인
+
+![image](/img/2019-10-23/start-servlet-004-console4.png)
+
+<br>
+
+#### 애너테이션 서블릿 매핑시 주의점
+
+- 매핑명(URL 패턴)이 이미 사용된(URL 패턴)과 중복되지 않도록 주의해야 함
+
+- 중복되면 톰캣 시작시 에러 메시지 발생하며 서버가 정상적으로 뜨지 못함
+
+  - ThirdServlet을 /first로 매핑명 수정하고 테스트해본 결과
+
+  - Caused by: java.lang.IllegalArgumentException: 이름이 [aaa]과 [sec01.ex01.ThirdServlet]인 두 서블릿들 모두 url-pattern [/first]에 매핑되어 있는데, 이는 허용되지 않습니다.
+
+- 매핑이 동일하게 되더라도 이클립스에서 선경고를 띄워주진 않는 것 같음
