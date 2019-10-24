@@ -6,12 +6,12 @@ author: Choi HyeSun
 categories: java
 tags:
   - Java
-  - JDK 설치
-  - 이클립스 설치
-  - Oracle 설치
-  - Tomcat 설치
-  - exERD 설치
-  - Tomcat 포트 
+  - 서블릿
+  - Servlet
+  - Servlet API
+  - Servlet mapping
+  - web.xml
+  - 서블릿 생명주기
 ---
 
 ## 서블릿(Servlet)이란?
