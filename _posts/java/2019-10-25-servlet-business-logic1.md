@@ -334,8 +334,122 @@ public class MemberVO
 
 - 실행
 
-  - 
+![image](/img/2019-10-25/servlet-business-logic1-001-web1.png)
 
-#### 
+<br>
+
+#### PrepareStatement를 이용한 회원 정보 실습
+
+- Statement 문의 단점
+
+  - 연동할 때마다 DBMS에서 다시 SQL문을 컴파일해야 하므로 속도가 느림
+    
+- PrepareStatement 인터페이스
+
+  - SQL문을 미리 컴파일해서 재사용
+  
+  - Statement 인터페이스보다 훨씬 빠르게 DB작업 수행 가능
+  
+  - 데이터베이스와 연동할 때 / 빠른 반복 처리가 필요할 때 사용
+  
+- PrepareStatement 인터페이스 특징
+
+  - Statement 인터페이스를 상속 → 메서드를 그대로 사용
+  
+  - Statement : DBMS에 전달하는 SQL문 → 단순한 문자열 → DBMS가 스스로 이해할 수 있도록 컴파일 후 실행
+  <br>PrepareStatement : 컴파일된 SQL문을 DBMS에 전달 → 성능 향상
+  
+  - 실행하려는 SQL문에 "?"를 넣을 수 있음
+  <br>"?"값만 바꾸어 손쉽게 설정할 수 있어 Statement문보다 SQL문 작성하기가 더 간단함
+  
+- 실습
+
+  - 기존 작성 3개 복붙 (to sec01.ex02)
+  
+  - Servlet 매핑을 /member2로 변경
+  
+  - MemberDAO 클래스를 PrepareStatement를 이용하여 연동하도록 작성
+
+{% highlight java %}
+package sec01.ex02;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MemberDAO {
+	private static final String driver = "oracle.jdbc.driver.OracleDriver";
+	private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static final String user = "sun";
+	private static final String pwd = "1234";
+	private Connection con;
+	private PreparedStatement pstmt;
+	
+	
+	public List<MemberVO> listMembers()
+	{
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		try
+		{
+			connDB();
+			String query = "select * from t_member";
+			System.out.println("prepareStatement: " + query);
+			pstmt = con.prepareStatement(query); // prepareStatement() 메서드에 SQL문을 전달해 PrepareStatement 객체를 생성
+			ResultSet rs = pstmt.executeQuery(); // 미리 설정한 SQL문을 executeQuery()로 실행
+			while (rs.next())
+			{
+				String id = rs.getString("id");
+				String pwd = rs.getString("pwd");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				Date joinDate = rs.getDate("joinDate");
+				MemberVO vo = new MemberVO();
+				vo.setId(id);
+				vo.setPwd(pwd);
+				vo.setName(name);
+				vo.setEmail(email);
+				vo.setJoinDate(joinDate);
+				list.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	private void connDB()
+	{
+		try
+		{
+			Class.forName(driver);
+			System.out.println("Oracle 드라이버 로딩 성공");
+			con = DriverManager.getConnection(url, user, pwd);
+			System.out.println("Connection 생성 성공");
+		}	catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+}
+{% endhighlight %}
+
+![image](/img/2019-10-25/servlet-business-logic1-002-web2.png)
+
+- 차이
+
+  - 눈으로 보면 Statement를 사용했을 때와 PrepareStatement 사용 결과가 같음
+  
+  - DB와 연동할 경우 수행 속도가 좀 더 
+
 
 <br>
