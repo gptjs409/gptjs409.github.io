@@ -158,7 +158,7 @@ tags:
   
 - id값이 없다면 폼 요소를 label 안에 넣어서 표현할 수 있음
 
-  - \<label>아이디 입력<input type="text" /></label>
+  - \<label>아이디 입력\<input type="text" /></label>
 
   - 국내 스크린 리더 프로그램에서 지원하지 않을 수도 있음
   
