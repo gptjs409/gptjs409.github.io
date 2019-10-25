@@ -82,8 +82,8 @@ tags:
 |**void**|**addCookie(Cookie cookie)**|응답에 쿠키를 추가|
 |**void**|**addHeader(String name, String value)**|name과 value를 헤더에 추가|
 |**String**|**encodeURL(String url)**|클라이언트가 쿠키를 지원하지 않을 때 세션 id를 포함한 특정 URL을 인코딩|
-|**Collection\<String>**|**getHeaderNames()|현재 응답이 헤더에 포함된 name을 얻어옴|
-|**void**|sendRedirect(String location)|클라이언트에게 리다이렉트(redirect) 응답을 보낸 후 특정 URL로 다시 요청하게 함|
+|**Collection\<String>**|**getHeaderNames()**|현재 응답이 헤더에 포함된 name을 얻어옴|
+|**void**|**sendRedirect(String location)**|클라이언트에게 리다이렉트(redirect) 응답을 보낸 후 특정 URL로 다시 요청하게 함|
 
 <br>
 <br>
@@ -720,14 +720,332 @@ public class LoginServlet2 extends HttpServlet
   - 최초 매핑명(/calc)으로 요청시 cammnd 값이 null이므로 환율 계산기가 나오도록
   
   - 계산기에서 값을 입력해 요청할 경우 command 값이 calculate이므로 전달된 원화를 이용해 외화로 변환하여 결과 출력
-  
+
+{% highlight java %}
+package sec02.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class CalcServlet
+ */
+@WebServlet("/calc")
+public class CalcServlet extends HttpServlet 
+{
+	private static float USD_RATE = 1124.70F;
+	private static float JPY_RATE = 10.113F;
+	private static float CNY_RATE = 163.30F;
+	private static float GBP_RATE = 1444.35F;
+	private static float EUR_RATE = 1295.97F;
+	
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter pw = response.getWriter();
+		String command = request.getParameter("command");    // 수행할 요청을 받아옴
+		String won = request.getParameter("won"); 		    // 변환할 원화를 받아옴
+		String operator = request.getParameter("operator"); // 변환할 외화 종류를 받아옴
+		
+		if (command != null && command.equals("calculate"))
+		{ // 최초 요청시 command가 null이면 계산기 화면 출력, command 값이 calculate면 계산 결과를 출력
+			String result = calculate(Float.parseFloat(won), operator);
+			pw.print("<html><font size=10>변환 결과</font><br>");
+			pw.print("<font size=10>" + result + "</font><br>");
+			pw.print("<a href='/pro06/calc'>환율계산기</a>");
+			return;
+		}
+		
+		pw.print("<html><title>환율계산기</title>");
+		pw.print("<font size=5>환율계산기</font><br>");
+		pw.print("<form name='frmCalc' method='get' action='/pro06/calc' />"); // 환율 정보 입력 후 다시 서블릿 calc로 재요청
+		pw.print("원화: <input type='text' name='won' size=10 />"); 
+		pw.print("<select name='operator'>"); // 셀렉트 박스에서 선택된 값을 name으로 전달
+		pw.print("<option value='dollar'>달러</option>");
+		pw.print("<option value='en'>엔화</option>");
+		pw.print("<option value='wian'>위안</option>");
+		pw.print("<option value='pound'>파운드</option>");
+		pw.print("<option value='euro'>유로</option>");
+		pw.print("</select>");
+		pw.print("<input type='hidden' name='command' value='calculate' />"); // <hidden> 태그를 이용해 계산기에서 서블릿으로 수행할 요청 전달
+		pw.print("<input type='submit' value='변환' />");
+		pw.print("</form>");
+		pw.print("</html>");
+		pw.close();
+	}
+
+	private static String calculate(float won, String operator)
+	{ // 원화를 외화로 환산
+		String result = null;
+		if (operator.equals("dollar")) 
+		{
+			result = String.format("%.6f",  won / USD_RATE);
+		} else if (operator.equals("en"))
+		{
+			result = String.format("%.6f",  won / JPY_RATE);
+		} else if (operator.equals("wian")) 
+		{
+			result = String.format("%.6f",  won / CNY_RATE);
+		} else if (operator.equals("pound")) 
+		{
+			result = String.format("%.6f",  won / GBP_RATE);
+		} else if (operator.equals("euro"))
+		{
+			result = String.format("%.6f",  won / EUR_RATE);
+		}
+		return result;
+	}
+}
+{% endhighlight %}
+
 - 실습2. 실행하기(톰캣 재시작)
+
+  - http://localhost:8090/pro06/calc로 요청 → 원화에 값 입력 → 변환 → 결과확인
+  
+  ![image](/img/2019-10-24/servlet-basic-013-web10.png)
+
+  ![image](/img/2019-10-24/servlet-basic-014-web11.png)
+
+<br>
+<br>
 
 ## 웹 브라우저에서 서블릿으로 데이터 전송하기
 
+#### GET/POST 전송 방식
+
+- GET 방식
+
+  - 서블릿에 데이터를 전송할 때 데이터가 URL 뒤에 name=value 형태로 전송
+  
+  - 여러 개의 데이터를 전송할 때 '&'로 구분해서 전송
+  
+  - 보안이 취약
+  
+  - 전송 최대 255자
+  
+  - 기본 전송방식, 사용이 쉬움
+  
+  - 웹 브라우저에서 직접 입력해서 전송 가능
+  
+  - 서블릿의 doGet()으로 처리
+  
+- POST 방식
+
+  - 서블릿에 데이터를 전송할 때 TCP/IP 프로토콜 데이터의 HEAD 영역에 숨겨진 채 전송
+
+  - 보안에 유리
+  
+  - 전송 데이터 용량 무제한
+  
+  - 전송시 서블릿에서 또 다시 가져오는 작업을 해야하므로 GET방식보다 처리속도가 느림
+  
+  - 서블릿의 doPost()로 처리
+  
+<br>
+
+#### GET 방식으로 서블릿에 요청
+
+- HTML의 \<form> 태그의 method 속성이 get
+  
+  - 서블릿에 GET 방식으로 데이터를 전송하겠다는 의미
+  
+  - `<form name="frmLogin" method="get" action="login" encType="UTF-8)">`
+
+  
+- doGet() 메서드
+
+  - GET 방식으로 적용된 데이터를 처리
+  
+  - `protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+
+- 브라우저 URL 뒤에 'name=value'쌍
+
+  - 어떤 데이터를 전송하는지 다 노출되므로 보안상으로 좋지 않음
+
+  - `http://localhost:8090/pro06/calc?won=1&operator=dollar&command=calculate`
+
+<br>
+
+#### POST 방식으로 서블릿에 요청
+
+- 실습1. - HTML / Servlet 생성
+
+  - WebContent > login3.html 생성 (데이터는 login.html과 동일, action을 login3으로, method는 post)
+
+  - sec03.01 패키지 생성 > LoginServlet3 클래스 생성, mapping-/login3, init/doPost/destroy
+
+{% highlight java %}
+package sec03.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet2
+ */
+@WebServlet("/login3")
+public class LoginServlet3 extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException 
+	{
+		System.out.println("init 메서드 호출. pro06.sec03.ex01.LoginServlet3.java");
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() 
+	{
+		System.out.println("init 메서드 호출. pro06.sec03.ex01.LoginServlet3.java");
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{// Post 방식으로 전송된 데이터 처리
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8"); // 응답할 데이터 종류 설정
+		PrintWriter out = response.getWriter();	            // HttpServletResponse 객체의 getWriter()를 이용해 출력 스트림 PrintWriter 객체를 받아옴
+		String id = request.getParameter("user_id");
+		String pw = request.getParameter("user_pw");
+	}
+
+}
+{% endhighlight %}
+
+- 실습2. 실행 (톰캣 재시작)
+
+  - 브라우저에서 http://localhost:8090/pro06/login3.html 호출 후 ID/PW 입력
+  <br>![image](/img/2019-10-24/servlet-basic-015-web12.png)
+  
+  - POST는 GET과 달리 URL에 아무것도 남지 않음을 확인할 수 있음
+  <br>![image](/img/2019-10-24/servlet-basic-016-web13.png)
+
+- POST는 TCP/IP헤더에 값이 숨겨진 채 전송되므로 URL 뒤에 아무것도 표시되지 않음
+
+- 서블릿에서는 웹 브라우저에서 전송되는 방식에 따라 doGet()이나 doPost() 메서드로 대응해서 처리해야 함
+
+  - 만약 전송방식과 다른 메서드 사용시, 브라우저에서 오류가 발생
+  <br>HTTP Status 405 - Method Not Allowed
+  
+<br>
+
+#### 알아둘 점
+
+- GET/POST 방식으로 전송된 데이터는 반드시 HttpServlet에서 오버라이딩된 doGet()이나 doPost() 메서드를 사용해야 함
+
+- 두 메서드가 서블릿에 존재하지 않거나, 사용자가 임의로 만든 메서드를 사용하면 오류가 발생
+
+<br>
 <br>
 
 ## GET 방식과 POST 방식 요청 동시에 처리하기
+
+#### doHandle()을 호출해서 모든 기능을 구현하는 예
+
+- GET+POST 방식일 때, 두 기능을 각각 구분해서 구현하면 불편함
+
+- 전송된 방식으로 doGet()이나 doPost()메서드로 처리 후 doHandle()을 호출하여 모든 기능을 구현하는 예제 실습
+
+- 실습1. HTML, Servlet 생성
+
+  - login4.html 생성, (copy login.html, action > login4) - Get방식임
+  
+  - sec03.ex02 패키지 생성 > LoginServlet4 서블릿 - /login4, init/doGet/doPost/destroy 
+  
+{% highlight java %}
+package sec03.ex02;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet4
+ */
+@WebServlet("/login4")
+public class LoginServlet4 extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException 
+	{
+		System.out.println("init 메서드 호출. pro06.sec03.ex02.LoginServlet4.java");
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() 
+	{
+		System.out.println("init 메서드 호출. pro06.sec03.ex02.LoginServlet4.java");
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		System.out.println("doGet 메서드 호출. pro06.sec03.ex02.LoginServlet4.java");
+		doHandle(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		System.out.println("doPost 메서드 호출. pro06.sec03.ex02.LoginServlet4.java");
+		doHandle(request, response);
+	}
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		request.setCharacterEncoding("utf-8");
+		String user_id = request.getParameter("user_id");
+		System.out.println("doHandle 메서드 호출. pro06.sec03.ex02.LoginServlet4.java");
+		String user_pw = request.getParameter("user_pw");
+		System.out.println("아이디 : " + user_id);
+		System.out.println("비밀번호 : " + user_pw);
+	}
+}
+{% endhighlight %}
+
+- 실습 2. 테스트 
+
+  - doGet 테스트 : 
 
 <br>
 
