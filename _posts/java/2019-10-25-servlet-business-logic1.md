@@ -130,7 +130,211 @@ select * from t_member;
 
   - 브라우저의 요청을 받음
   
+{% highlight java %}
+package sec01.ex01;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class MemberServlet
+ */
+@WebServlet("/member")
+public class MemberServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		MemberDAO dao = new MemberDAO(); // SQL문으로 조회할 MemberDAO 객체 생성
+		List<MemberVO> list = dao.listMembers();    // listMembers() 메서드로 회원 정보 조회
+		
+		out.print("<html><body>");
+		out.print("<table border=1><tr align='center' bgcolor='lightgreen'>");
+		out.print("<td>아이디</td><td>비밀번호</td><td>이름</td><td>이메일</td><td>가입일</td></tr>");
+		
+		for (int i = 0; i < list.size(); i++)
+		{
+			MemberVO memberVO = (MemberVO) list.get(i);   // 조회한 회원 정보를 for과 <tr> 태그를 이용해 리스트로 출력
+			String id = memberVO.getId();
+			String pwd = memberVO.getPwd();
+			String name = memberVO.getName();
+			String email = memberVO.getEmail();
+			Date joinDate = memberVO.getJoinDate();
+			out.print("<tr><td>" + id + "</td><td>" + pwd + "</td><td>" + name + "</td><td>" + email + "</td><td>" + joinDate + "</td><tr>");
+		}
+		out.print("</table></body></html>");
+	}
+
+}
+{% endhighlight %}
+
+- MemberDAO 클래스 생성
+
+  - 회원 정보 조회 SQL문을 실행하여 조회한 레코드의 컬럼값을 다시 MemberVO 객체의 속성에 설정한 후 ArrayList에 저장하고 호출한 곳으로 반환
+  
+{% highlight java %}
+package sec01.ex01;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MemberDAO {
+	private static final String driver = "oracle.jdbc.driver.OracleDriver";
+	private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static final String user = "sun";
+	private static final String pwd = "1234";
+	private Connection con;
+	private Statement stmt;
+	
+	
+	public List<MemberVO> listMembers()
+	{
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		try
+		{
+			connDB();
+			String query = "select * from t_member";
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				String id = rs.getString("id");
+				String pwd = rs.getString("pwd");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				Date joinDate = rs.getDate("joinDate");
+				MemberVO vo = new MemberVO();
+				vo.setId(id);
+				vo.setPwd(pwd);
+				vo.setName(name);
+				vo.setEmail(email);
+				vo.setJoinDate(joinDate);
+				list.add(vo);
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	private void connDB()
+	{
+		try
+		{
+			Class.forName(driver);
+			System.out.println("Oracle 드라이버 로딩 성공");
+			con = DriverManager.getConnection(url, user, pwd);
+			System.out.println("Connection 생성 성공");
+			stmt = con.createStatement();
+			System.out.println("Statement 생성 성공");
+		}	catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+}
+
+{% endhighlight %}
+
+- MemberVO 클래스 생성
+
+  - 값을 전달하는 데 사용하는 VO(Value Object) 클래스
+
+> TIP1. Getter Setter 만들어주는 거
+>
+>> 우클릭 → Source → Generate Getters and Setters
+>
+> TIP2. 생성자 만들어주기
+>
+>> 우클릭 → Source → Generate Constructor using fields
+  
+{% highlight java %}
+package sec01.ex01;
+
+import java.sql.Date;
+
+public class MemberVO 
+
+{
+	private String id;
+	private String pwd;
+	private String name;
+	private String email;
+	private Date joinDate;
+	
+	public MemberVO() {
+		System.out.println("MemberVO 생성자 호출");		
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+}
+{% endhighlight %}
+
+- 실행
+
+  - 
 
 #### 
 
