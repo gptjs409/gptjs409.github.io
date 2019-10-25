@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Java] 서블릿 기초"
-date:   2019-10-23 22:10:14
+date:   2019-10-24 22:10:14
 author: Choi HyeSun
 categories: java
 tags:
