@@ -449,7 +449,4 @@ public class MemberDAO {
 
   - 눈으로 보면 Statement를 사용했을 때와 PrepareStatement 사용 결과가 같음
   
-  - DB와 연동할 경우 수행 속도가 좀 더 
-
-
-<br>
+  - DB와 연동할 경우 수행 속도가 좀 더 빠름
