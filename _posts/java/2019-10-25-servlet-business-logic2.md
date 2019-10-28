@@ -107,10 +107,214 @@ tags:
 
 #### 이클립스에서 톰캣 DataSource 설정
 
+- JDBC 드라이버(ojdbc6.jar)
 
+  - pro07\\WebContent\\WEB-INF\\lib\\에 위치
 
-## DataSource를 이용해 회원 정보 등록하기
+- ConnectionPool 관련 jar파일(tomcat-dbcp.jar) 
+
+  - pro07\\WebContent\\WEB-INF\\lib\\에 ojdbc6.jar와 같이 위치
+  
+- context.xml
+
+  - 이클립스에서 생성한 톰캣 서버의 설정 파일
+  
+  - Servers\\Tomcat v9.0 Server at localhost-config\\에 위치
+  
+- context.xml 파일 설정하기전 ConnectionPool로 연결할 DB 속성 알아보기
+
+  - 다른 속성은 고정적으로 사용하며, 프로그래머는 주로 drvierClassName, user, password, url만 변경하여 설정
+
+|**속성**|설명|
+|---|---|
+|**name**|DataSource에 대한 JNDI 이름|
+|**auth**|인증 주체|
+|**driverClassName**|연결할 DB 종류에 따른 드라이브 클래스명|
+|**factory**|연결할 DB 종류에 따른 ConntectionPool 생성 클래스명|
+|**maxActive**|동시에 최대로 DB에 연결할 수 있는 Connection 수|
+|**maxIdle**|동시에 idle 상태로 대기할 수 있는 최대 수|
+|**maxWait**|새로운 연결이 생길 때 까지 기다릴 수 있는 최대 시간|
+|**user**|DB 접속 ID|
+|**password**|DB접속 Password|
+|**type**|DB 종류별 DataSource|
+|**url**|접속할 DB 주소와 포트번호 및 SID|
 
 <br>
 
-## DataSource를 이용해 회원 정보 삭제하기
+- context.xml에 설정하는 예
+{% highlight html %}
+<Resource
+    name="jdbc/oracle"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.OracleDriver"
+    url="jdbc:oracle:thin:@localhost:1521:XE"
+    username="sun"
+    password="1234"
+    maxActive="50"
+    maxWait="-1" />
+{% endhighlight %}
+
+- context.xml에 설정하기
+
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+--><!-- The contents of this file will be loaded for each web application --><Context>
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+    <Resource
+    name="jdbc/oracle"
+    auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="oracle.jdbc.OracleDriver"
+    url="jdbc:oracle:thin:@localhost:1521:XE"
+    username="sun"
+    password="1234"
+    maxActive="50"
+    maxWait="-1" />
+</Context>
+{% endhighlight %}
+
+<br>
+
+#### 톰캣의 DataSource로 연동해 회원 조회 
+
+- sec02.ex01 패키지 생성 후 MemberDAO, MemberServlet, MemberVO 복사+붙여넣기
+
+- MemberServlet 매핑명을 /member3으로 변경
+
+- MemberDAO 클래스 수정
+
+  - DataSource를 이용해 DB랑 연결하는 MemberDAO 클래스 수정
+  
+  - 앞에서 사용한 connDB() 메서드는 주석처리
+  
+  - 생성자에서 톰캣 실행 시 톰캣에서 미리 생성한 DataSource를 name값인 jdbc/oracle을 이용해 미리 받아오기
+  
+  - 서블릿에서 listMembers() 메서드를  호출하면, getConnection() 메서드를 호출하여 DataSource에 접근 후 DB와의 연동 작업 수행
+
+{% highlight java %}
+package sec02.ex01;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class MemberDAO 
+{
+	
+	//private static final String driver = "oracle.jdbc.driver.OracleDriver";       // 더이상 안 씀
+	//private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";		// 더이상 안 씀
+	//private static final String user = "sun";										// 더이상 안 씀
+	//private static final String pwd = "1234";										// 더이상 안 씀
+	
+	private Connection con;
+	private PreparedStatement pstmt;
+	private DataSource dataFactory; 						// import javax.sql.DataSource; 필요
+
+	public MemberDAO() 
+	{
+		try
+		{
+			Context ctx = new InitialContext();				// import javax.naming.InitialContext; 필요, JDNI에 접근하기 위해 기본 경로(java:/comp/env) 지정
+			Context envContext = (Context) ctx.lookup("java:/comp/env");
+			dataFactory = (DataSource) envContext.lookup("jdbc/oracle"); // 톰캣 context.xml에 설정한 name값인 jdbc/oracle을 이용해 미리 연결한 DataSource 받아오기
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public List<MemberVO> listMembers()
+	{
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		try
+		{
+			//connDB();		// 더이상 안 씀
+			con = dataFactory.getConnection();				// DataSource를 이용해 DB 연동
+			String query = "select * from t_member";
+			System.out.println("prepareStatement: " + query);
+			pstmt = con.prepareStatement(query); // prepareStatement() 메서드에 SQL문을 전달해 PrepareStatement 객체를 생성
+			ResultSet rs = pstmt.executeQuery(); // 미리 설정한 SQL문을 executeQuery()로 실행
+			while (rs.next())
+			{
+				String id = rs.getString("id");
+				String pwd = rs.getString("pwd");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				Date joinDate = rs.getDate("joinDate");
+				MemberVO vo = new MemberVO();
+				vo.setId(id);
+				vo.setPwd(pwd);
+				vo.setName(name);
+				vo.setEmail(email);
+				vo.setJoinDate(joinDate);
+				list.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/* 안쓰므로 주석처리
+	private void connDB()
+	{
+		try
+		{
+			Class.forName(driver);
+			System.out.println("Oracle 드라이버 로딩 성공");
+			con = DriverManager.getConnection(url, user, pwd);
+			System.out.println("Connection 생성 성공");
+		}	catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	*/
+}
+{% endhighlight %}
+
+- 호출 테스트
+
+  - 결과는 같지만 Connection 풀을 이용함
+  
+  - http://localhost:8090/pro07/member3.html
+  
+  ![image](/img/2019-10-25/servlet-business-logic2-001-web1.png)
