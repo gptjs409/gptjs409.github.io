@@ -489,3 +489,10 @@ public class SecondServlet extends HttpServlet {
 
   ![image](/img/2019-10-28/servlet-expansion-api1-004-web4.png)
 
+- get 방식으로 파라미터를 붙여서 데이터를 전달할 수 있음
+
+  - 기존 : RequestDispatcher dispatch = request.getRequestDispatcher("secondDispatcher");
+
+  - 데이터추가 : RequestDispatcher dispatch = request.getRequestDispatcher("secondDispatcher?abc=def");
+  
+  - 데이터사용 : String alpha = request.getParameter("abc");
