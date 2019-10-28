@@ -9,7 +9,12 @@ tags:
   - 서블릿
   - Servlet
   - 서블릿 확장 API
-  - Servlet API
+  - 포워드
+  - forward
+  - redirect
+  - location
+  - dispatcher
+  - refresh
 ---
 
 ## 서블릿 포워드 기능 사용하기
@@ -405,14 +410,82 @@ public class SecondServlet extends HttpServlet {
   
   - 첫 번째 서블릿은 RequestDispatcher를 이용해 두 번째 서블릿으로 포워드
   
-- 실습
-
-  - sec03.ex01 패키지 생성
+- 실습 1. sec03.ex01 패키지 생성
   
-  - 
+- 실습 2. FirstServlet.java 서블릿 생성
 
-## 바인딩
+{% highlight java %}
+package sec03.ex01;
 
-## ServletContext와 ServletConfig 사용법
+import java.io.IOException;
 
-## load-on-startup 기능 사용하기
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class FirstServlet
+ */
+@WebServlet("/firstDispatcher")
+public class FirstServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset-utf-8");
+		RequestDispatcher dispatch = request.getRequestDispatcher("secondDispatcher");
+		dispatch.forward(request, response);
+	}
+
+}
+{% endhighlight %}
+
+- 실습 3. SecondServlet.java 서블릿 생성
+
+{% highlight java %}
+package sec03.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecondServlet
+ */
+@WebServlet("/secondDispatcher")
+public class SecondServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<html><body>");
+		out.println("dispatch를 이용한 forword 실습");
+		out.println("</body></html>");
+	}
+
+}
+{% endhighlight %}
+
+- 실습 4. http://localhost:8090/pro08/firstDispatcher 브라우저에서 실행
+
+  - 브라우저 url은 바뀌지 않고 SecondSerlvet이 실행됨
+  
+  - 서블릿의 포워드가 서버단에서 수행되었기 때문
+
+  ![image](/img/2019-10-28/servlet-expansion-api1-004-web4.png)
+
