@@ -6,10 +6,7 @@ author: Choi HyeSun
 categories: java
 tags:
   - Java
-  - 서블릿
   - Servlet
-  - 서블릿 확장 API
-  - 포워드
   - forward
   - redirect
   - location
