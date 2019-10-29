@@ -1,16 +1,20 @@
 ---
 layout: post
 title:  "[Java] 서블릿 확장 API 사용하기-(1)"
-date:   2019-10-28 08:31:59
+date:   2019-10-28 13:27:91
 author: Choi HyeSun
 categories: java
 tags:
   - Java
   - 서블릿
   - Servlet
-  - 서블릿 비즈니스 로직
-  - Servlet Business Logic
-  - DB연동
+  - 서블릿 확장 API
+  - 포워드
+  - forward
+  - redirect
+  - location
+  - dispatcher
+  - refresh
 ---
 
 ## 서블릿 포워드 기능 사용하기
