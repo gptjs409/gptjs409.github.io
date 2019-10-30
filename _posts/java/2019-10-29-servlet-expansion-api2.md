@@ -366,11 +366,124 @@ public class ViewServlet extends HttpServlet {
 |**메서드**|기능|
 |---|---|
 |**getAttribute(String name)**|- 주어진 name을 이용해 바인딩된 value를 가져옴<br>-name이 존재하지 않으면 null을 반환|
-|**getAttributeNames**|- 
+|**getAttributeNames**|- 바인딩된 속성들의 name을 반환|
+|**getContext(String uripath)**|- 지정된 uripath에 해당되는 객체를 반환|
+|**getInitParameter(String name)**|- name에 해당하는 매개변수의 초기화 값을 반환<br>- name에 해당하는 매개변수가 존재하지 않으면 null을 반환|
+|**getInitParameterName()**|- 컨텍스트의 초기화 관련 매개변수들의 이름을 String 객체가 저장된 Enumeration 타입으로 반환<br>- 매개변수가 존재하지 않으면 null을 반환|
+|**getMajorVersion()**|- 서블릿 컨테이너가 지원하는 주요 서블릿 API 버전을 반환|
+|**getRealPath(String path)**|- 지정한 path에 해당하는 실제 경로를 반환|
+|**getResource(String path)**|- 지정한 path에 해당하는 Resource를 반환|
+|**getServerInfo()**|- 현재 서블릿이 실행되고 있는 서블릿 컨테이너의 이름과 버전을 반환|
+|**getServletContextName()**|- 해당 애플리케이션의 배치 관리자가 지정한 ServletContext에 대한 해당 웹 어플리케이션의 이름을 반환|
+|**log(String msg)**|- 로그 파일에 로그 기록|
+|**removeAttribute(String name)**|- 해당 name으로 ServletContext에 바인딩된 객체를 제거|
+|**setAttribute(String name, Object object)**|- 해당 name으로 객체를 ServletContext에 바인딩|
+|**setInitParameter(String name, String value)**|- 주어진 name으로 value를 컨텍스트 초기화 매개변수로 설정|
 
 <br>
 
 #### ServletContext 바인딩 기능
+
+- 특징
+ 
+  - ServletContext에 바인딩된 데이터는 모든 서블릿(사용자)들이 접근할 수 있음
+
+  - 웹 애플리케이션에서 모든 사용자가 공통으로 사용하는 데이터는 ServletContext에 바인딩해놓고 사용하면 편리
+
+- 실습 1. sec05.ex01 패키지 생성
+
+  - GetServletContext, SetServletContext 서블릿 생성
+
+- 실습 2. SetServletContext.java 수정
+
+{% highlight java %}
+package sec05.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SetServletContext
+ */
+@WebServlet("/cset")
+public class SetServletContext extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		ServletContext context = getServletContext(); // ServletContext 객체를 가져옴
+		List<Object> member = new ArrayList<Object>();
+		member.add("세종대왕");
+		member.add(40);
+		context.setAttribute("member", member);	  // ServletContext 객체에 데이터를 바인딩
+		out.print("<html><body>");
+		out.print("세종대왕과 40 설정");
+		out.print("</body></html>");
+	}
+}
+{% endhighlight %}
+
+- 실습 3. GetServletContext.java 수정
+
+{% highlight java %}
+package sec05.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class GetServletContext
+ */
+@WebServlet("/cget")
+public class GetServletContext extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		ServletContext context = getServletContext();	 // ServletContext 객체를 가져옴
+		List<Object> member = (ArrayList<Object>) context.getAttribute("member");	// member로 이전에 바인딩한 회원 정보를 가져옴
+		String name = (String) member.get(0);
+		int age = (Integer) member.get(1);
+		out.print("<html><body>");
+		out.print(name + "<br>");
+		out.print(age + "<br>");
+		out.print("</body></html>");
+		
+	}
+
+}
+{% endhighlight %}
+
+- 실습 4. 웹브라우저로 http://localhost:8090/pro08/cset 호출
+
+- 실습 5. 
 
 <br>
 
