@@ -151,7 +151,7 @@ public class SecondServlet extends HttpServlet {
 
   - http://localhost:8090/pro08/firstDispatcher2
   
-  ![image](/img/2019-10-28/servlet-expansion-api2-001-web1.png)
+  ![image](/img/2019-10-29/servlet-expansion-api2-001-web1.png)
 
 <br>
 <br>
@@ -308,7 +308,7 @@ public class ViewServlet extends HttpServlet {
 
   - http://localhost:8090/pro08/member
 
-  ![image](/img/2019-10-28/servlet-expansion-api2-002-web2.png)
+  ![image](/img/2019-10-29/servlet-expansion-api2-002-web2.png)
   
 - ViewServlet 클래스는 웹 브라우저에서 화면 기능을 담당
 
@@ -483,33 +483,567 @@ public class GetServletContext extends HttpServlet {
 
 - 실습 4. 웹브라우저로 http://localhost:8090/pro08/cset 호출
 
-- 실습 5. 
+  ![image](/img/2019-10-29/servlet-expansion-api2-003-web3.png)
+
+
+- 실습 5. 웹브라우저로 http://localhost:8090/pro08/cget 호출
+
+  ![image](/img/2019-10-29/servlet-expansion-api2-004-web4.png)
 
 <br>
 
 #### ServletContext의 매개변수 설정 기능
 
+- 메뉴
+
+  - 대부분의 웹 애플리케이션에서 공통으로 사용하는 기능
+  
+  - web.xml에 설정해놓고 프로그램 시작 시 초기화할 때 가져와서 사용하면 편리
+  
+  - 새로운 메뉴 항목이 생성되거나 기본 메뉴 항목을 추가, 삭제할 때도 쉽게 수정할 수 있음
+  
+  - ContextServlet 객체를 통해 접근하면 모든 웹 브라우저에서 공유하면서 접근할 
+  
+- 실습 1. web.xml 파일
+
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<context-param> <!-- <context-param>태그 안에 다시 <param-name>과 <param-value>로 초기 값 설정 -->
+		<param-name>menu_member</param-name>
+		<param-value>회원등록  회원조회 회원수정</param-value>
+	</context-param>
+	<context-param>
+		<param-name>menu_order</param-name>
+		<param-value>주문조회  주문등록 주문수정 주문취소</param-value>
+	</context-param>
+	<context-param>
+		<param-name>menu_goods</param-name>
+		<param-value>상품조회  상품등록 상품수정 상품삭제</param-value>
+	</context-param>
+</web-app>
+{% endhighlight %}
+
+- 실습 2. sec05.ex02.ContextParamServlet.java 작성
+
+{% highlight java %}
+package sec05.ex02;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ContextParamServlet
+ */
+@WebServlet("/initMenu")
+public class ContextParamServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		ServletContext context = getServletContext();					// ServletContext 객체를 가져옴
+		String menu_member = context.getInitParameter("menu_member");	// web.xml의 <param-name> 태그의 이름으로 <param-value> 태그의 값인 메뉴 이름들을 받아옴
+		String menu_order = context.getInitParameter("menu_order");
+		String menu_goods = context.getInitParameter("menu_goods");
+		
+		out.print("<html><body>");
+		out.print("<table border=1 cellspacing=0><tr>메뉴 이름</tr>");
+		out.print("<tr><td>" + menu_member + "</td></tr>");
+		out.print("<tr><td>" + menu_order + "</td></tr>");
+		out.print("<tr><td>" + menu_goods + "</td></tr>");
+		out.print("</tr></table></body></html>");
+	}
+
+}
+{% endhighlight %}
+
+- 실습 3. 크롬 브라우저 테스트 http://localhost:8090/pro08/initMenu
+ 
+  ![image](/img/2019-10-29/servlet-expansion-api2-005-web5.png)
+ 
+- 실습 4. 인터넷 브라우저 테스트 http://localhost:8090/pro08/initMenu
+
+  ![image](/img/2019-10-29/servlet-expansion-api2-006-web6.png)
+
 <br>
 
 #### ServletContext의 파일 입출력 기능
+
+- 실습 1. WebContent/WEB-INF에 bin 레파지토리 생성
+
+- 실습 2. bin 레파지토리 하위에 init.txt 파일 생성
+
+{% highlight html %}
+회원등록  회원조회 회원수정, 주문조회  주문수정 주문취소,  상품조회  상품등록 상품수정 상품삭제
+{% endhighlight %}
+
+- 실습 3. sec05.ex03.ContextFileServlet 클래스
+
+  - init.txt에서 데이터를 읽어와 출력하는 기능을 구현
+
+{% highlight java %}
+package sec05.ex03;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ContextFileServlet
+ */
+@WebServlet("/cfile")
+public class ContextFileServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=euc-kr");
+		PrintWriter out = response.getWriter();
+		ServletContext context = getServletContext();
+		InputStream is = context.getResourceAsStream("/WEB-INF/bin/init.txt");
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+		
+		String menu = null;
+		String menu_member = null;
+		String menu_order = null;
+		String menu_goods = null;
+		while ((menu = buffer.readLine()) != null) {
+			StringTokenizer tokens = new StringTokenizer(menu, ",");
+			menu_member = tokens.nextToken();
+			menu_order = tokens.nextToken();
+			menu_goods = tokens.nextToken();
+		}
+		out.print("<html><body>");
+		out.print(menu_member + "<br>");
+		out.print(menu_order + "<br>");
+		out.print(menu_goods + "<br>");
+		out.print("</body></html>");
+		out.close();
+	}
+
+}
+{% endhighlight %}
+
+- 실습 4. 브라우저에서 http://localhost:8090/pro08/cfile 호출
+
+  - 파일의 메뉴 항목을 읽어와 브라우저로 출력함
+
+  ![image](/img/2019-10-29/servlet-expansion-api2-007-web7.png)
 
 <br>
 
 #### ServletConfig
 
+- ServletConfig
+
+  - 각 Servlet 객체에 대해 생성
+  
+  - ServletConfig 인터페이스를 GenericServlet 클래스가 실제로 구현
+
+  - javax.servlet 패키지에 인터페이스로 선언
+  
+  - 서블릿에 대한 여러가지 기능을 제공
+  
+  - 각 서블릿에서만 접근할 수 있으며, 공유는 불가능
+  
+  - 서블릿과 동일하게 생성되고, 서블릿이 소멸되면 같이 소멸
+
+- 제공하는 기능
+
+  - ServletContext 객체를 얻는 기능(앞에서 사용해봄)
+  
+  - 서블릿에 대한 초기화 작업 기능
+
 <br>
 
-#### 애너테이션을 이용한 서블릿 설정
+#### 서블릿에 대한 초기화 작업 기능
+
+- 서블릿에서 사용할 설정 정보를 읽어 들여와 초기화하는 기능
+
+  - @WebServlet 애너테이션 이용하는 방법
+  
+  - web.xml에 설정하는 방법
+
+<br>
+
+#### 서블릿에 대한 초기화 작업 기능(1) - @WebServlet 애너테이션
+
+- @WebServlet의 중요한 구성 요소들
+
+|**요소**|설명|
+|---|---|
+|**urlPatterns**|웹 브라우저에서 서블릿 요청시 사용하는 매핑 이름|
+|**name**|서블릿 이름|
+|**loadOnStartup**|컨테이너 실행 시 서블릿이 로드되는 순서 지정|
+|**initParams**|@WebinitParam 애너테이션을 이용해 매개변수를 추가하는 기능|
+|**description**|서블릿에 대한 설명|
+
+<br>
+
+#### 서블릿에 대한 초기화 작업 기능(1) - 편리하게 이클립스에서 서블릿을 생성할 때 @WebServlet의 값들을 설정
+
+- 실습1. sec06.ex01 패키지 생성 > 마우스 우클릭 > New > Servlet
+
+- 실습2. 클래스명 InitParamServlet > Next
+
+- 실습3. Initialization parameters:의 Add... > 값 입력 > OK > 추가된 그리드 확인
+
+  - Name : email, Value : admin@web.com
+  
+  - Name : tel, Value : 010-1111-2222
+  
+- 실습4. URL mappings:의 Remove > 기본값 제거
+
+- 실습5. URL mappings:의 Add.. > 값 입력 > OK > 그리드 확인 > Next
+
+  - Pattern : sInit
+  
+  - Pattern : sInit2
+  
+- 실습 6. Inherited abstract methods + doGet 체크 > Finish
+
+{% highlight java %}
+package sec06.ex01;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class InitParamServlet
+ */
+@WebServlet(
+		urlPatterns = { 
+				"/sInit", 
+				"/sInit2"
+		}, 
+		initParams = { 
+				@WebInitParam(name = "email", value = "admin@web.com"), 
+				@WebInitParam(name = "tel", value = "010-1111-2222")
+		})
+public class InitParamServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+}
+{% endhighlight %}
+
+- 실습7. InitparamServlet 클래스 작성
+
+  - getInitParameter() 메서드에 애너에티션으로 매개변수를 설정할 때 지정한 email과 name을 인자로 전달하여 각 값을 가져옴
+  
+{% highlight java %}
+package sec06.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class InitParamServlet
+ */
+@WebServlet(
+		urlPatterns = { 					// urlPatterns를 이용해 매핑명을 여러 개 설정할 수 있음
+				"/sInit", 		
+				"/sInit2"
+		}, 
+		initParams = { 
+				@WebInitParam(name = "email", value = "admin@web.com"), 	// @WebInitParam을 이용해 여러 개의 매개변수를 설정할 수 있음
+				@WebInitParam(name = "tel", value = "010-1111-2222")
+		})
+public class InitParamServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String email = getInitParameter("email");	// 설정한 매개변수의 name으로 값을 가져옴
+		String tel = getInitParameter("tel");
+		out.print("<html><body>");
+		out.print("<table><tr>");
+		out.print("<td>email: </td><td>" + email + "</td></tr>");
+		out.print("<tr><td>휴대전화: </td><td>" + tel + "</td>");
+		out.print("</tr></table></body></html>");
+	}
+
+}
+{% endhighlight %}
+
+- 실습8. 브라우저 호출
+
+  - http://localhost:8090/pro08/sInit
+  
+  - http://localhost:8090/pro08/sInit2
+  
+  ![image](/img/2019-10-29/servlet-expansion-api2-008-web8.png)
+
+  ![image](/img/2019-10-29/servlet-expansion-api2-009-web9.png)
+
+<br>
+
+#### 서블릿에 대한 초기화 작업 기능(2) - web.xml에 설정
+
+- 지금은 잘 이용하지 않음
+
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <servlet>
+        <servlet-name>sinit</servlet-name>
+	<servlet-class>sec06.ex01.initParamServlet</servlet-class>
+    	    <init-param>       <!-- <init-param> 태그 안에 매개변수를 설정 -->
+	        <param-name>email</param-name>
+		<param-value>admin@jweb.com<</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>tel</param-name>
+		<param-value>010-1111-2222</param-value>
+	    </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sinit</servlet-name>
+        <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+</web-app>
+{% endhighlight %}
 
 <br>
 <br>
 
 ## load-on-startup 기능 사용하기
 
+- 서블릿
+
+  - 브라우저에서 최초 요청시 init() 메서드를 실행한 후 메모리에 로드되어 기능을 수행
+  
+  - 최초 요청에 대해서는 실행시간이 길어질 수 밖에 없음
+  
+  - 이런 단점을 보완하기 위해 이용하는 기능이 load-on-startup
+  
+- load-on-startup의 특징
+
+  - 톰캣 컨테이너가 실행되면서 미리 서블릿을 실행
+  
+  - 지정한 숫자가 0보다 크면 톰캣 컨테이너가 실행되면서 서블릿이 초기화
+  
+  - 지정한 숫자는 우선순위를 의미하며 작은 숫자부터 먼저 초기화됨
+  
+- load-on-startup을 구현하는 방법 두 가지
+
+  - 애너테이션을 이용
+  
+  - web.xml에 설정
+
 <br>
 
 #### 애너테이션을 이용하는 방법
 
+- 특징
+
+  - 우선순위는 양의 정수로 지정하며 숫자가 작으면 우선순위가 높으므로 먼저 실행
+  
+  - 톰캣 실행시 init() 메서드를 호출하면 getInitParameter() 메서드를 이용해 web.xml의 메뉴 정보를 읽은 후 다시 ServletContext 객체에 setAttribute() 메서드로 바인딩
+  
+  - 브라우저에서 요청하면 web.xml이 아니라 ServletContext 객체에서 메뉴 항목을 가져온 후 출력 에서 ㅇ릭어 들여와 출력하는 것보다 빨리 
+
+- 실습 1. sec06.ex02 패키지 생성 > 마우스 우클릭 > New > Servlet
+
+- 실습 2. 클래스명 : LoadAppConfig > Next > 
+
+- 실습 3. Name과 URL mapping을 loadConfig로 변경 > Next
+
+  - Name을 바꾸면 URL mapping도 동일하게 바뀜
+  
+- 실습 4. Inherited abstract methods, init, doGet 체크 > Finish
+
+{% highlight java %}
+package sec06.ex02;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoadAppConfig
+ */
+@WebServlet(name = "loadConfig", urlPatterns = { "/loadConfig" })
+public class LoadAppConfig extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+}
+{% endhighlight %}
+
+- 실습 5. LoadAppConfig 클래스 작성
+
+  - 애너테이션으로 설정한 매개변수에 loadOnStartup 속성을 추가한 후 우선순위를 1로 설정
+  
+{% highlight java %}
+package sec06.ex02;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoadAppConfig
+ */
+@WebServlet(name = "loadConfig", urlPatterns = { "/loadConfig" }, loadOnStartup=1)	// loadOnStartup 속성을 추가하고, 우선순위를 1로 설정
+public class LoadAppConfig extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private ServletContext context;		// 변수 context를 멤버 변수로 선언
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("pro08.sec06.ex02.LoadAppConfig의 init 메서드 호출");
+		context = config.getServletContext();	// init() 메서드에서 ServletContext 객체를 받음
+		String menu_member = context.getInitParameter("menu_member");
+		String menu_order = context.getInitParameter("menu_order");
+		String menu_goods = context.getInitParameter("menu_goods");
+		context.setAttribute("menu_member", menu_member);
+		context.setAttribute("menu_order", menu_order);
+		context.setAttribute("menu_goods", menu_goods);
+		
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		// ServletContext context = getServletContext();   doGet() 메서드 호출 시 ServletContext 객체를 얻는 부분 주석처리
+		String menu_member = (String) context.getAttribute("menu_member");	// 브라우저에 요청 시 ServletContext 객체의 바인딩된 메뉴 항목을 가져옴
+		String menu_order = (String) context.getAttribute("menu_order");
+		String menu_goods = (String) context.getAttribute("menu_goods");
+		out.print("<html><body>");
+		out.print("<table border=1 cellspacing=0><tr>메뉴이름</tr>");
+		out.print("<tr><td>" + menu_member + "</td></tr>");
+		out.print("<tr><td>" + menu_order + "</td></tr>");
+		out.print("<tr><td>" + menu_goods + "</td></tr>");
+		out.print("</tr></table></body></html>");
+	}
+
+}
+{% endhighlight %}
+  
+- 실습 6. tomcat 재기동
+
+  - 서블릿의 init() 메서드를 호출하므로 로그에 메시지가 출력됨
+  
+  ![image](/img/2019-10-29/servlet-expansion-api2-010-web10.png)
+  
+- 실습 7. http://localhost:8090/pro08/loadConfig로 브라우저 호출
+
+  - 기다리지 않고 바로 공통 메뉴를 
+
+  ![image](/img/2019-10-29/servlet-expansion-api2-011-web11.png)
+
 <br>
 
 #### web.xml에 설정하는 방법
+
+- 애너테이션 이용 전엔 web.xml에 설정해서 사용했었었음
+
+- 실행 결과는 애너테이션과 동일
+
+- web.xml
+
+  - \<servlet-name> 태그의 값은 반드시 서블릿을 생성할 때 name으로 지정한 값으로 설정해야 함
+  
+  - \<load-on-startup>은 우선순위를 설정
+  
+{% highlight html %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<servlet>
+    <servlet-name>loadConfig</servlet-name>                  <!-- 애너테이션으로 서블릿 생성 시 name 속성 값으로 설정 -->
+    <servlet-class>sec06.ex02.LoadAppConfig</servlet-class>  <!-- 패키지명까지 포함한 서블릿 클래스 이름 설정 -->
+    <load-on-startup>1</load-on-startup>                     <!-- 우선순위 설정 -->
+</servlet>
+<context-param>
+    <param-name>menu_member</param-name>
+    <param-value>회원등록  회원조회 회원수정</param-value>
+</context-param>
+<context-param>
+    <param-name>menu_order</param-name>
+    <param-value>주문조회  주문등록 주문수정 주문취소</param-value>
+</context-param>
+<context-param>
+    <param-name>menu_goods</param-name>
+    <param-value>상품조회  상품등록 상품수정 상품삭제</param-value>
+</context-param>
+</web-app>
+{% endhighlight %}
