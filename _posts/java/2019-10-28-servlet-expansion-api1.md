@@ -1,15 +1,12 @@
 ---
 layout: post
 title:  "[Java] 서블릿 확장 API 사용하기-(1)"
-date:   2019-10-28 13:27:91
+date:   2019-10-28 13:27:19
 author: Choi HyeSun
 categories: java
 tags:
   - Java
-  - 서블릿
   - Servlet
-  - 서블릿 확장 API
-  - 포워드
   - forward
   - redirect
   - location
@@ -60,6 +57,7 @@ tags:
   - 요청에 정보를 포함시켜 다른 서블릿에 전달할 수 있음
   
   - 모델2 개발시 서블릿에서 JSP로 데이터를 전달하는 데 사용
+  
 <br>
 <br>
 
@@ -489,3 +487,10 @@ public class SecondServlet extends HttpServlet {
 
   ![image](/img/2019-10-28/servlet-expansion-api1-004-web4.png)
 
+- get 방식으로 파라미터를 붙여서 데이터를 전달할 수 있음
+
+  - 기존 : RequestDispatcher dispatch = request.getRequestDispatcher("secondDispatcher");
+
+  - 데이터추가 : RequestDispatcher dispatch = request.getRequestDispatcher("secondDispatcher?abc=def");
+  
+  - 데이터사용 : String alpha = request.getParameter("abc");
