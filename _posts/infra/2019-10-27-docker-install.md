@@ -323,15 +323,118 @@ Build Cache         0                   0                   0B                  
 
 #### Nginx Docker 이미지 다운로드
 
+- [공식 리포지토리의 Nginx 공식 이미지](https://hub.docker.com/_/nginx)
+
+- 이미지 다운로드
+
+{% highlight bash %}
+$ sudo docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+8d691f585fa8: Pull complete
+5b07f4e08ad0: Pull complete
+abc291867bca: Pull complete
+Digest: sha256:922c815aa4df050d4df476e92daed4231f466acc8ee90e0e774951b0fd7195a4
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+{% endhighlight %}
+
+- 이미지 확인
+
+{% highlight bash %}
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED                  SIZE
+nginx               latest              540a289bab6c        Less than a second ago   126MB
+
+// 동일
+$ sudo docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED                  SIZE
+nginx               latest              540a289bab6c        Less than a second ago   126MB
+{% endhighlight %}
+
 <br>
 
 #### Nginx 작동
+
+- 이미지 nginx를 사용하여 webserver라는 이름의 컨테이너 기동
+
+  - 포트 허용 > 호스트OS 8080포트와 컨테이너 80포트 연결
+  
+  - 정상완료되면 컨테이너 ID가 나타남
+
+{% highlight bash %}
+$ docker container run --name webserver -d -p 8080:80 nginx
+68bb8c1317fa62cd0f631b3f429ea439b8805789f7e529f236d87e784fdbc280
+
+// container 제외해도 동일
+$ docker run --name webserver -d -p 8080:80 nginx
+{% endhighlight %}
 
 <br>
 
 #### Nginx 작동 확인
 
+- 호스트OS IP 주소의 8080포트로 웹 브라우저에서 요청 → nginx 초기화면 나타남
+
+![image](/img/2019-10-27/docker-install-001-web1.png)
+
+- 컨테이너 확인
+
+{% highlight bash %}
+$ sudo docker container ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+68bb8c1317fa        nginx               "nginx -g 'daemon of…"   4 minutes ago       Up 4 minutes        0.0.0.0:8080->80/tcp   webserver
+
+// container 제외해도 동일
+$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+68bb8c1317fa        nginx               "nginx -g 'daemon of…"   4 minutes ago       Up 4 minutes        0.0.0.0:8080->80/tcp   webserver
+{% endhighlight %}
+
+- 컨테이너 상세 내용 확인
+
+{% highlight bash %}
+// 모두 동일
+$ sudo docker container stats webserver
+$ sudo docker stats webserve
+$ sudo docker container stats 68bb8c1317fa
+$ sudo docker stats 68bb8c1317fa
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT    MEM %               NET I/O             BLOCK I/O           PIDS
+68bb8c1317fa        webserver           0.00%               1.41MiB / 3.701GiB   0.04%               2.33kB / 2.26kB     0B / 0B             2
+{% endhighlight %}
+
 <br>
 
 #### Nginx 기동 및 정지
 
+- Docker 컨테이너 정지
+
+{% highlight bash %}
+$ docker stop webserver
+webserver
+
+// ID를 써도 됨
+$ docker stop 68bb8c1317fa
+68bb8c1317fa
+{% endhighlight %}
+
+- 정지된 컨테이너는 ps -a로 조회해야 함
+
+{% highlight bash %}
+$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+68bb8c1317fa        nginx               "nginx -g 'daemon of…"   9 minutes ago       Exited (0) 45 seconds ago                       webserver
+{% endhighlight %}
+
+- Docker 컨테이너 기동
+{% highlight bash %}
+$ docker start webserver
+webserver
+
+// ID를 써도 됨
+$ docker start 68bb8c1317fa
+68bb8c1317fa
+{% endhighlight %}
