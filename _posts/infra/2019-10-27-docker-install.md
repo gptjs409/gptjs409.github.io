@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "[Docker] 도커 설치/작동확인/Nginx 띄워보기"
-date:   2019-10-24 08:53:21
+date:   2019-10-27 20:14:43
 author: Choi HyeSun
 categories: infra
 tags:
@@ -320,3 +320,18 @@ Build Cache         0                   0                   0B                  
 <br>
 
 ## Nginx 띄워보기
+
+#### Nginx Docker 이미지 다운로드
+
+<br>
+
+#### Nginx 작동
+
+<br>
+
+#### Nginx 작동 확인
+
+<br>
+
+#### Nginx 기동 및 정지
+
