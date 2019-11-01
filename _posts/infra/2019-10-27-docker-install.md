@@ -208,6 +208,8 @@ Hello world
 
   - 로컬 환경에 다운로드 된 Docker 이미지
   
+<br>
+
 #### Docker 버전 확인
 
 - docker version 명령을 통해 설치한 Docker 버전 확인
