@@ -147,7 +147,7 @@ $ sudo docker container run -it --name "test2" centos /bin/bash
 
 - 지정할 수 있는 주요 옵션
 
-  - \--restart=\[no | on-failure | on-failure:횟수n | always | unless-stopped]
+  - \--restart=\[no \| on-failure \| on-failure:횟수n \| always \| unless-stopped]
 
 |옵션|설명|
 |---|---|
