@@ -170,17 +170,169 @@ $ sudo docker container run -it --name "test2" centos /bin/bash
   
   - unless-stopped : 최근 컨테이너가 정지 상태가 아니라면 항상 재시작
   
-
-
 <br>
 <br>
 
 ## 컨테이너 네트워크 설정
 
+- docker container run \[네트워크 옵션] 이미지명\[:태그명] \[인수]
+
+- 지정할 수 있는 주요 옵션
+
+  - \--add-host=\[호스트명:IP주소] : 컨테이너의 /etc/hosts에 호스트명과 IP 주소를 정의
+  
+  - \--dns=\[IP주소] : 컨테이너용 DNS 서버의 IP 주소 지정
+  
+  - \--expose : 지정한 범위의 포트 번호를 할당
+  
+  - \--mac-address=\[MAC 주소] : 컨테이너의 MAC 주소를 지정
+  
+  - \--net=\[bridge \| none \| container:\<name \| id> \| host \| NETWORK] : 컨테이너의 네트워크 지정
+  
+  - \--hostname, -h : 컨테이너 자신의 호스트명을 지정
+  
+  - \--publish, -p\[호스트의 포트번호]:\[컨테이너의 포트 번호] : 호스트와 컨테이너의 포트 매핑
+  
+  - \--publish-all, -P : 호스트의 임의의 포트를 컨테이너에 할당
+  
+- 컨테이너의 포트 매핑(예제)
+
+  - sudo docker container run -d -p 8080:80 nginx
+
+  - nginx라는 이름의 이미지를 바탕으로 컨테이너를 생성
+  
+  - 백그라운드에서 실행 (-d 옵션)
+  
+  - 호스트OS 포트 8080과 컨테이너 포트 80을 매핑
+  
+  - 포트 번호 할당시는 `--expose`사용, 호스트 머신의 임의의 포트 지정시에는 `-P` 옵션 사용
+
+{% highlight bash %}
+$ sudo docker container run -d -p 8080:80 nginx
+3bbdadd9611949c97b8965c3f7b115d34ad70a067161199b6112216e8e067c6d
+
+// Container 생략 가능
+$ sudo docker run -d -p 8080:80 nginx
+3bbdadd9611949c97b8965c3f7b115d34ad70a067161199b6112216e8e067c6d
+{% endhighlight %}
+
+- 컨테이너의 DNS 서버 지정(예제)
+
+  - docker container run -d --dns 192.168.1.1 nginx
+  
+  - DNS서버는 IP로 지정
+  
+{% highlight bash %}
+$ docker container run -d --dns 192.168.1.1 nginx
+5b7f487230c6531a1a8adf525e861854c89619dfd0491246276d420886766934
+
+// container 생략 가능
+$ docker container run -d --dns 192.168.1.1 nginx
+5b7f487230c6531a1a8adf525e861854c89619dfd0491246276d420886766934
+{% endhighlight %}
+
+- MAC 주소 지정 (예제)
+
+  - docker container run -d --mac-address="92:d0:c6:0a:21:32" centos
+  
+{% highlight bash %}
+$ docker container run -d --mac-address="92:d0:c6:0a:21:32" centos
+93e4fd73bf5572d599b4b88a2dcaa7712c8ed552cd46eb0820dbc9360aa3a566
+$ docker container inspect --format="{{ .Config.MacAddress }}" 93e4
+92:d0:c6:0a:21:32
+
+// container 생략 가능
+$ docker run -d --mac-address="92:d0:c6:0a:21:32" centos
+93e4fd73bf5572d599b4b88a2dcaa7712c8ed552cd46eb0820dbc9360aa3a566
+$ docker inspect --format="{{ .Config.MacAddress }}" 93e4
+92:d0:c6:0a:21:32
+{% endhighlight %}
+
+- 호스트명과 IP 주소 정의 (예제)
+
+  - docker container run -it --add-host test.com:192.168.1.1 centos
+
+{% highlight bash %}
+$ docker container run -it --add-host test.com:192.168.1.1 centos
+
+// container 생략 가능
+$ docker container run -it --add-host test.com:192.168.1.1 centos
+
+[root@564dee65a1f2 /]$ cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+192.168.1.1     test.com
+172.17.0.2      564dee65a1f2
+{% endhighlight %}
+
+- 호스트명 설정 (예제)
+
+  - docker container run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
+
+{% highlight bash %}
+$ docker container run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
+
+// container 생략 가능
+$ docker run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
+
+[root@www /]$ cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+192.168.1.1     node1.test.com
+172.17.0.2      www.test.com www
+{% endhighlight %}
+
+- \--net 옵션
+
+  - 기본적으로 호스트OS와 브리지 연결을 함
+
+  - `--net`옵션 사용시 네트워크 설정이 가능함
+  
+|설정값|설명|
+|---|---|
+|bridge|브리지 연결(기본값)을 사용|
+|none|네트워크에 연결하지 않음|
+|container:\[name \| id]|다른 컨테이너의 네트워크를 사용|
+|host|컨테이너가 호스트 OS의 네트워크를 사용|
+|NETWORK|사용자 정의 네트워크 사용|
+
+<br>
+
+- 사용자 지정 네트워크 작성 (예제)
+
+  - docker network create -d bridge webap-net
+  
+  - docker network create : 사용자 적의 네트워크 작성
+  
+  - Docker 네트워크 드라이버 또는 외부 네트워크 드라이버 플러그인을 사용해야 함
+  
+  - 같은 네트워크에 여러 컨테이너가 연결할 수 있음
+  <br>사용자 정의 네트워크에 연결하면 컨테이너는 컨테이너명 또는 IP 주소로 서로 통신 가능
+  
+  - 오버레이 네트워크나 커스텀 플러그인 사용시 멀티호스트에 대한 연결 가능
+  <br>컨테이너가 동일한 멀티호스트 네트워크에 연결되어 있으면 이 네트워크를 통한 통신 가능)
+  
+{% highlight bash %}
+$ docker network create -d bridge webap-net
+47fc2eb62179ae4591db1a5672b2f775ecc6b20d43f01a04c82ec1ba9085d65c
+$ docker run --net=webap-net -it centos
+[root@fb4dbc0b9ced /]#
+{% endhighlight %}
+
 <br>
 <br>
 
 ## 자원을 지정하여 컨테이너 생성 및 실행
+
+
 
 <br>
 <br>
