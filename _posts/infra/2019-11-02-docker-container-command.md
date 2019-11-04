@@ -87,30 +87,19 @@ tags:
 
 - 지정할 수 있는 주요 옵션
 
-|옵션|설명|
-|---|---|
-|--attach, -a|표준 입력(STDIN), 표준 출력(STDOUT), 표준 오류 출력(STDERR)에 attach|
-|--cidfile|컨테이너 ID를 파일로 출력|
-|--detach, -d|컨테이너를 생성하고 백그라운드에서 실행|
-|--interactive, -i|컨테이너의 표준 입력을 엶|
-|--tty, -t|단말기 디바이스를 사용|
+  - \--attach, -a : 표준 입력(STDIN), 표준 출력(STDOUT), 표준 오류 출력(STDERR)에 attach
+
+  - \--cidfile : 컨테이너 ID를 파일로 출력
+
+  - \--detach, -d : 컨테이너를 생성하고 백그라운드에서 실행
+  
+  - \--interactive, -i : 컨테이너의 표준 입력을 엶
+  
+  - \--tty, -t : 단말기 디바이스를 사용
 
 <br>
 
-- 예제) 달력을 출력하는 컨테이너
-
-  - docker container run -it --name "test1" centos /bin/cal
-  
-  - `docker container run` : 컨테이너를 생성 및 실행
-  
-  - `-it` : 콘솔에 결과를 출력하는 옵션
-  <br>`-i` - 컨테이너의 표준 출력을 엶, `-t` - tty(단말 디바이스)를 확보
-  
-  - `--name "test"` : 컨테이너명 지정
-  
-  - `centos` : 이미지명 지정
-  
-  - `/bin/cal` : 컨테이너에서 실행할 명령
+#### 달력을 출력하는 컨테이너(예제)
 
 {% highlight bash %}
 $ sudo docker container run -it --name "test1" centos /bin/cal
@@ -128,33 +117,54 @@ Su Mo Tu We Th Fr Sa
 27 28 29 30 31
 {% endhighlight %}
 
+- docker container run -it --name "test1" centos /bin/cal
 
-- 예제) 컨테이너 안에서 쉘(/bin/bash)을 실행
+- `docker container run` : 컨테이너를 생성 및 실행
 
-  - exit로 쉘 종료
+- `-it` : 콘솔에 결과를 출력하는 옵션
+
+  - `-i` - 컨테이너의 표준 출력을 엶
+  
+  - `-t` - tty(단말 디바이스)를 확보
+
+- `--name "test"` : 컨테이너명 지정
+
+- `centos` : 이미지명 지정
+
+- `/bin/cal` : 컨테이너에서 실행할 명령
+
+<br>
+
+#### 컨테이너 안에서 쉘(/bin/bash)을 실행(예제)
   
 {% highlight bash %}
 $ sudo docker container run -it --name "test2" centos /bin/bash
 [root@883baf01dc40 /]#
+
+// container 생략 가능
+$ sudo docker run -it --name "test2" centos /bin/bash
+[root@883baf01dc40 /]#
 {% endhighlight %}
+
+- exit로 쉘 종료
 
 <br>
 <br>
 
 ## 컨테이너 백그라운드 실행 (백그라운드에서 실행-detach mode)
 
-- docker container run \[실행 옵션] 이미지명\[:태그명] [인수]
+- docker container run \[실행 옵션] 이미지명\[:태그명] \[인수]
 
-- 지정할 수 있는 주요 옵션
+- 지정할 수 있는 주요 옵션  
 
-  - \--restart=\[no \| on-failure \| on-failure:횟수n \| always \| unless-stopped]
+  - \--detach, -d : 백그라운드 실행
+  
+  - \--user, -u : 사용자명 지정
 
-|옵션|설명|
-|---|---|
-|--detach, -d|백그라운드 실행|
-|--user, -u|사용자명 지정|
-|--restart=(이하생략)|명령의 실행 결과에 따라 재시작하는 옵션<br>--rm과 동시 사용 불가|
-|--rm|명령 실행 후 컨테이너 자동 삭제<br>--restart와 동시 사용 불가|
+  - \--restart=\[no \| on-failure \| on-failure:횟수n \| always \| unless-stopped] 
+  <br>: 명령의 실행 결과에 따라 재시작하는 옵션, --rm과 동시 사용 불가
+
+  - \--rm : 명령 실행 후 컨테이너 자동 삭제, --restart와 동시 사용 불가
 
 <br>
 
@@ -195,17 +205,9 @@ $ sudo docker container run -it --name "test2" centos /bin/bash
   
   - \--publish-all, -P : 호스트의 임의의 포트를 컨테이너에 할당
   
-- 컨테이너의 포트 매핑(예제)
-
-  - sudo docker container run -d -p 8080:80 nginx
-
-  - nginx라는 이름의 이미지를 바탕으로 컨테이너를 생성
+<br>
   
-  - 백그라운드에서 실행 (-d 옵션)
-  
-  - 호스트OS 포트 8080과 컨테이너 포트 80을 매핑
-  
-  - 포트 번호 할당시는 `--expose`사용, 호스트 머신의 임의의 포트 지정시에는 `-P` 옵션 사용
+#### 컨테이너의 포트 매핑(예제)
 
 {% highlight bash %}
 $ sudo docker container run -d -p 8080:80 nginx
@@ -216,11 +218,23 @@ $ sudo docker run -d -p 8080:80 nginx
 3bbdadd9611949c97b8965c3f7b115d34ad70a067161199b6112216e8e067c6d
 {% endhighlight %}
 
-- 컨테이너의 DNS 서버 지정(예제)
+- sudo docker container run -d -p 8080:80 nginx
 
-  - docker container run -d --dns 192.168.1.1 nginx
-  
-  - DNS서버는 IP로 지정
+- nginx라는 이름의 이미지를 바탕으로 컨테이너를 생성
+
+- 백그라운드에서 실행 (-d 옵션)
+
+- 호스트OS 포트 8080과 컨테이너 포트 80을 매핑
+
+- 포트 번호 할당시는 `--expose`사용, 호스트 머신의 임의의 포트 지정시에는 `-P` 옵션 사용
+
+<br>
+
+#### 컨테이너의 DNS 서버 지정(예제)
+
+- docker container run -d --dns 192.168.1.1 nginx
+
+- DNS서버는 IP로 지정
   
 {% highlight bash %}
 $ docker container run -d --dns 192.168.1.1 nginx
@@ -231,10 +245,10 @@ $ docker container run -d --dns 192.168.1.1 nginx
 5b7f487230c6531a1a8adf525e861854c89619dfd0491246276d420886766934
 {% endhighlight %}
 
-- MAC 주소 지정 (예제)
+<br>
 
-  - docker container run -d --mac-address="92:d0:c6:0a:21:32" centos
-  
+#### MAC 주소 지정 (예제)
+
 {% highlight bash %}
 $ docker container run -d --mac-address="92:d0:c6:0a:21:32" centos
 93e4fd73bf5572d599b4b88a2dcaa7712c8ed552cd46eb0820dbc9360aa3a566
@@ -248,9 +262,11 @@ $ docker inspect --format="{{ .Config.MacAddress }}" 93e4
 92:d0:c6:0a:21:32
 {% endhighlight %}
 
-- 호스트명과 IP 주소 정의 (예제)
+- docker container run -d --mac-address="92:d0:c6:0a:21:32" centos
+  
+<br>
 
-  - docker container run -it --add-host test.com:192.168.1.1 centos
+#### 호스트명과 IP 주소 정의 (예제)
 
 {% highlight bash %}
 $ docker container run -it --add-host test.com:192.168.1.1 centos
@@ -269,9 +285,11 @@ ff02::2 ip6-allrouters
 172.17.0.2      564dee65a1f2
 {% endhighlight %}
 
-- 호스트명 설정 (예제)
+- docker container run -it --add-host test.com:192.168.1.1 centos
 
-  - docker container run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
+<br>
+
+#### 호스트명 설정 (예제)
 
 {% highlight bash %}
 $ docker container run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
@@ -290,6 +308,10 @@ ff02::2 ip6-allrouters
 172.17.0.2      www.test.com www
 {% endhighlight %}
 
+- docker container run -it --hostname www.test.com --add-host node1.test.com:192.168.1.1 centos
+
+#### 네트워크 설정
+
 - \--net 옵션
 
   - 기본적으로 호스트OS와 브리지 연결을 함
@@ -306,19 +328,7 @@ ff02::2 ip6-allrouters
 
 <br>
 
-- 사용자 지정 네트워크 작성 (예제)
-
-  - docker network create -d bridge webap-net
-  
-  - docker network create : 사용자 적의 네트워크 작성
-  
-  - Docker 네트워크 드라이버 또는 외부 네트워크 드라이버 플러그인을 사용해야 함
-  
-  - 같은 네트워크에 여러 컨테이너가 연결할 수 있음
-  <br>사용자 정의 네트워크에 연결하면 컨테이너는 컨테이너명 또는 IP 주소로 서로 통신 가능
-  
-  - 오버레이 네트워크나 커스텀 플러그인 사용시 멀티호스트에 대한 연결 가능
-  <br>컨테이너가 동일한 멀티호스트 네트워크에 연결되어 있으면 이 네트워크를 통한 통신 가능)
+#### 사용자 지정 네트워크 작성 (예제)
   
 {% highlight bash %}
 $ docker network create -d bridge webap-net
@@ -327,12 +337,39 @@ $ docker run --net=webap-net -it centos
 [root@fb4dbc0b9ced /]#
 {% endhighlight %}
 
+- docker network create -d bridge webap-net
+
+- docker network create : 사용자 정의 네트워크 작성
+
+- Docker 네트워크 드라이버 또는 외부 네트워크 드라이버 플러그인을 사용해야 함
+
+- 같은 네트워크에 여러 컨테이너가 연결할 수 있음
+
+  - 사용자 정의 네트워크에 연결하면 컨테이너는 컨테이너명 또는 IP 주소로 서로 통신 가능
+
+- 오버레이 네트워크나 커스텀 플러그인 사용시 멀티호스트에 대한 연결 가능
+
+  - 컨테이너가 동일한 멀티호스트 네트워크에 연결되어 있으면 이 네트워크를 통한 통신 가능)
+
+
 <br>
 <br>
 
 ## 자원을 지정하여 컨테이너 생성 및 실행
 
+- docker container run \[자원 옵션] 이미지명\[:태그명] \[인수]
 
+- 지정할 수 있는 주요 옵션
+
+  - \--cpu-shares, -c : CPU의 사용 배분(비율)
+  
+  - \--memory, -m : 사용할 메모리를 제한하여 실행(단위는 b, k, m, g)
+  
+  - \--volume=\[호스트의 디렉토리]:\[컨테이너의 디렉토리], -v : 호스트와 컨테이너의 디렉터리를 공유
+  
+- CPU 시간의 상대 비율과 메모리 사용량 지정
+
+- 
 
 <br>
 <br>
