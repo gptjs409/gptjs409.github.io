@@ -35,13 +35,13 @@ tags:
 
 #### 부록 - JDK 1.5에 추가된 기능 : 맨 뒤 챕터입니다!!!! (챕터 순서 확인 필요)
 
-|중분류|소분류|
-|---|---|
-|1. 향상된 for문||
-|2. 오토박싱(autoboxing)||
-|3. 타입에 안전한 열거형(Typesafe enums)||
-|4. 가변인수(Varargs)||
-|5. static import문||
-|6. StringBuilder||
+|분류|
+|---|
+|1. 향상된 for문|
+|2. 오토박싱(autoboxing)|
+|3. 타입에 안전한 열거형(Typesafe enums)|
+|4. 가변인수(Varargs)|
+|5. static import문|
+|6. StringBuilder|
 
 <br>
